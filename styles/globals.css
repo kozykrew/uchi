@@ -1,9 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap');
+
 html,
 body {
-  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Nunito', sans-serif;
+}
+
+.pageContent {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+body, h1, h2, h3 {
+  color: var(--textLight);
+}
+
+body {
+  background-color: var(--vanilla);
+}
+
+h1, h2, h3, .smallHeader {
+  font-family: 'Karla', sans-serif;
+}
+
+h1 {
+  font-weight: 500;
+}
+
+h2 {
+  font-weight: 700;
+}
+
+.smallHeader {
+  font-weight: 500;
+}
+
+.tag {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 
 a {

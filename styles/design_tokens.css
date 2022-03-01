@@ -1,0 +1,17 @@
+:root {
+  --gradient: linear-gradient(45deg, #B5E48C, #FFD364);
+  --mint100: #A2CD7C;
+  --mint80: #B5E48C;
+  --mint60: #D9ED92;
+  --orange100: #FFB703;
+  --orange80: #FFDC24;
+  --orange60: #FFD364;
+  --vanilla: #FFF8E6;
+  --vanillaToasted: #F1E7CC;
+  --vanillaBurnt: #B0A994;
+  --chocolate100: #C1947F;
+  --chocolate80: #DDB892;
+  --chocolate60: #CFBBAF;
+  --textDark: #140A01;
+  --textLight: #35291B;
+}

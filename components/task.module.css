@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.taskDetailsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--chocolate80);
+  border-radius: 15px;
+  padding: 1rem;
+  position: relative;
+}
+
+.container, .taskDetailsContainer {
+  width: 100%;
+}
