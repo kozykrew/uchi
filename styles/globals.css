@@ -21,7 +21,7 @@ body {
   background-color: var(--vanilla);
 }
 
-h1, h2, h3, .smallHeader {
+h1, h2, h3, .smallHeader, a {
   font-family: 'Karla', sans-serif;
 }
 
@@ -32,6 +32,26 @@ h1 {
 h2 {
   font-weight: 700;
 }
+
+/* icon classes */
+.iconSelected {
+  width: 45px;
+  height: 45px;
+}
+
+.iconRegular {
+  width: 32px;
+  height: 32px;
+}
+
+.iconFirst {
+  margin-right: 0.5rem;
+}
+
+.iconLast {
+  margin-left: 0.5rem;
+}
+/* END icon classes */
 
 .smallHeader {
   font-weight: 500;

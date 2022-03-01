@@ -3,6 +3,10 @@ import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 
+import Link from 'next/link'
+
+import styles from './navbar.module.css'
+
 export function UchiNavbar() {
   // <Nav className="me-auto">
   //   <Nav.Link href="#features">Dashboard</Nav.Link>
@@ -18,14 +22,14 @@ export function UchiNavbar() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="#FFF8E6" variant="light">
       <Container>
-      <Navbar.Brand href="#">UCHI</Navbar.Brand>
+      <Navbar.Brand className={styles.brand} href="/dashboard">UCHI</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav>
-          <Nav.Link href="#">Dashboard</Nav.Link>
-          <Nav.Link href="#">Home Features</Nav.Link>
-          <Nav.Link href="#">Tasks</Nav.Link>
-          <Nav.Link href="#">Profile</Nav.Link>
+          <Link href="/dashboard"><a>Dashboard</a></Link>
+          <Link href="/homefeatures"><a>Home Features</a></Link>
+          <Link href="/"><a>Tasks</a></Link>
+          <Link href="/"><a>Profile</a></Link>
         </Nav>
       </Navbar.Collapse>
       </Container>
