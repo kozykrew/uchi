@@ -28,7 +28,7 @@ export function UchiNavbar() {
         <Nav>
           <Link href="/dashboard"><a>Dashboard</a></Link>
           <Link href="/homefeatures"><a>Home Features</a></Link>
-          <Link href="/"><a>Tasks</a></Link>
+          <Link href="/tasks"><a>Tasks</a></Link>
           <Link href="/"><a>Profile</a></Link>
         </Nav>
       </Navbar.Collapse>

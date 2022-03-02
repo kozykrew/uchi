@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Layout from '../components/layout.js'
 import {PageHeader, SectionHeader} from '../components/headers.js'
 import {Calendar} from '../components/calendar.js'
+import {TaskList} from '../components/tasklist.js'
 import {Task} from '../components/task.js'
 
 const user = 'KozyKrew'
@@ -19,7 +20,7 @@ export default function Dashboard() {
           <SectionHeader iconpath="/../public/icons/calendar_duotone.png" headertext={"2022"} />
           <Calendar months={["Mar", "Apr", "May", "Jun", "Jul"]} />
           <SectionHeader iconpath="/../public/icons/tasks_duotone.png" headertext="March Tasks" />
-          <Task taskTitle="Fertilize lawn" taskDifficulty="Easy" taskDesc="Feed lawn with nutrients" />
+          <TaskList dashboard={true} />
         </div>
       </Layout>
     </div>
