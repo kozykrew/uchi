@@ -10,8 +10,10 @@ export function TabBar(props) {
     </Tab>
   ));
 
+  var defaultActive = props.tabs[0].replace(/\s+/g, '').toLowerCase();
+
   return (
-    <Tabs defaultActiveKey="inprogress" id="tabbar-tasks" className="mb-3" variant="pills">
+    <Tabs defaultActiveKey={defaultActive} id="tabbar" className="mb-3" variant="pills">
       {children}
     </Tabs>
   )

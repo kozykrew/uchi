@@ -1,5 +1,12 @@
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 import styles from './headers.module.css'
+
+// progress bar component from https://www.npmjs.com/package/react-circular-progressbar
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+
+import {BtnComplete, BtnPostpone, BtnDelete} from './button.js'
 
 export function PageHeader(props) {
   return (
@@ -32,4 +39,43 @@ export function SpaceHeader(props) {
       </div>
     </div>
   )
+}
+
+export function DetailsHeader(props) {
+  const router = useRouter();
+
+  var content;
+  if (props.type == "task") {
+    var value = 0;
+    return (
+      <div>
+        <div className={styles.detailsRow}>
+          <div className="iconRegular">
+            <Image src="/../public/icons/circlecarrot_left_line.png" layout="fixed" width={32} height={32} onClick={() => router.push('/tasks')} />
+          </div>
+          <h1 className={styles.taskHeader}>{props.name}</h1>
+          <CircularProgressbar className={styles.progressbar} value={value} maxValue={1} text={value*100 + '%'} />
+        </div>
+        <div className={styles.btnRow}>
+          <BtnComplete />
+          <BtnPostpone />
+          <BtnDelete />
+        </div>
+      </div>
+    )
+  } else if (props.type == "hf") {
+    return (
+      <div>
+      </div>
+    )
+  }
+
+  // return (
+  //   <div className={styles.detailsRow}>
+  //     <div className="iconRegular">
+  //       <Image src="/../public/icons/circlecarrot_left_line.png" layout="fixed" width={32} height={32} onClick={() => router.push('/tasks')} />
+  //     </div>
+  //     {content}
+  //   </div>
+  // )
 }

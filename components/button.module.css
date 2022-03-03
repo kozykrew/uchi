@@ -1,0 +1,11 @@
+.complete {
+  background-color: var(--mint60);
+}
+
+.postpone {
+  background-color: var(--orange60);
+}
+
+.delete {
+  background-color: var(--chocolate80);
+}

@@ -1,0 +1,27 @@
+.chocolate80bg {
+  background-color: var(--chocolate80);
+}
+
+.detailsContainer {
+  background-color: var(--vanilla);
+  border-radius: 0 0 15px 15px;
+  padding-bottom: 1rem;
+}
+
+.mainDetailsContainer {
+  border: 1px solid var(--textDark);
+  border-radius: 15px;
+  padding: 1rem;
+}
+
+.hr {
+  width: 75%;
+  margin: auto;
+  margin-bottom: 1rem;
+  border: 1px solid var(--textDark);
+}
+
+.purpose {
+  font-family: 'Karla', sans-serif;
+  margin-bottom: 0;
+}
