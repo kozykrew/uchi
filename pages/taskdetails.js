@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Layout from '../components/layout.js'
-import {PageHeader, DetailsHeader} from '../components/headers.js'
+import {SectionHeader, DetailsHeader} from '../components/headers.js'
 import {MainDetailsTable} from '../components/mainDetailsTable.js'
 import {TabBar} from '../components/tabbar.js'
 
@@ -28,8 +28,8 @@ export default function TaskDetails() {
             </div>
           </div>
           <div className="pageContent">
-            <PageHeader iconpath="/../public/icons/todo_gradient.png" headertext={"Tasks"} />
-            <TabBar tabs={["DIY", "Service"]}/>
+            <h2>How To</h2>
+            <TabBar type="steps" tabs={["DIY", "Service"]}/>
           </div>
         </div>
       </Layout>

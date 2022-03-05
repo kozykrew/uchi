@@ -1,4 +1,5 @@
 .chocolate80bg {
+  height: 100vh;
   background-color: var(--chocolate80);
 }
 
@@ -6,6 +7,7 @@
   background-color: var(--vanilla);
   border-radius: 0 0 15px 15px;
   padding-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .mainDetailsContainer {

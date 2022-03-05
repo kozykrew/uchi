@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router'
+import Accordion from 'react-bootstrap/Accordion'
 import Image from 'next/image'
 import styles from './task.module.css'
 
 export function Task(props) {
   const router = useRouter();
-
+  
   return (
     <div className={styles.container}>
       <div className="form-check">

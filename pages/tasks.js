@@ -15,7 +15,7 @@ export default function Dashboard() {
       <Layout>
         <div className="pageContent">
           <PageHeader iconpath="/../public/icons/todo_gradient.png" headertext={"Tasks"} />
-          <TabBar tabs={["In Progress", "Upcoming", "Completed"]}/>
+          <TabBar type="tasks" tabs={["In Progress", "Upcoming", "Completed"]}/>
         </div>
       </Layout>
     </div>

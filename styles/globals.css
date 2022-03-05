@@ -78,7 +78,22 @@ tr {
   border-radius: 50px;
 }
 
-/* icon classes */
+/* accordion rules */
+.accordion {
+  width: 100% !important;
+}
+
+.accordion-item, .accordion-button {
+  background-color: var(--vanilla) !important;
+  border-radius: 15px !important;
+}
+
+.accordion-button {
+  color: var(--textLight) !important;
+}
+/* END accordion rules */
+
+/* icon rules */
 .iconSelected {
   width: 45px;
   height: 45px;
@@ -96,9 +111,9 @@ tr {
 .iconLast {
   margin-left: 0.5rem;
 }
-/* END icon classes */
+/* END icon rules */
 
-/* tabbar classes */
+/* tabbar rules */
 ul.nav.nav-pills {
   margin: auto;
   width: fit-content;
@@ -123,5 +138,4 @@ ul.nav.nav-pills, button.nav-link:hover, button.nav-link:focus {
 ul.nav.nav-pills, button.nav-link {
   border-radius: 15px !important;
 }
-
-/* END tabbar classes */
+/* END tabbar rules */

@@ -2,13 +2,24 @@ import React from 'react';
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import {TaskList} from '../components/tasklist.js'
+import {StepList} from '../components/steplist.js'
 
 export function TabBar(props) {
-  var children = props.tabs.map(tab => (
-    <Tab eventKey={tab.replace(/\s+/g, '').toLowerCase()} title={tab}>
-      <TaskList dashboard={false} />
-    </Tab>
-  ));
+  var children;
+
+  if (props.type == "tasks") {
+    children = props.tabs.map(tab => (
+      <Tab eventKey={tab.replace(/\s+/g, '').toLowerCase()} title={tab}>
+        <TaskList dashboard={false} />
+      </Tab>
+    ));
+  } else if (props.type == "steps") {
+    children = props.tabs.map(tab => (
+      <Tab eventKey={tab.replace(/\s+/g, '').toLowerCase()} title={tab}>
+        <StepList />
+      </Tab>
+    ));
+  }
 
   var defaultActive = props.tabs[0].replace(/\s+/g, '').toLowerCase();
 
@@ -32,19 +43,3 @@ export function TabBar(props) {
   //   </Tabs>
   // )
 }
-
-// this didn't work haha
-// function createTabs(tabs) {
-//   const tabs = ["In Progress", "Upcoming", "Completed"];
-//   var children = [];
-//
-//   tabs.forEach((item, i) => {
-//     var key = item.replace(/\s+/g, '');
-//     var tab = React.createElement("Tab", {eventKey: key, title: item});
-//     children.push(tab)
-//   });
-//
-//   var tabContainer = React.createElement("Tabs", {defaultActiveKey:"inprogress", id:"tabbar-tasks", className:"mb-3", variant:"pills"}, children);
-//
-//   return tabContainer;
-// }
