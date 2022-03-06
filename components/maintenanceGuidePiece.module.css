@@ -1,0 +1,29 @@
+.container {
+  margin-bottom: 1rem;
+}
+
+.container, .maintenanceGuidePieceContainer {
+  width: 100%;
+}
+
+.container, .maintenanceGuidePieceContainer, .maintenanceGuidePieceDetails, .maintenanceGuidePieceTag {
+  display: flex;
+  align-items: center;
+}
+
+.maintenanceGuidePieceContainer {
+  justify-content: space-between;
+  background-color: var(--vanilla);
+  border-radius: 15px;
+  padding: 1rem;
+  box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.maintenanceGuidePieceDetails, .maintenanceGuidePieceTag {
+  flex-direction: row;
+}
+
+.icontag {
+  margin-right: 1.5rem;
+  margin-bottom: 0;
+}
