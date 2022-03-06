@@ -5,7 +5,14 @@ import {Calendar} from '../components/calendar.js'
 import {TaskList} from '../components/tasklist.js'
 import {Task} from '../components/task.js'
 
-const user = 'KozyKrew'
+const user = 'KozyKrew';
+
+const tasks = [{title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
+                {title:"Clean fireplace", difficulty:"Easy", description:"Remove ash and scrub tray"},
+                {title:"Clean gutter", difficulty:"Easy", description:"Remove leaves and other debris"},
+                {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
+                {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
+                {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"}];
 
 export default function Dashboard() {
   return (
@@ -20,7 +27,7 @@ export default function Dashboard() {
           <SectionHeader iconpath="/../public/icons/calendar_duotone.png" headertext={"2022"} />
           <Calendar months={["Mar", "Apr", "May", "Jun", "Jul"]} />
           <SectionHeader iconpath="/../public/icons/tasks_duotone.png" headertext="March Tasks" />
-          <TaskList dashboard={true} />
+          <TaskList dashboard={true} tasks={tasks} />
         </div>
       </Layout>
     </div>

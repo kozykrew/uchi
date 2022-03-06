@@ -3,9 +3,15 @@ import Layout from '../components/layout.js'
 import {PageHeader} from '../components/headers.js'
 import {TabBar} from '../components/tabbar.js'
 
-const user = 'KozyKrew'
+const tasksByStatus = [[{title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
+                {title:"Clean fireplace", difficulty:"Easy", description:"Remove ash and scrub tray"},
+                {title:"Clean gutter", difficulty:"Easy", description:"Remove leaves and other debris"}],
+                [],
+                [{title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
+                {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
+                {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"}]];
 
-export default function Dashboard() {
+export default function Tasks() {
   return (
     <div>
       <Head>
@@ -15,7 +21,7 @@ export default function Dashboard() {
       <Layout>
         <div className="pageContent">
           <PageHeader iconpath="/../public/icons/todo_gradient.png" headertext={"Tasks"} />
-          <TabBar type="tasks" tabs={["In Progress", "Upcoming", "Completed"]}/>
+          <TabBar type="tasks" tabs={["In Progress", "Upcoming", "Completed"]} tabContent={tasksByStatus} />
         </div>
       </Layout>
     </div>

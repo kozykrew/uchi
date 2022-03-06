@@ -14,11 +14,11 @@ export function MainDetailsTable(props) {
         </tr>
         <tr>
           <th>Time Commitment</th>
-          <td>1 hour</td>
+          <td>2 hours</td>
         </tr>
         <tr>
           <th>Frequency</th>
-          <td>Quarterly</td>
+          <td>Biannual</td>
         </tr>
       </Table>
     )

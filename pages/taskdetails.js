@@ -6,7 +6,9 @@ import {TabBar} from '../components/tabbar.js'
 
 import styles from '../components/details.module.css'
 
-const user = 'KozyKrew'
+const steps = [[{title:"Clear debris into buckets", description:"Do this a few days before feeding your lawn to ensure your soil is ready to accept lawn fertilizer."},
+                {title:"Flush the gutters", description:"Spreaders fall into two categories: broadcast and drop. Each fertilizer product has a unique spreader setting. Check the bag to make sure you’re selecting the proper setting for your spreader."}],
+              [{title:"Interview contractors", description:"Ask key questions to determine their reliability."}]]
 
 export default function TaskDetails() {
   return (
@@ -19,17 +21,17 @@ export default function TaskDetails() {
         <div className={styles.chocolate80bg}>
           <div className={styles.detailsContainer}>
             <div className="pageContent">
-              <DetailsHeader type="task" name="Fertilize Lawn" />
+              <DetailsHeader type="task" name="Clean gutter" />
               <div className={styles.mainDetailsContainer}>
                 <MainDetailsTable type="task" />
                 <hr className={styles.hr} />
-                <p className={styles.purpose}>Fertilizing the lawn will help it stay green and grow thick. This helps prevent weed seeds from sprouting and moving in.</p>
+                <p className={styles.purpose}>Cleaning the gutter will prevent sagging, mold, leaks, and rodent infestation. This can lead to costly repairs down the line.</p>
               </div>
             </div>
           </div>
           <div className="pageContent">
             <h2>How To</h2>
-            <TabBar type="steps" tabs={["DIY", "Service"]}/>
+            <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={steps} />
           </div>
         </div>
       </Layout>

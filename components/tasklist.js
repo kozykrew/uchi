@@ -3,15 +3,11 @@ import {Task} from '../components/task.js'
 
 import styles from './tasklist.module.css'
 
+// PROPS
+// dashboard: boolean - location of the TaskList
+// tasks: array of task objects
 export function TaskList(props) {
-  const tasks = [{title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
-                  {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
-                  {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
-                  {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
-                  {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
-                  {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"}]
-
-  var children = tasks.map(task => (
+  var children = props.tasks.map(task => (
     <Task taskTitle={task.title} taskDifficulty={task.difficulty} taskDesc={task.description} />
   ));
 
