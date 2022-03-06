@@ -1,12 +1,14 @@
+import {useState} from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import {BtnComplete, BtnPostpone, BtnDelete} from './button.js'
+import {ModalAddHF} from './modalAddHF.js'
+
 import styles from './headers.module.css'
 
 // progress bar component from https://www.npmjs.com/package/react-circular-progressbar
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-
-import {BtnComplete, BtnPostpone, BtnDelete} from './button.js'
 
 export function PageHeader(props) {
   return (
@@ -31,12 +33,19 @@ export function SectionHeader(props) {
 }
 
 export function SpaceHeader(props) {
+  // Add HF Modal state
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <div className={styles.header}>
       <h2 className={styles.pageHeader}>{props.headertext}</h2>
-      <div className="iconLast iconRegular">
+      <div className="iconLast iconRegular" onClick={handleShow}>
         <Image src="/../public/icons/add.png" width={32} height={32} />
       </div>
+      <ModalAddHF show={show} handleClose={handleClose} headertext={props.headertext} />
     </div>
   )
 }
