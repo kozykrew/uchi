@@ -25,7 +25,7 @@ const mgTasks = [{title:"Fertilize lawn", difficulty:"Easy", frequency:"1 time"}
 
 const additional = [{header:"Has built-in ice maker?", data:"yes"}]
 
-export default function TaskDetails() {
+export default function HomeFeatureDetails() {
   return (
     <div className={styles.chocolate60bg}>
       <Head>
