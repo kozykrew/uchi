@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Layout from '../components/layout.js'
 import {SectionHeader, DetailsHeader} from '../components/headers.js'
 import {MainDetailsTable} from '../components/mainDetailsTable.js'
-import {TabBar} from '../components/tabbar.js'
+import {TabBar} from '../components/tabBar.js'
 
 import styles from '../components/details.module.css'
 
@@ -12,13 +12,13 @@ const steps = [[{title:"Clear debris into buckets", description:"Do this a few d
 
 export default function TaskDetails() {
   return (
-    <div>
+    <div className={styles.chocolate80bg}>
       <Head>
         <title>UCHI | Task Details</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Layout>
-        <div className={styles.chocolate80bg}>
+        <div className={styles.chocolate80filler}>
           <div className={styles.detailsContainer}>
             <div className="pageContent">
               <DetailsHeader type="task" name="Clean gutter" />
@@ -33,6 +33,8 @@ export default function TaskDetails() {
             <h2>How To</h2>
             <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={steps} />
           </div>
+        </div>
+        <div className={styles.chocolate80filler}>
         </div>
       </Layout>
     </div>

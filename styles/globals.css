@@ -18,8 +18,14 @@ body, h1, h2, h3, h4, button.nav-link {
   color: var(--textLight);
 }
 
-body {
+body, nav {
   background-color: var(--vanilla);
+}
+
+nav {
+  position: sticky !important;
+  top: 0px;
+  z-index: 50;
 }
 
 h1, h2, h3, h4, a, th, button.nav-link, .smallHeader {
@@ -50,6 +56,10 @@ th, td, .btn {
   position: absolute;
   top: 1rem;
   right: 1rem;
+}
+
+.lifespan {
+  margin-left: 32px;
 }
 
 a {

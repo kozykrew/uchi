@@ -1,6 +1,4 @@
-import {Step} from '../components/step.js'
-
-import styles from './tasklist.module.css'
+import {Step} from './step.js'
 
 // PROPS
 // steps: array of step objects

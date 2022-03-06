@@ -1,13 +1,13 @@
 import Link from 'next/link'
-import {Task} from '../components/task.js'
+import {Task} from './task.js'
 
-import styles from './tasklist.module.css'
+import styles from './taskList.module.css'
 
 // PROPS
 // dashboard: boolean - location of the TaskList
 // tasks: array of task objects
 export function TaskList(props) {
-  var children = props.tasks.map(task => (
+  var children = props.tasks.map((task) => (
     <Task taskTitle={task.title} taskDifficulty={task.difficulty} taskDesc={task.description} />
   ));
 

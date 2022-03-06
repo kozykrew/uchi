@@ -5,7 +5,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 
 import Link from 'next/link'
 
-import styles from './navbar.module.css'
+import styles from './uchiNavbar.module.css'
 
 export function UchiNavbar() {
   // <Nav className="me-auto">

@@ -1,4 +1,4 @@
-import {UchiNavbar} from './navbar.js'
+import {UchiNavbar} from './UchiNavbar.js'
 
 export default function Layout({ children }) {
   return (

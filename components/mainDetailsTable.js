@@ -1,5 +1,10 @@
 import Table from 'react-bootstrap/Table'
 
+import styles from './details.module.css'
+
+// PROPS
+// type: string - task or hf
+// additional: array of objects of any additional information for a home feature
 export function MainDetailsTable(props) {
   if (props.type == "task") {
     return (
@@ -23,25 +28,45 @@ export function MainDetailsTable(props) {
       </Table>
     )
   } else if (props.type == "hf") {
+    var additional = [];
+    var additionalTable = [];
+    if (props.additional != []) {
+      additionalTable = props.additional.map((add => (
+        <tr>
+          <th>{add.header}</th>
+          <td>{add.data}</td>
+        </tr>
+      )));
+      additional = [
+        <hr className={styles.hr} />,
+        <Table>
+          {additionalTable}
+        </Table>
+      ];
+    }
+
     return (
-      <Table>
-        <tr>
-          <th></th>
-          <td></td>
-        </tr>
-        <tr>
-          <th></th>
-          <td></td>
-        </tr>
-        <tr>
-          <th></th>
-          <td></td>
-        </tr>
-        <tr>
-          <th></th>
-          <td></td>
-        </tr>
-      </Table>
+      <div>
+        <Table>
+          <tr>
+            <th>Type</th>
+            <td>French door</td>
+          </tr>
+          <tr>
+            <th>Brand</th>
+            <td>Samsung</td>
+          </tr>
+          <tr>
+            <th>Model #</th>
+            <td>ABCDEFG123456</td>
+          </tr>
+          <tr>
+            <th>Age</th>
+            <td>4 years</td>
+          </tr>
+        </Table>
+        {additional}
+      </div>
     )
   }
 }

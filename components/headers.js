@@ -66,16 +66,17 @@ export function DetailsHeader(props) {
   } else if (props.type == "hf") {
     return (
       <div>
+        <div className={styles.detailsRow}>
+          <div className="iconRegular">
+            <Image src="/../public/icons/circlecarrot_left_line.png" layout="fixed" width={32} height={32} onClick={() => router.push('/homefeatures')} />
+          </div>
+          <div className="iconRegular iconFirst">
+            <Image src="/../public/icons/hf_refrigerator.png" layout="fixed" width={32} height={32} />
+          </div>
+          <h1 className={styles.pageHeader}>{props.name}</h1>
+        </div>
+        <p className="smallHeader lifespan">Average Lifespan: 10 years</p>
       </div>
     )
   }
-
-  // return (
-  //   <div className={styles.detailsRow}>
-  //     <div className="iconRegular">
-  //       <Image src="/../public/icons/circlecarrot_left_line.png" layout="fixed" width={32} height={32} onClick={() => router.push('/tasks')} />
-  //     </div>
-  //     {content}
-  //   </div>
-  // )
 }

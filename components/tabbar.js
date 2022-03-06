@@ -1,8 +1,8 @@
 import React from 'react';
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
-import {TaskList} from '../components/tasklist.js'
-import {StepList} from '../components/steplist.js'
+import {TaskList} from './taskList.js'
+import {StepList} from './stepList.js'
 
 // PROPS
 // type: string - type of tab bar (tasks or steps)
@@ -34,18 +34,4 @@ export function TabBar(props) {
       {tabs}
     </Tabs>
   )
-
-  // return (
-  //   <Tabs defaultActiveKey="inprogress" id="tabbar-tasks" className="mb-3" variant="pills">
-  //     <Tab eventKey="inprogress" title="In Progress">
-  //       <Task taskTitle="Fertilize lawn" taskDifficulty="Easy" taskDesc="Feed lawn with nutrients" />
-  //     </Tab>
-  //     <Tab eventKey="upcoming" title="Upcoming">
-  //       <Task taskTitle="Fertilize lawn" taskDifficulty="Easy" taskDesc="Feed lawn with nutrients" />
-  //     </Tab>
-  //     <Tab eventKey="completed" title="Completed">
-  //       <Task taskTitle="Fertilize lawn" taskDifficulty="Easy" taskDesc="Feed lawn with nutrients" />
-  //     </Tab>
-  //   </Tabs>
-  // )
 }

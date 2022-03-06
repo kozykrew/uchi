@@ -1,0 +1,46 @@
+.wrapper {
+  /* position: relative; */
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  overflow: auto;
+  margin-bottom: 1rem;
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+}
+
+/* .controls {
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+} */
+
+.controls {
+  /* height: 125px; */
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+  /* position: absolute;
+  z-index: 10; */
+}
+
+.controlLeft {
+  height: 125px;
+  position: absolute;
+  left: 0;
+  background: linear-gradient(to right, var(--orange100), rgba(255, 255, 255, 0));
+}
+
+.controlRight {
+  height: 125px;
+  position: absolute;
+  right: 0;
+  background: linear-gradient(to left, var(--orange100), rgba(255, 255, 255, 0));
+}
+
+.img {
+  margin-top: auto;
+}

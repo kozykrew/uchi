@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Layout from '../components/layout.js'
 import {PageHeader} from '../components/headers.js'
-import {TabBar} from '../components/tabbar.js'
+import {TabBar} from '../components/tabBar.js'
 
 const tasksByStatus = [[{title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
                 {title:"Clean fireplace", difficulty:"Easy", description:"Remove ash and scrub tray"},

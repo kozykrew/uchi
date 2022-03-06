@@ -1,4 +1,4 @@
-import styles from './homefeature.module.css'
+import styles from './homeFeatureCard.module.css'
 
 import Image from 'next/image'
 
