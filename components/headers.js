@@ -59,7 +59,7 @@ export function DetailsHeader(props) {
     return (
       <div>
         <div className={styles.detailsRow}>
-          <div className="iconRegular">
+          <div className="iconRegular iconFirst">
             <Image src="/../public/icons/circlecarrot_left_line.png" layout="fixed" width={32} height={32} onClick={() => router.push('/tasks')} />
           </div>
           <h1 className={styles.taskHeader}>{props.name}</h1>
@@ -76,7 +76,7 @@ export function DetailsHeader(props) {
     return (
       <div>
         <div className={styles.detailsRow}>
-          <div className="iconRegular">
+          <div className="iconRegular iconFirst">
             <Image src="/../public/icons/circlecarrot_left_line.png" layout="fixed" width={32} height={32} onClick={() => router.push('/homefeatures')} />
           </div>
           <div className="iconRegular iconFirst">
@@ -88,4 +88,20 @@ export function DetailsHeader(props) {
       </div>
     )
   }
+}
+
+export function AddHFHeader(props) {
+  return (
+    <div>
+      <div className={styles.detailsRow}>
+        <div className="iconRegular iconFirst">
+          <Image src="/../public/icons/circlecarrot_left_line.png" layout="fixed" width={32} height={32} onClick={() => router.push('/homefeatures')} />
+        </div>
+        <div className="iconRegular iconFirst">
+          <Image src="/../public/icons/hf_refrigerator.png" layout="fixed" width={32} height={32} />
+        </div>
+        <h1 className={styles.pageHeader}>{props.name}</h1>
+      </div>
+    </div>
+  )
 }

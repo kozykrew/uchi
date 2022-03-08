@@ -1,0 +1,10 @@
+.question {
+  text-align: center;
+  color: var(--textDark);
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

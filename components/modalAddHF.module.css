@@ -1,0 +1,8 @@
+.btnAdd {
+  background-color: var(--orange60);
+}
+
+.btnCancel {
+  background-color: transparent;
+  border: 1px solid var(--textDark) !important;
+}

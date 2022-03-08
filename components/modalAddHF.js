@@ -1,7 +1,11 @@
 import {useState} from 'react'
+import { useRouter } from 'next/router'
+import Image from 'next/image'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+
+import styles from './modalAddHF.module.css'
 
 // home features by space
 const kitchenHFs = ["Dishwasher", "Garbage Disposal", "Microwave", "Range", "Range hood", "Refrigerator"];
@@ -15,6 +19,8 @@ const surfaceHFs = ["Carpet flooring", "Hardwood flooring"];
 // handleClose: STATE handler (modal)
 // headertext: string - corresponding Space name
 export function ModalAddHF(props) {
+  const router = useRouter();
+
   // HF select state
   const [selectedHF, setSelectedHF] = useState(null);
 
@@ -40,10 +46,18 @@ export function ModalAddHF(props) {
         </Form.Select>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={props.handleClose}>
+        <Button className={styles.btnCancel} onClick={props.handleClose}>
+          <div className="iconRegular iconFirst">
+            <Image src="/../public/icons/circleclose_line_dark.png" width={32} height={32} />
+          </div>
           Cancel
         </Button>
-        <Button variant="primary">Add</Button>
+        <Button className={styles.btnAdd} onClick={() => router.push('/taskdetails')}>
+        <div className="iconRegular iconFirst">
+          <Image src="/../public/icons/circleadd_bold_dark.png" width={32} height={32} />
+        </div>
+          Add
+        </Button>
       </Modal.Footer>
     </Modal>
   )
