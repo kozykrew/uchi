@@ -1,4 +1,5 @@
 import Button from 'react-bootstrap/Button'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 
 import styles from './button.module.css'
@@ -32,6 +33,30 @@ export function BtnDelete() {
         <Image src="/../public/icons/trash_line_dark.png" layout="fixed" width={32} height={32} />
       </span>
       Delete
+    </Button>
+  )
+}
+
+export function BtnCancel(props) {
+  const router = useRouter();
+  return (
+    <Button className={styles.cancel} onClick={() => router.push(props.cancel)}>
+      <span className="iconFirst iconRegular">
+        <Image src="/../public/icons/circleclose_bold_dark.png" layout="fixed" width={32} height={32} />
+      </span>
+      Cancel
+    </Button>
+  )
+}
+
+export function BtnNext(props) {
+  const router = useRouter();
+  return (
+    <Button className={styles.next} onClick={() => router.push(props.next)}>
+      <span className="iconFirst iconRegular">
+        <Image src="/../public/icons/circlearrow_right_bold_light.png" layout="fixed" width={32} height={32} />
+      </span>
+      Next
     </Button>
   )
 }

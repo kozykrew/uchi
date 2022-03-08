@@ -1,9 +1,12 @@
-.prompt {
+.value {
   text-align: center;
 }
 
-.cardContainer {
+.slider {
+  width: 100%;
+}
+
+.labels {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
 }

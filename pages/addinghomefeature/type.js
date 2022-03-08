@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout from '../../components/layout.js'
+import Layout, {AddHFFooter} from '../../components/layout.js'
 import {AddHFHeader} from '../../components/headers.js'
 import {TypeCard} from '../../components/typeCard.js'
 
@@ -27,7 +27,9 @@ export default function Type() {
             </div>
           </div>
           <div className="pageContent">
-            <h2 className={addingStyles.question}>What type of Refrigerator do you have?</h2>
+            <div className={addingStyles.prompt}>
+              <h2 className="textDark">What type of Refrigerator do you have?</h2>
+            </div>
             <div className={addingStyles.cardContainer}>
               {getTypeCards()}
             </div>
@@ -35,6 +37,7 @@ export default function Type() {
         </div>
         <div className={styles.chocolate60filler}>
         </div>
+        <AddHFFooter cancel="/homefeatures" next="/addinghomefeature/age" />
       </Layout>
     </div>
   )

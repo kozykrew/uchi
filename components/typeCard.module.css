@@ -1,15 +1,16 @@
 .container {
-  width: 50%;
+  width: 45%;
   background-color: var(--vanilla);
   border-radius: 15px;
-  z-index: 0;
+  margin-bottom: 1rem;
 }
 
 .img {
   border-radius: 15px 15px 0 0;
-  z-index: 5;
 }
 
 .label {
-  padding-left: 1rem;
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
 }
