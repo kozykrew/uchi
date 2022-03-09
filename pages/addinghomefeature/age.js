@@ -30,7 +30,7 @@ export default function Age() {
         </div>
         <div className={styles.chocolate60filler}>
         </div>
-        <AddHFFooter cancel="/homefeatures" next="/homefeatures" />
+        <AddHFFooter cancel="/homefeatures" next="/addinghomefeature/confirmation" />
       </Layout>
     </div>
   )

@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import {IconFlag, IconHFRefrigerator_DT} from './icons.js'
 
 import styles from './button.module.css'
 
@@ -57,6 +58,30 @@ export function BtnNext(props) {
         <Image src="/../public/icons/circlearrow_right_bold_light.png" layout="fixed" width={32} height={32} />
       </span>
       Next
+    </Button>
+  )
+}
+
+export function BtnFinish(props) {
+  const router = useRouter();
+  return (
+    <Button className={styles.next} onClick={() => router.push(props.next)}>
+      <span className="iconFirst iconRegular">
+        <IconFlag />
+      </span>
+      Finish
+    </Button>
+  )
+}
+
+export function BtnToHF(props) {
+  const router = useRouter();
+  return (
+    <Button className={styles.toHF} onClick={() => router.push(props.next)}>
+      <span className="iconFirst iconRegular">
+        <IconHFRefrigerator_DT />
+      </span>
+      See my Refrigerator
     </Button>
   )
 }

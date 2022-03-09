@@ -28,17 +28,18 @@
 .mainDetailsContainer {
   border: 1px solid var(--textDark);
   border-radius: 15px;
-  padding: 1rem 1rem 0 1rem;
+  padding: 1rem;
 }
 
 .hr {
   width: 75%;
   margin: auto;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   border: 1px solid var(--textDark);
 }
 
 .purpose {
   font-family: 'Karla', sans-serif;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }

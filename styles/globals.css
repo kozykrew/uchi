@@ -28,7 +28,13 @@ nav {
   z-index: 50;
 }
 
-h1, h2, h3, h4, a, th, button.nav-link, .smallHeader, .modal-title {
+.brand {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+}
+
+h1, h2, h3, h4, a, th, button, button.nav-link, .smallHeader, .modal-title {
   font-family: 'Karla', sans-serif;
 }
 
@@ -36,12 +42,16 @@ h1 {
   font-weight: 700;
 }
 
-h2, h4, button.nav-link {
+h2, h4, button.nav-link, .btn {
   font-weight: 500;
 }
 
 h3 {
   font-weight: 400;
+}
+
+table, .noMB {
+  margin: 0 !important;
 }
 
 th, td, .btn, .modal-title, .textDark {
@@ -62,12 +72,17 @@ th, td, .btn, .modal-title, .textDark {
   margin-left: 32px;
 }
 
+.selectLabel {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-th {
+th, .selectLabel {
   font-weight: 300;
   letter-spacing: 0.05rem;
   text-transform: uppercase;

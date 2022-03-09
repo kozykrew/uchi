@@ -14,12 +14,19 @@
   background-color: var(--chocolate80);
 }
 
+.cancel, .next, .toHF {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
 .cancel {
   background-color: var(--chocolate100);
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .next {
   background-color: var(--orange60);
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.toHF {
+  background: var(--gradient);
+  margin-left: auto;
 }

@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table'
 import styles from './details.module.css'
 
 // PROPS
-// type: string - task or hf
+// type: string - task, hf, or confirmation
 // additional: array of objects of any additional information for a home feature
 export function MainDetailsTable(props) {
   if (props.type == "task") {
@@ -66,6 +66,21 @@ export function MainDetailsTable(props) {
           </tr>
         </Table>
         {additional}
+      </div>
+    )
+  } else if (props.type == "confirmation") {
+    return (
+      <div>
+        <Table>
+          <tr>
+            <th>Type</th>
+            <td>French door</td>
+          </tr>
+          <tr>
+            <th>Age</th>
+            <td>4 years</td>
+          </tr>
+        </Table>
       </div>
     )
   }

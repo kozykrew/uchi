@@ -2,8 +2,43 @@
   text-align: center;
 }
 
-.cardContainer {
+.cardContainer, .addInfoContainer, .maintenanceTask, .maintenanceTaskPiece {
   display: flex;
-  flex-wrap: wrap;
+}
+
+.cardContainer, .addInfoContainer, .maintenanceTask {
   justify-content: space-between;
+}
+
+.cardContainer {
+  flex-wrap: wrap;
+}
+
+.confirmationContainer {
+  background-color: var(--vanilla);
+}
+
+.confirmationContainer {
+  padding: 1rem;
+}
+
+.confirmationContainer, .maintenanceGuideContainer {
+  border-radius: 15px;
+}
+
+.confirmationContainer, .addInfoContainer, .maintenanceGuideContainer {
+  margin-bottom: 1rem;
+}
+
+.addInfoContainer, .maintenanceTask, .maintenanceTaskPiece {
+  align-items: center;
+}
+
+.form {
+  width: 60%;
+}
+
+.maintenanceGuideContainer {
+  background-color: var(--mint60);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 }
