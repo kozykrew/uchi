@@ -2,6 +2,10 @@
   padding-right: 1rem;
 }
 
+.complete, .postpone, .delete {
+  margin-bottom: 0.5rem;
+}
+
 .complete {
   background-color: var(--mint60);
 }

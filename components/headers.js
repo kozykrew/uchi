@@ -52,10 +52,8 @@ export function SpaceHeader(props) {
 
 export function DetailsHeader(props) {
   const router = useRouter();
-
-  var content;
+  
   if (props.type == "task") {
-    var value = 0;
     return (
       <div>
         <div className={styles.detailsRow}>
@@ -63,10 +61,10 @@ export function DetailsHeader(props) {
             <Image src="/../public/icons/circlecarrot_left_line.png" layout="fixed" width={32} height={32} onClick={() => router.push('/tasks')} />
           </div>
           <h1 className={styles.taskHeader}>{props.name}</h1>
-          <CircularProgressbar className={styles.progressbar} value={value} maxValue={1} text={value*100 + '%'} />
+          <CircularProgressbar className={styles.progressbar} value={props.value} maxValue={1} text={props.value*100 + '%'} />
         </div>
         <div className={styles.btnRow}>
-          <BtnComplete />
+          <BtnComplete handleComplete={props.handleComplete} />
           <BtnPostpone />
           <BtnDelete />
         </div>

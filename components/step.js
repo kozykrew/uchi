@@ -1,11 +1,14 @@
 import Accordion from 'react-bootstrap/Accordion'
 import styles from './step.module.css'
 
+// PROPS
+// handleComplete: function handling check state of steps
+// isChecked: state of checkboxes
 export function Step(props) {
   return (
     <div className={styles.container}>
       <div className="form-check">
-        <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+        <input className="form-check-input" type="checkbox" onChange={(e) => props.handleComplete} checked={props.isChecked} />
       </div>
       <Accordion flush>
         <Accordion.Item eventKey="0">

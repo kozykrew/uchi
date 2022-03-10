@@ -5,11 +5,11 @@ import {Calendar} from '../components/calendar.js'
 import {TaskList} from '../components/tasklist.js'
 import {Task} from '../components/task.js'
 
-const user = 'KozyKrew';
+const user = 'Kai';
 
-const tasks = [{title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
+const tasks = [{title:"Clean gutter", difficulty:"Easy", description:"Remove leaves and other debris"},
+                {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
                 {title:"Clean fireplace", difficulty:"Easy", description:"Remove ash and scrub tray"},
-                {title:"Clean gutter", difficulty:"Easy", description:"Remove leaves and other debris"},
                 {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
                 {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
                 {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"}];

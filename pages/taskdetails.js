@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import Head from 'next/head'
 import Layout from '../components/layout.js'
 import {SectionHeader, DetailsHeader} from '../components/headers.js'
@@ -13,6 +14,16 @@ const steps = [[{title:"Clear debris into buckets", description:"Do this a few d
 const tools = ["Trowel", "Ladder", "Garden hose"];
 
 export default function TaskDetails() {
+  // progress bar state
+  const [ value, setValue ] = useState(0);
+  // checkbox state
+  const [ isChecked, setChecked ] = useState(false);
+
+  const handleComplete = (e) => {
+    setValue(1);
+    setChecked(true);
+  }
+
   return (
     <div className={styles.chocolate80bg}>
       <Head>
@@ -23,7 +34,7 @@ export default function TaskDetails() {
         <div className={styles.chocolate80filler}>
           <div className={styles.detailsContainer}>
             <div className="pageContent">
-              <DetailsHeader type="task" name="Clean gutter" />
+              <DetailsHeader type="task" name="Clean gutter" value={value} handleComplete={handleComplete} />
               <div className={styles.mainDetailsContainer}>
                 <MainDetailsTable type="task" />
                 <hr className={styles.hr} />
@@ -34,7 +45,7 @@ export default function TaskDetails() {
           <div className="pageContent">
             <h2>How To</h2>
             <p><span className="brand">UCHI</span> recommends to DIY this task because it is more cost-efficient.</p>
-            <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={steps} tools={tools} />
+            <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={steps} tools={tools} handleComplete={handleComplete} isChecked={isChecked} />
           </div>
         </div>
         <div className={styles.chocolate80filler}>

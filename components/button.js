@@ -5,9 +5,11 @@ import {IconFlag, IconHFRefrigerator_DT} from './icons.js'
 
 import styles from './button.module.css'
 
-export function BtnComplete() {
+// PROPS
+// handleComplete: function setting progress bar value (STATE)
+export function BtnComplete(props) {
   return (
-    <Button className={styles.complete} size="sm">
+    <Button className={styles.complete} size="sm" onClick={props.handleComplete}>
       <span className="iconFirst iconRegular">
         <Image src="/../public/icons/checkbox_checked_dark.png" layout="fixed" width={32} height={32} />
       </span>
