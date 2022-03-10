@@ -34,20 +34,21 @@ export function MainDetailsTable(props) {
     )
   } else if (props.type == "hf") {
     var additional = [];
-    var additionalTable = [];
+    // var additionalTable = [];
     if (props.additional != []) {
-      additionalTable = props.additional.map((add => (
-        <tr>
-          <th>{add.header}</th>
-          <td>{add.data}</td>
-        </tr>
-      )));
-      additional = [
-        <hr className={styles.hr} />,
-        <Table>
-          {additionalTable}
-        </Table>
-      ];
+      additional = determineAdditional(props.additional);
+    //   additionalTable = props.additional.map((add => (
+    //     <tr>
+    //       <th>{add.header}</th>
+    //       <td>{add.data}</td>
+    //     </tr>
+    //   )));
+    //   additional = [
+    //     <hr className={styles.hr} />,
+    //     <Table>
+    //       {additionalTable}
+    //     </Table>
+    //   ];
     }
 
     return (
@@ -74,6 +75,11 @@ export function MainDetailsTable(props) {
       </div>
     )
   } else if (props.type == "confirmation") {
+    var additional = [];
+    if (props.additional != []) {
+      additional = determineAdditional(props.additional);
+    }
+
     return (
       <div>
         <Table>
@@ -86,7 +92,28 @@ export function MainDetailsTable(props) {
             <td>4 years</td>
           </tr>
         </Table>
+        {additional}
       </div>
     )
+  }
+}
+
+function determineAdditional(add) {
+  var additional = [];
+  var additionalTable = [];
+  if (add != []) {
+    additionalTable = add.map((add) => (
+      <tr>
+        <th>{add.header}</th>
+        <td>{add.data}</td>
+      </tr>
+    ));
+    additional = [
+      <hr className={styles.hr} />,
+      <Table>
+        {additionalTable}
+      </Table>
+    ];
+    return additional;
   }
 }

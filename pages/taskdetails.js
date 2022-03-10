@@ -12,7 +12,7 @@ const task = {
   space:"Exterior",
   difficulty:"Easy",
   time:"2 hours",
-  frequency:"Annual",
+  frequency:"Annually",
   desc:"When gutters fill with leaves, sticks, and other debris, it causes clogs that can result in water creeping into the roof or even into the foundation of the house.",
   uchirec:"DIY this task because it is more cost-efficient.",
   tools:["Bucket", "Garden hose", "Ladder", "Trowel"],

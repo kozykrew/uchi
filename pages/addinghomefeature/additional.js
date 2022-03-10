@@ -1,21 +1,12 @@
 import Head from 'next/head'
+import Form from 'react-bootstrap/Form'
 import Layout, {AddHFFooter} from '../../components/layout.js'
 import {AddHFHeader} from '../../components/headers.js'
-import {Slider} from '../../components/slider.js'
 
 import styles from '../../components/details.module.css'
 import addingStyles from '../../components/addingHomeFeature.module.css'
 
-const additional = true;
-
-export default function Age() {
-  var next = "/addinghomefeature/";
-  if (additional) {
-    next = next + "additional";
-  } else {
-    next = next + "confirmation"
-  }
-
+export default function Additional() {
   return (
     <div className={styles.chocolate60bg}>
       <Head>
@@ -31,15 +22,17 @@ export default function Age() {
           </div>
           <div className="pageContent">
             <div className={addingStyles.prompt}>
-              <h2 className="textDark">How old is your Refrigerator?</h2>
-              <p className="smallHeader textDark">Average Lifespan: 10 years</p>
+              <h2 className="textDark">Does your Refrigerator have a built-in ice maker?</h2>
+              <Form>
+                <Form.Check inline label="Yes" name="group1" type="radio" />
+                <Form.Check inline label="No" name="group1" type="radio" />
+              </Form>
             </div>
-            <Slider max={20} />
           </div>
         </div>
         <div className={styles.chocolate60filler}>
         </div>
-        <AddHFFooter cancel="/homefeatures" next={next} />
+        <AddHFFooter cancel="/homefeatures" next="/addinghomefeature/confirmation" />
       </Layout>
     </div>
   )

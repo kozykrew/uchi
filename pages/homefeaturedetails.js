@@ -13,15 +13,9 @@ const tasks = [{title:"Fertilize lawn", difficulty:"Easy", description:"Feed law
                 {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
                 {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"}]
 
-const tasks2 = [{title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
-                {title:"Clean fireplace", difficulty:"Easy", description:"Remove ash and scrub tray"}]
-
-const mgTasks = [{title:"Fertilize lawn", difficulty:"Easy", frequency:"1 time"},
-                {title:"Clean fireplace", difficulty:"Easy", frequency:"1 time"},
-                {title:"Clean gutter", difficulty:"Easy", frequency:"Monthly"},
-                {title:"Fertilize lawn", difficulty:"Easy", frequency:"Quarterly"},
-                {title:"Fertilize lawn", difficulty:"Easy", frequency:"Annually"},
-                {title:"Fertilize lawn", difficulty:"Easy", frequency:"Biannually"}]
+const mgTasks = [{title:"Fill Refrigerator", difficulty:"Easy", frequency:"Occasionally"},
+                {title:"Refresh ice maker", difficulty:"Easy", frequency:"Quarterly"},
+                {title:"Clean coils", difficulty:"Easy", frequency:"Annually"}];
 
 const additional = [{header:"Has built-in ice maker?", data:"yes"}]
 

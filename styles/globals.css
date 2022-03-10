@@ -197,4 +197,8 @@ ul.nav.nav-pills, button.nav-link:hover, button.nav-link:focus {
 ul.nav.nav-pills, button.nav-link {
   border-radius: 15px !important;
 }
+
+.tab-content {
+  padding-bottom: 1rem;
+}
 /* END tabbar rules */

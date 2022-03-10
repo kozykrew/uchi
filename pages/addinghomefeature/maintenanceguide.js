@@ -11,12 +11,9 @@ import {IconArrowRight_Dark, IconCalendar_Line_Dark} from '../../components/icon
 import styles from '../../components/details.module.css'
 import addingStyles from '../../components/addingHomeFeature.module.css'
 
-const mgTasks = [{title:"Fertilize lawn", difficulty:"Easy", frequency:"1 time"},
-                {title:"Clean fireplace", difficulty:"Easy", frequency:"1 time"},
-                {title:"Clean gutter", difficulty:"Easy", frequency:"Monthly"},
-                {title:"Fertilize lawn", difficulty:"Easy", frequency:"Quarterly"},
-                {title:"Fertilize lawn", difficulty:"Easy", frequency:"Annually"},
-                {title:"Fertilize lawn", difficulty:"Easy", frequency:"Biannually"}]
+const mgTasks = [{title:"Fill Refrigerator", difficulty:"Easy", frequency:"Occasionally"},
+                {title:"Refresh ice maker", difficulty:"Easy", frequency:"Quarterly"},
+                {title:"Clean coils", difficulty:"Easy", frequency:"Annually"}];
 
 export default function MaintenanceGuide() {
   var taskList = mgTasks.map((task) => (

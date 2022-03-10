@@ -9,6 +9,8 @@ import {MainDetailsTable} from '../../components/mainDetailsTable.js'
 import styles from '../../components/details.module.css'
 import addingStyles from '../../components/addingHomeFeature.module.css'
 
+const additional = [{header:"Has built-in ice maker?", data:"yes"}]
+
 export default function Confirmation() {
   // brand select state
   const [selectedBrand, setSelectedBrand] = useState(null);
@@ -35,7 +37,7 @@ export default function Confirmation() {
             <div>
               <p className="smallHeader textDark">Here's what you've shared with <span className="brand">UCHI</span> so far:</p>
               <div className={addingStyles.confirmationContainer}>
-                <MainDetailsTable type="confirmation" />
+                <MainDetailsTable type="confirmation" additional={additional} />
               </div>
               <Form>
                 <p className="smallHeader textDark">Tell <span className="brand">UCHI</span> additional information (optional):</p>
