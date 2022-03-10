@@ -17,7 +17,7 @@ export default function Age() {
         <div className={styles.chocolate60filler}>
           <div className={styles.detailsContainer}>
             <div className="pageContent">
-              <AddHFHeader name="Refrigerator" />
+              <AddHFHeader name="Refrigerator" previous="/addinghomefeature/type" />
             </div>
           </div>
           <div className="pageContent">

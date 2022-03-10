@@ -52,7 +52,7 @@ export function ModalAddHF(props) {
           </div>
           Cancel
         </Button>
-        <Button className={styles.btnAdd} onClick={() => router.push('/taskdetails')}>
+        <Button className={styles.btnAdd} onClick={() => router.push('/addinghomefeature/type')}>
         <div className="iconRegular iconFirst">
           <Image src="/../public/icons/circleadd_bold_dark.png" width={32} height={32} />
         </div>

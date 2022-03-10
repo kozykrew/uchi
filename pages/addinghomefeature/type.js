@@ -1,16 +1,10 @@
 import Head from 'next/head'
 import Layout, {AddHFFooter} from '../../components/layout.js'
 import {AddHFHeader} from '../../components/headers.js'
-import {TypeCard} from '../../components/typeCard.js'
+import TypeCards from '../../components/typeCards.js'
 
 import styles from '../../components/details.module.css'
 import addingStyles from '../../components/addingHomeFeature.module.css'
-
-const types = [{type:"Top Freezer", imgpath:"/../public/images/refrigerator/topfreezer.jpg"},
-                {type:"Bottom Freezer", imgpath:"/../public/images/refrigerator/topfreezer.jpg"},
-                {type:"Side by Side", imgpath:"/../public/images/refrigerator/topfreezer.jpg"},
-                {type:"French Door", imgpath:"/../public/images/refrigerator/topfreezer.jpg"},
-                {type:"Built-in", imgpath:"/../public/images/refrigerator/topfreezer.jpg"}];
 
 export default function Type() {
   return (
@@ -20,19 +14,18 @@ export default function Type() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Layout>
-        <div className={styles.chocolate60filler}>
+        <div className={styles.chocolate60bg}>
           <div className={styles.detailsContainer}>
             <div className="pageContent">
-              <AddHFHeader name="Refrigerator" />
+              <AddHFHeader name="Refrigerator" previous={"/homefeatures"} />
             </div>
           </div>
           <div className="pageContent">
             <div className={addingStyles.prompt}>
               <h2 className="textDark">What type of Refrigerator do you have?</h2>
             </div>
-            <div className={addingStyles.cardContainer}>
-              {getTypeCards()}
-            </div>
+            <TypeCards>
+            </TypeCards>
           </div>
         </div>
         <div className={styles.chocolate60filler}>
@@ -41,14 +34,4 @@ export default function Type() {
       </Layout>
     </div>
   )
-}
-
-function getTypeCards() {
-  var cards = [];
-  for (let i = 0; i < types.length; i++) {
-    cards.push(
-      <TypeCard type={types[i].type} imgpath={types[i].imgpath} />
-    );
-  }
-  return cards;
 }

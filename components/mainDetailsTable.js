@@ -4,6 +4,11 @@ import styles from './details.module.css'
 
 // PROPS
 // type: string - task, hf, or confirmation
+    // TASK props
+    // space: string - corresponding space of task
+    // difficulty: string - task difficulty
+    // time: string - task time commitment
+    // frequency: string - task frequency
 // additional: array of objects of any additional information for a home feature
 export function MainDetailsTable(props) {
   if (props.type == "task") {
@@ -11,19 +16,19 @@ export function MainDetailsTable(props) {
       <Table>
         <tr>
           <th>Space</th>
-          <td>Outdoors</td>
+          <td>{props.space}</td>
         </tr>
         <tr>
           <th>Difficulty</th>
-          <td>Easy</td>
+          <td>{props.difficulty}</td>
         </tr>
         <tr>
           <th>Time Commitment</th>
-          <td>2 hours</td>
+          <td>{props.time}</td>
         </tr>
         <tr>
           <th>Frequency</th>
-          <td>Biannual</td>
+          <td>{props.frequency}</td>
         </tr>
       </Table>
     )

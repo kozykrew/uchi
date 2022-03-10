@@ -25,7 +25,7 @@ export default function Confirmation() {
         <div className={styles.chocolate60filler}>
           <div className={styles.detailsContainer}>
             <div className="pageContent">
-              <AddHFHeader name="Refrigerator" />
+              <AddHFHeader name="Refrigerator" previous="/addinghomefeature/age" />
             </div>
           </div>
           <div className="pageContent">
@@ -43,6 +43,15 @@ export default function Confirmation() {
                   <Form.Label className="selectLabel">Brand</Form.Label>
                   <Form.Select className={addingStyles.form} aria-label="Select brand" onChange={handleSelect}>
                     <option value={null}>Select a brand</option>
+                    <option value="bosch">Bosch</option>
+                    <option value="frigidaire">Frigidaire</option>
+                    <option value="ge-appliances">GE Appliances</option>
+                    <option value="insignia">Insignia</option>
+                    <option value="kitchenaid">KitchenAid</option>
+                    <option value="lg">LG</option>
+                    <option value="maytag">Maytag</option>
+                    <option value="samsung">Samsung</option>
+                    <option value="whirlpool">Whirlpool</option>
                   </Form.Select>
                 </div>
                 <div className={addingStyles.addInfoContainer}>

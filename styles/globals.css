@@ -156,6 +156,22 @@ tr {
 }
 /* END icon rules */
 
+/* selectable card rules */
+.selectableContainer, .selectedContainer {
+  width: 45%;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+}
+
+.selectableContainer {
+  background-color: var(--vanilla);
+}
+
+.selectedContainer {
+  background-color: var(--vanillaBurnt);
+}
+/* END selectable card rules */
+
 /* tabbar rules */
 ul.nav.nav-pills {
   margin: auto;

@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Layout from '../components/layout.js'
 import {PageHeader, SectionHeader} from '../components/headers.js'
 import {Calendar} from '../components/calendar.js'
-import {TaskList} from '../components/tasklist.js'
+import {TaskList} from '../components/taskList.js'
 import {Task} from '../components/task.js'
 
 const user = 'Kai';

@@ -33,7 +33,7 @@ export default function MaintenanceGuide() {
         <div className={styles.chocolate60filler}>
           <div className={styles.detailsContainer}>
             <div className="pageContent">
-              <AddHFHeader name="Refrigerator" />
+              <AddHFHeader name="Refrigerator" previous="/homefeatures" />
             </div>
           </div>
           <div className="pageContent">

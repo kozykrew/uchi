@@ -52,7 +52,7 @@ export function SpaceHeader(props) {
 
 export function DetailsHeader(props) {
   const router = useRouter();
-  
+
   if (props.type == "task") {
     return (
       <div>
@@ -89,11 +89,12 @@ export function DetailsHeader(props) {
 }
 
 export function AddHFHeader(props) {
+  const router = useRouter();
   return (
     <div>
       <div className={styles.detailsRow}>
         <div className="iconRegular iconFirst">
-          <Image src="/../public/icons/circlecarrot_left_line.png" layout="fixed" width={32} height={32} onClick={() => router.push('/homefeatures')} />
+          <Image src="/../public/icons/circlecarrot_left_line.png" layout="fixed" width={32} height={32} onClick={() => router.push(props.previous)} />
         </div>
         <div className="iconRegular iconFirst">
           <Image src="/../public/icons/hf_refrigerator.png" layout="fixed" width={32} height={32} />
