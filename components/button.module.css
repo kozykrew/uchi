@@ -30,3 +30,10 @@
   background: var(--gradient);
   margin-left: auto;
 }
+
+.tool {
+  background-color: transparent;
+  border: 1px solid var(--textDark) !important;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}

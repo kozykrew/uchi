@@ -8,7 +8,9 @@ import styles from '../components/details.module.css'
 
 const steps = [[{title:"Clear debris into buckets", description:"Do this a few days before feeding your lawn to ensure your soil is ready to accept lawn fertilizer."},
                 {title:"Flush the gutters", description:"Spreaders fall into two categories: broadcast and drop. Each fertilizer product has a unique spreader setting. Check the bag to make sure you’re selecting the proper setting for your spreader."}],
-              [{title:"Interview contractors", description:"Ask key questions to determine their reliability."}]]
+              [{title:"Interview contractors", description:"Ask key questions to determine their reliability."}]];
+
+const tools = ["Trowel", "Ladder", "Garden hose"];
 
 export default function TaskDetails() {
   return (
@@ -31,7 +33,8 @@ export default function TaskDetails() {
           </div>
           <div className="pageContent">
             <h2>How To</h2>
-            <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={steps} />
+            <p><span className="brand">UCHI</span> recommends to DIY this task because it is more cost-efficient.</p>
+            <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={steps} tools={tools} />
           </div>
         </div>
         <div className={styles.chocolate80filler}>

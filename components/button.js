@@ -85,3 +85,11 @@ export function BtnToHF(props) {
     </Button>
   )
 }
+
+export function BtnTool(props) {
+  return (
+    <Button className={styles.tool}>
+      {props.name}
+    </Button>
+  )
+}
