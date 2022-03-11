@@ -1,3 +1,21 @@
+## For the MVP:
+
+Pull the repository and initialize the project.
+
+Run the development server:
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Navigate to [http://localhost:3000/dashboard](http://localhost:3000/dashboard) to access UCHI.
+
+** We will be deploying the live web application for easier access shortly. **
+
+-----------------------------------
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
