@@ -23,7 +23,7 @@ export default function Dashboard() {
       </Head>
       <Layout>
         <div className="pageContent">
-          <PageHeader iconpath="/../public/icons/dashboard_gradient.png" headertext={"Welcome, " + user + "!"} />
+          <PageHeader iconpath={"/../public/icons/dashboard_gradient.png"} headertext={"Welcome, " + user + "!"} />
           <SectionHeader iconpath="/../public/icons/calendar_duotone.png" headertext={"2022"} />
           <Calendar months={["Mar", "Apr", "May", "Jun", "Jul"]} />
           <SectionHeader iconpath="/../public/icons/tasks_duotone.png" headertext="March Tasks" />
