@@ -14,7 +14,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">UCHI</a>
+          Welcome to <span className="brand">UCHI</span>!
         </h1>
 
         <p className={styles.description}>
@@ -22,8 +22,8 @@ export default function Home() {
           <code className={styles.code}><Link href="/dashboard">pages/dashboard.js</Link></code>
         </p>
 
-        <p>We currently have only developed a mobile version of UCHI.</p>
-        <p>Please resize your window to a width of 375 pixels to view UCHI properly.</p>
+        <p>We currently have only developed a mobile version of <span className="brand">UCHI</span>.</p>
+        <p>Please resize your window to a width of 375 pixels to view <span className="brand">UCHI</span> properly.</p>
 
       </main>
 
