@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css'
-import '../styles/design_tokens.css'
+// import '../styles/design_tokens.css'
 import '../styles/globals.css'
 
 import { useEffect } from 'react'
