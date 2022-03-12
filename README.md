@@ -1,4 +1,12 @@
-## For the MVP:
+## View UCHI Live
+
+View UCHI live at [https://uchi.vercel.app/](https://uchi.vercel.app/).
+
+The live app is currently demonstrating our Minimum Viable Product (MVP).
+
+-----------------------------------
+
+## View UCHI locally
 
 Pull the repository and initialize the project.
 
@@ -10,8 +18,6 @@ yarn dev
 ```
 
 Navigate to [http://localhost:3000/dashboard](http://localhost:3000/dashboard) to access UCHI.
-
-** We will be deploying the live web application for easier access shortly. **
 
 -----------------------------------
 
