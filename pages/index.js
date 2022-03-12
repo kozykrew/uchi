@@ -18,7 +18,7 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          View our <a href="">MVP</a> at {' '}
+          View our MVP at {' '}
           <code className={styles.code}><Link href="/dashboard">pages/dashboard.js</Link></code>
         </p>
 
