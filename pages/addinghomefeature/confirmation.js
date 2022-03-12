@@ -35,7 +35,7 @@ export default function Confirmation() {
               <h2 className="textDark"><span className="brand">UCHI</span> is almost ready to create your custom Maintenance Guide.</h2>
             </div>
             <div>
-              <p className="smallHeader textDark">Here's what you've shared with <span className="brand">UCHI</span> so far:</p>
+              <p className="smallHeader textDark">Here&apos;s what you&apos;ve shared with <span className="brand">UCHI</span> so far:</p>
               <div className={addingStyles.confirmationContainer}>
                 <MainDetailsTable type="confirmation" additional={additional} />
               </div>

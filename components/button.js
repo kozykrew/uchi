@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import {IconFlag, IconHFRefrigerator_DT} from './icons.js'
+import {IconCheckbox_Dark, IconClock_Line_Dark, IconTrash_Line_Dark, IconCircleClose_Bold_Dark, IconCircleArrow_Right_Bold_Dark, IconFlag_Bold_Dark, IconHFRefrigerator_DT} from './icons.js'
 
 import styles from './button.module.css'
 
@@ -11,7 +11,7 @@ export function BtnComplete(props) {
   return (
     <Button className={styles.complete} size="sm" onClick={props.handleComplete}>
       <span className="iconFirst iconRegular">
-        <Image src="/../public/icons/checkbox_checked_dark.png" layout="fixed" width={32} height={32} />
+        <IconCheckbox_Dark />
       </span>
       Complete
     </Button>
@@ -22,7 +22,7 @@ export function BtnPostpone() {
   return (
     <Button className={styles.postpone} size="sm">
       <span className="iconFirst iconRegular">
-        <Image src="/../public/icons/clock_line_dark.png" layout="fixed" width={32} height={32} />
+        <IconClock_Line_Dark />
       </span>
       Postpone
     </Button>
@@ -33,7 +33,7 @@ export function BtnDelete() {
   return (
     <Button className={styles.delete} size="sm">
       <span className="iconFirst iconRegular">
-        <Image src="/../public/icons/trash_line_dark.png" layout="fixed" width={32} height={32} />
+        <IconTrash_Line_Dark />
       </span>
       Delete
     </Button>
@@ -45,7 +45,7 @@ export function BtnCancel(props) {
   return (
     <Button className={styles.cancel} onClick={() => router.push(props.cancel)}>
       <span className="iconFirst iconRegular">
-        <Image src="/../public/icons/circleclose_bold_dark.png" layout="fixed" width={32} height={32} />
+        <IconCircleClose_Bold_Dark />
       </span>
       Cancel
     </Button>
@@ -57,7 +57,7 @@ export function BtnNext(props) {
   return (
     <Button className={styles.next} onClick={() => router.push(props.next)}>
       <span className="iconFirst iconRegular">
-        <Image src="/../public/icons/circlearrow_right_bold_light.png" layout="fixed" width={32} height={32} />
+        <IconCircleArrow_Right_Bold_Dark />
       </span>
       Next
     </Button>
@@ -69,7 +69,7 @@ export function BtnFinish(props) {
   return (
     <Button className={styles.next} onClick={() => router.push(props.next)}>
       <span className="iconFirst iconRegular">
-        <IconFlag />
+        <IconFlag_Bold_Dark />
       </span>
       Finish
     </Button>

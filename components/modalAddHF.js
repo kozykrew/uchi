@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import {IconCircleClose_Line_Dark, IconCircleAdd_Bold_Dark} from './icons.js'
 
 import styles from './modalAddHF.module.css'
 
@@ -48,13 +49,13 @@ export function ModalAddHF(props) {
       <Modal.Footer>
         <Button className={styles.btnCancel} onClick={props.handleClose}>
           <div className="iconRegular iconFirst">
-            <Image src="/../public/icons/circleclose_line_dark.png" width={32} height={32} />
+            <IconCircleClose_Line_Dark />
           </div>
           Cancel
         </Button>
         <Button className={styles.btnAdd} onClick={() => router.push('/addinghomefeature/type')}>
         <div className="iconRegular iconFirst">
-          <Image src="/../public/icons/circleadd_bold_dark.png" width={32} height={32} />
+          <IconCircleAdd_Bold_Dark />
         </div>
           Add
         </Button>

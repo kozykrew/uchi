@@ -17,7 +17,7 @@ const mgTasks = [{title:"Fill Refrigerator", difficulty:"Easy", frequency:"Occas
 
 export default function MaintenanceGuide() {
   var taskList = mgTasks.map((task) => (
-    <MaintenanceTask title={task.title} frequency={task.frequency} />
+    <MaintenanceTask key={task.title.replace(/\s+/g, '')} title={task.title} frequency={task.frequency} />
   ));
 
   return (

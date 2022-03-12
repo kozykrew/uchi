@@ -20,15 +20,15 @@ export function TabBar(props) {
   var tools;
 
   if (props.type == "tasks") {
-    tabContent = props.tabContent.map((content) => (
-      <TaskList dashboard={false} tasks={content} />
+    tabContent = props.tabContent.map((content, i) => (
+      <TaskList key={i} dashboard={false} tasks={content} />
     ));
   } else if (props.type == "steps") {
-    tabContent = props.tabContent.map((content) => (
-      <StepList steps={content} handleComplete={props.handleComplete} isChecked={props.isChecked} />
+    tabContent = props.tabContent.map((content, i) => (
+      <StepList key={i} steps={content} handleComplete={props.handleComplete} isChecked={props.isChecked} />
     ));
-    diyTools = props.tools.map((tool) => (
-      <BtnTool name={tool} />
+    diyTools = props.tools.map((tool, i) => (
+      <BtnTool key={i} name={tool} />
     ));
     tools = (
       <div>
@@ -41,7 +41,7 @@ export function TabBar(props) {
   }
 
   var tabs = props.tabs.map((tab, i) => (
-    <Tab eventKey={tab.replace(/\s+/g, '').toLowerCase()} title={tab}>
+    <Tab key={i} eventKey={tab.replace(/\s+/g, '').toLowerCase()} title={tab}>
       {tools}
       {tabContent[i]}
     </Tab>

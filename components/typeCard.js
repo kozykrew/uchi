@@ -11,7 +11,7 @@ export function TypeCard(props) {
 
   return(
     <div className={containerClassName} onClick={props.onClick}>
-      <Image className={styles.img} src={props.imgpath} layout="responsive" width={100} height={100} />
+      <Image className={styles.img} src={props.imgpath} layout="responsive" width={100} height={100} alt={props.type} />
       <div className={styles.label}>
         <p className="smallHeader">{props.type}</p>
       </div>

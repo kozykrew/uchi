@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import {IconArrowRight_Dark, IconDifficulty_Easy, IconCalendar_Line_Light, IconCarrot_Right_Light} from './icons.js'
+
 import styles from './maintenanceGuidePiece.module.css'
 
 // PROPS
@@ -12,7 +14,7 @@ export function MaintenanceGuidePiece(props) {
   return (
     <div className={styles.container}>
       <div className="iconRegular">
-        <Image src="/../public/icons/arrow_right.png" width={32} height={32} />
+        <IconArrowRight_Dark />
       </div>
       <div className={styles.maintenanceGuidePieceContainer} onClick={() => router.push('/taskdetails')}>
         <div>
@@ -20,19 +22,19 @@ export function MaintenanceGuidePiece(props) {
           <div className={styles.maintenanceGuidePieceDetails}>
             <div className={styles.maintenanceGuidePieceTag}>
               <div className="iconRegular iconFirst">
-                <Image src="/../public/icons/difficulty_easy.png" width={32} height={32} />
+                <IconDifficulty_Easy />
               </div>
               <p className={styles.icontag}>{props.difficulty}</p>
             </div>
             <div className={styles.maintenanceGuidePieceTag}>
               <div className="iconRegular iconFirst">
-                <Image src="/../public/icons/calendar_line.png" width={32} height={32} />
+                <IconCalendar_Line_Light />
               </div>
               <p className={styles.icontag}>{props.frequency}</p>
             </div>
           </div>
         </div>
-        <Image src="/../public/icons/carrot_right.png" width={32} height={32} />
+        <IconCarrot_Right_Light />
       </div>
     </div>
   )

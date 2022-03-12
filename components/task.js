@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import {IconCarrot_Right_Dark} from './icons.js'
+
 import styles from './task.module.css'
 
 export function Task(props) {
@@ -16,7 +18,7 @@ export function Task(props) {
           <p>{props.taskDesc}</p>
         </div>
         <p className="smallHeader tag">{props.taskDifficulty}</p>
-        <Image src="/../public/icons/carrot_right.png" width={32} height={32} />
+        <IconCarrot_Right_Dark />
       </div>
     </div>
   )

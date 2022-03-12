@@ -102,15 +102,15 @@ function determineAdditional(add) {
   var additional = [];
   var additionalTable = [];
   if (add != []) {
-    additionalTable = add.map((add) => (
-      <tr>
+    additionalTable = add.map((add, i) => (
+      <tr key={i}>
         <th>{add.header}</th>
         <td>{add.data}</td>
       </tr>
     ));
     additional = [
-      <hr className={styles.hr} />,
-      <Table>
+      <hr key={0} className={styles.hr} />,
+      <Table key={1}>
         {additionalTable}
       </Table>
     ];

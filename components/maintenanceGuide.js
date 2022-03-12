@@ -5,8 +5,8 @@ import styles from './taskList.module.css'
 // PROPS
 // tasks: array of task objects
 export function MaintenanceGuide(props) {
-  var children = props.tasks.map((task) => (
-    <MaintenanceGuidePiece title={task.title} difficulty={task.difficulty} frequency={task.frequency} />
+  var children = props.tasks.map((task, i) => (
+    <MaintenanceGuidePiece key={i} title={task.title} difficulty={task.difficulty} frequency={task.frequency} />
   ));
 
   return (
