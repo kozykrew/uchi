@@ -18,7 +18,7 @@ export default function HomeFeatures() {
       </Head>
       <Layout>
         <div className="pageContent">
-          <PageHeader iconpath="/../public/icons/homefeatures_gradient.png" headertext={"Home Features"} />
+          <PageHeader iconpath="/icons/homefeatures_gradient.png" headertext={"Home Features"} />
           <Space name={"Exterior"} hfs={exteriorHfs} />
           <Space name={"Kitchen"} hfs={kitchenHfs} />
           <Space name={"Bathroom"} hfs={[]} />

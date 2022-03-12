@@ -20,7 +20,7 @@ export default function Tasks() {
       </Head>
       <Layout>
         <div className="pageContent">
-          <PageHeader iconpath="/../public/icons/todo_gradient.png" headertext={"Tasks"} />
+          <PageHeader iconpath="/icons/todo_gradient.png" headertext={"Tasks"} />
           <TabBar type="tasks" tabs={["In Progress", "Upcoming", "Completed"]} tabContent={tasksByStatus} />
         </div>
       </Layout>
