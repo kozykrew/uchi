@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
@@ -18,7 +19,7 @@ export default function Home() {
 
         <p className={styles.description}>
           View our <a href="">MVP</a> at {' '}
-          <code className={styles.code}><a href="/dashboard">pages/dashboard.js</a></code>
+          <code className={styles.code}><Link href="/dashboard">pages/dashboard.js</Link></code>
         </p>
 
         <p>We currently have only developed a mobile version of UCHI.</p>
