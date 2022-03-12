@@ -1,4 +1,4 @@
-import {UchiNavbar} from './UchiNavbar.js'
+import {UchiNavbar} from './uchiNavbar.js'
 import {BtnNext, BtnCancel, BtnFinish, BtnToHF} from './button.js'
 
 import styles from './layout.module.css'
