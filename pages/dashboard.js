@@ -13,7 +13,7 @@ const tasks = [{title:"Clean gutter", difficulty:"Easy", description:"Remove lea
                 {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
                 {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
                 {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"}];
-// "/../public/icons/dashboard_gradient.png"
+
 export default function Dashboard() {
   return (
     <div>
@@ -24,9 +24,9 @@ export default function Dashboard() {
       <Layout>
         <div className="pageContent">
           <PageHeader iconpath={"/icons/dashboard_gradient.png"} headertext={"Welcome, " + user + "!"} />
-          <SectionHeader iconpath="/../public/icons/calendar_duotone.png" headertext={"2022"} />
+          <SectionHeader iconpath="/icons/calendar_duotone.png" headertext={"2022"} />
           <Calendar months={["Mar", "Apr", "May", "Jun", "Jul"]} />
-          <SectionHeader iconpath="/../public/icons/tasks_duotone.png" headertext="March Tasks" />
+          <SectionHeader iconpath="/icons/tasks_duotone.png" headertext="March Tasks" />
           <TaskList dashboard={true} tasks={tasks} />
         </div>
       </Layout>

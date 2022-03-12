@@ -3,11 +3,11 @@ import {TypeCard} from './typeCard.js'
 
 import styles from './typeCard.module.css'
 
-const types = [{type:"Top Freezer", imgpath:"/../public/images/refrigerator/topfreezer.jpg"},
-                {type:"Bottom Freezer", imgpath:"/../public/images/refrigerator/bottomfreezer.jpg"},
-                {type:"Side by Side", imgpath:"/../public/images/refrigerator/sidebyside.jpg"},
-                {type:"French Door", imgpath:"/../public/images/refrigerator/frenchdoor.webp"},
-                {type:"Built-in", imgpath:"/../public/images/refrigerator/builtin.png"}];
+const types = [{type:"Top Freezer", imgpath:"/images/refrigerator/topfreezer.jpg"},
+                {type:"Bottom Freezer", imgpath:"/images/refrigerator/bottomfreezer.jpg"},
+                {type:"Side by Side", imgpath:"/images/refrigerator/sidebyside.jpg"},
+                {type:"French Door", imgpath:"/images/refrigerator/frenchdoor.webp"},
+                {type:"Built-in", imgpath:"/images/refrigerator/builtin.png"}];
 
 // reference: Selectable Card React Component https://codepen.io/sheefu/pen/mddGQqb?editors=0010
 export default function TypeCards() {
