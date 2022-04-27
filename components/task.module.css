@@ -18,3 +18,8 @@
 .container, .taskDetailsContainer {
   width: 100%;
 }
+
+.pillContainer {
+  display: flex;
+  flex-wrap: wrap;
+}

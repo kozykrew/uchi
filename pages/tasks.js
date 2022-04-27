@@ -3,9 +3,9 @@ import Layout from '../components/layout.js'
 import {PageHeader} from '../components/headers.js'
 import {TabBar} from '../components/tabBar.js'
 
-const tasksByStatus = [[{title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
-                {title:"Clean fireplace", difficulty:"Easy", description:"Remove ash and scrub tray"},
-                {title:"Clean gutter", difficulty:"Easy", description:"Remove leaves and other debris"}],
+const tasksByStatus = [[{id: 1, title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
+                {id: 2, title:"Clean fireplace", difficulty:"Easy", description:"Remove ash and scrub tray"},
+                {id: 3, title:"Clean gutter", difficulty:"Easy", description:"Remove leaves and other debris"}],
                 [],
                 [{title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
                 {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},

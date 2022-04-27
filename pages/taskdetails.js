@@ -1,4 +1,5 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
+import AppContext from "../AppContext.js"
 import Head from 'next/head'
 import Layout from '../components/layout.js'
 import {SectionHeader, DetailsHeader} from '../components/headers.js'
@@ -7,8 +8,8 @@ import {TabBar} from '../components/tabBar.js'
 
 import styles from '../components/details.module.css'
 
-const task = {
-  name:"Clean gutters",
+const task1 = {
+  name:"Default task",
   space:"Exterior",
   difficulty:"Easy",
   time:"2 hours",
@@ -23,14 +24,28 @@ const task = {
                 [{title:"Interview contractors", description:"Ask key questions to determine their reliability."}]]
 }
 
-export default function TaskDetails() {
+function TaskDetails({ ssrTask }) {
+  const contextValue = useContext(AppContext);
+  let task = task1;
+  // Alternatively, only save task ID in AppContext,
+  //   then fetch details by task ID here with useEffect
+  //   https://www.learnbestcoding.com/post/25/nextjs-how-to-use-getserversideprops
+
+  console.log(contextValue.state.task)
+
+  if (contextValue.state.task != undefined) {
+    task = contextValue.state.task;
+  }
+
+  console.log(task)
+
   // progress bar state
-  const [ value, setValue ] = useState(0);
+  const [ progressValue, setProgressValue ] = useState(0);
   // checkbox state
   const [ isChecked, setChecked ] = useState(false);
 
   const handleComplete = (e) => {
-    setValue(1);
+    setProgressValue(1);
     setChecked(true);
   }
 
@@ -44,7 +59,7 @@ export default function TaskDetails() {
         <div className={styles.chocolate80filler}>
           <div className={styles.detailsContainer}>
             <div className="pageContent">
-              <DetailsHeader type="task" name={task.name} value={value} handleComplete={handleComplete} />
+              <DetailsHeader type="task" name={task.name} progressValue={progressValue} handleComplete={handleComplete} />
               <div className={styles.mainDetailsContainer}>
                 <MainDetailsTable type="task" space={task.space} difficulty={task.difficulty} time={task.time} frequency={task.frequency} />
                 <hr className={styles.hr} />
@@ -64,3 +79,23 @@ export default function TaskDetails() {
     </div>
   )
 }
+
+// getServerSideProps pre-renders the page on each request using the data it returns
+// Documentation: https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props
+// Tutorial: https://www.youtube.com/watch?v=cPqG8-NoxM0
+// export async function getServerSideProps() {
+//   const contextValue = useContext(AppContext);
+//   let data = contextValue.state.task;
+//   // fetch data
+//   // const response = await fetch('');
+//   // const data = await response.json();
+//
+//   // pass data to the page via props
+//   return {
+//     props: {
+//       task: data
+//     }
+//   }
+// }
+
+export default TaskDetails

@@ -8,7 +8,7 @@ import styles from './taskList.module.css'
 // tasks: array of task objects
 export function TaskList(props) {
   var children = props.tasks.map((task, i) => (
-    <Task key={i} taskTitle={task.title} taskDifficulty={task.difficulty} taskDesc={task.description} />
+    <Task key={i} taskID={i} taskTitle={task.title} taskDifficulty={task.difficulty} taskDesc={task.description} />
   ));
 
   if (props.dashboard == true) {

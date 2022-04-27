@@ -58,11 +58,11 @@ export function DetailsHeader(props) {
     return (
       <div>
         <div className={styles.detailsRow}>
-          <div className="iconRegular iconFirst" onClick={() => router.push('/tasks')}>
+          <div className="iconRegular iconFirst" onClick={() => router.back()}>
             <IconCircleCarrot_Left_Line_Light />
           </div>
           <h1 className={styles.taskHeader}>{props.name}</h1>
-          <CircularProgressbar className={styles.progressbar} value={props.value} maxValue={1} text={props.value*100 + '%'} />
+          <CircularProgressbar className={styles.progressbar} progressValue={props.progressValue} maxValue={1} text={props.progressValue*100 + '%'} />
         </div>
         <div className={styles.btnRow}>
           <BtnComplete handleComplete={props.handleComplete} />
