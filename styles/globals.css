@@ -87,6 +87,10 @@ th, td, .btn, .modal-title, .textDark {
   right: 1rem;
 }
 
+.labelAddtional {
+  float: right;
+}
+
 .lifespan {
   margin-left: 32px;
 }
@@ -221,3 +225,9 @@ ul.nav.nav-pills, button.nav-link {
   padding-bottom: 1rem;
 }
 /* END tabbar rules */
+
+/* ----------------------------------- @media rules ----------------------------------- */
+
+@media screen and (min-width: 1008px) {
+
+}

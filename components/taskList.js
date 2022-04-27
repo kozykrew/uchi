@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import {Task} from './task.js'
 
 import styles from './taskList.module.css'
@@ -17,10 +16,6 @@ export function TaskList(props) {
         {children[0]}
         {children[1]}
         {children[2]}
-
-        <Link href="/tasks">
-          <a className={styles.labelAddtional}>+ {children.length - 3} more</a>
-        </Link>
       </div>
     )
   } else {

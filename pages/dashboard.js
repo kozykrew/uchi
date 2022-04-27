@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import Layout from '../components/layout.js'
 import {PageHeader, SectionHeader} from '../components/headers.js'
 import {Calendar} from '../components/calendar.js'
@@ -15,6 +16,14 @@ const tasks = [{title:"Clean gutter", difficulty:"Easy", description:"Remove lea
                 {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"}];
 
 export default function Dashboard() {
+  let additionalTaskLink;
+  if (tasks.length > 3) {
+    additionalTaskLink = (
+      <Link href="/tasks">
+        <a className="labelAdditional">+ {tasks.length - 3} more</a>
+      </Link>
+    );
+  }
   return (
     <div>
       <Head>
@@ -28,6 +37,7 @@ export default function Dashboard() {
           <Calendar months={["Mar", "Apr", "May", "Jun", "Jul"]} />
           <SectionHeader iconpath="/icons/tasks_duotone.png" headertext="March Tasks" />
           <TaskList dashboard={true} tasks={tasks} />
+          {additionalTaskLink}
         </div>
       </Layout>
     </div>
