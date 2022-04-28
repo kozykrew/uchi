@@ -32,7 +32,7 @@ export default function Dashboard() {
       </Head>
       <Layout>
         <div className="pageContent">
-          <PageHeader iconpath={"/icons/dashboard_gradient.png"} headertext={"Welcome, " + user + "!"} />
+          <PageHeader page={"dashboard"} headertext={"Welcome, " + user + "!"} />
           <SectionHeader iconpath="/icons/calendar_duotone.png" headertext={"2022"} />
           <Calendar months={["Mar", "Apr", "May", "Jun", "Jul"]} />
           <SectionHeader iconpath="/icons/tasks_duotone.png" headertext="March Tasks" />

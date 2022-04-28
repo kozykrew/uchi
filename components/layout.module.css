@@ -1,3 +1,11 @@
+.displayTop {
+  display: block;
+}
+
+.displaySide {
+  display: none;
+}
+
 .footer {
   position: fixed;
   left: 0;
@@ -7,4 +15,23 @@
   display: flex;
   justify-content: space-between;
   padding: 1rem;
+}
+
+/* ----------------------------------- @media rules ----------------------------------- */
+
+@media screen and (min-width: 1008px) {
+  .displayTop {
+    display: none;
+  }
+
+  .displaySide {
+    display: block;
+  }
+
+  .desktopContainer {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    padding: 24px;
+  }
 }

@@ -31,7 +31,9 @@ export function Task(props) {
           </div>
           <p>{props.taskDesc}</p>
         </div>
-        <IconCarrot_Right_Dark />
+        <div className={styles.display}>
+          <IconCarrot_Right_Dark />
+        </div>
       </div>
     </div>
   )

@@ -11,10 +11,49 @@ import styles from './headers.module.css'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
+// PROPS
+// page: string - page name
 export function PageHeader(props) {
+  if (props.page == "dashboard") {
+    return (
+      <div className={styles.header}>
+        <div className="iconFirst">
+          <img src="./icons/dashboard_gradient.svg" alt="Dashboard" />
+        </div>
+        <div>
+          <h1 className={styles.pageHeader}>{props.headertext}</h1>
+          <p>Let's maintain your home sweet home.</p>
+        </div>
+      </div>
+    )
+  } else if (props.page == "homefeatures") {
+    return (
+      <div className={styles.header}>
+        <div className="iconFirst">
+          <img src="./icons/homefeatures_gradient.svg" alt="Home Features" />
+        </div>
+        <div>
+          <h1 className={styles.pageHeader}>{props.headertext}</h1>
+          <p>Let's maintain your home sweet home.</p>
+        </div>
+      </div>
+    )
+  } else if (props.page == "tasks") {
+    return (
+      <div className={styles.header}>
+        <div className="iconFirst">
+          <img src="./icons/tasks_gradient.svg" alt="Tasks" />
+        </div>
+        <div>
+          <h1 className={styles.pageHeader}>{props.headertext}</h1>
+          <p>Let's maintain your home sweet home.</p>
+        </div>
+      </div>
+    )
+  }
   return (
     <div className={styles.header}>
-      <div className="iconFirst iconSelected">
+      <div className="iconFirst">
         <Image src={props.iconpath} width={45} height={45} alt="Page header icon" />
       </div>
       <h1 className={styles.pageHeader}>{props.headertext}</h1>

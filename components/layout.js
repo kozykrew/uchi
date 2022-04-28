@@ -1,13 +1,27 @@
+import { useRouter } from "next/router";
+
 import {UchiNavbar} from './uchiNavbar.js'
 import {BtnNext, BtnCancel, BtnFinish, BtnToHF} from './button.js'
+import {UchiSideNavbar} from './uchiNavbar.js'
 
 import styles from './layout.module.css'
 
 export default function Layout({ children }) {
+  const router = useRouter();
+
   return (
     <div>
-      <UchiNavbar />
-      {children}
+      <div className={styles.displayTop}>
+        <UchiNavbar />
+      </div>
+      <div className={styles.desktopContainer}>
+        <div className={styles.displaySide}>
+          <UchiSideNavbar />
+        </div>
+        <div className={router.pathname == "/dashboard" ? "": "vanilla-bg"}>
+          {children}
+        </div>
+      </div>
     </div>
   )
 }

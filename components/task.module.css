@@ -24,10 +24,23 @@
   flex-wrap: wrap;
 }
 
+.display {
+  display: block;
+}
+
 /* ----------------------------------- @media rules ----------------------------------- */
 
 @media screen and (min-width: 1008px) {
   .container {
     width: 30%;
+  }
+
+  .taskDetailsContainer {
+    height: 30vh;
+    align-items: flex-start;
+  }
+
+  .display {
+    display: none;
   }
 }

@@ -38,7 +38,7 @@ export default function Tasks() {
       </Head>
       <Layout>
         <div className="pageContent">
-          <PageHeader iconpath="/icons/todo_gradient.png" headertext={"Tasks"} />
+          <PageHeader page={"tasks"} headertext={"Tasks"} />
           <TaskList dashboard={false} tasks={tasksByStatus[0]} />
         </div>
       </Layout>
