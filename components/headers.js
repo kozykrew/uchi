@@ -82,8 +82,8 @@ export function SpaceHeader(props) {
   return (
     <div className={styles.header}>
       <h2 className={styles.pageHeader}>{props.headertext}</h2>
-      <div className="iconLast iconRegular" onClick={handleShow}>
-        <IconAdd_Line_Light />
+      <div className="iconLast iconRegular hfadd-icon" onClick={handleShow}>
+        <img src="./icons/plus_line.svg" alt="Add Home Feature" />
       </div>
       <ModalAddHF show={show} handleClose={handleClose} headertext={props.headertext} />
     </div>

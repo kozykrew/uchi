@@ -3,6 +3,10 @@
   margin-right: 1rem;
 }
 
+.containerAdd {
+  display: none;
+}
+
 .card {
   display: flex;
   align-items: center;
@@ -16,8 +20,13 @@
 /* ----------------------------------- @media rules ----------------------------------- */
 
 @media screen and (min-width: 1008px) {
-  .container {
+  .container, .containerAdd {
     width: 20%;
+  }
+
+  .containerAdd {
+    display: block;
+    margin-right: 1rem;
   }
 
   .card {

@@ -260,4 +260,8 @@ ul.nav.nav-pills, button.nav-link {
   .page-tagline {
     display: block;
   }
+
+  .hfadd-icon, .no-hfs-notice {
+    display: none;
+  }
 }

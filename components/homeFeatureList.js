@@ -11,18 +11,20 @@ import styles from './homeFeatureList.module.css'
 export function HomeFeatureList(props) {
   if (props.hfs.length > 0) {
     var hfcards = props.hfs.map((hf) => (
-      <HomeFeatureCard key={hf.name.replace(/\s+/g, '')} hfName={hf.name} iconpath={hf.iconpath} />
+      <HomeFeatureCard key={hf.name.replace(/\s+/g, '')} hfName={hf.name} />
     ));
     return (
-      <div className={styles.wrapper}>
-        <div className={styles.container}>
-          {hfcards}
-        </div>
+      <div className={styles.container}>
+        <HomeFeatureCard hfName="Add a Feature" />
+        {hfcards}
       </div>
     )
   } else {
     return (
-      <p className="smallHeader">Home Features will be added to the {props.name} Space will appear here</p>
+      <div>
+        <p className="smallHeader no-hfs-notice">Home Features added to the {props.name} Space will appear here</p>
+        <HomeFeatureCard hfName="Add a Feature" />
+      </div>
     )
   }
 
