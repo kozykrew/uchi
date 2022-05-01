@@ -1,18 +1,17 @@
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import * as icons from './icons.js'
 
 import styles from './homeFeatureCard.module.css'
 
 export function HomeFeatureCard(props) {
   const router = useRouter();
 
-  var name = "Microwave";
-  var iconFunction = "IconHF" + props.hfName.replace(/\s+/g, '') +"_lg";
+  //var iconFunction = "IconHF" + props.hfName.replace(/\s+/g, '') +"_lg";
 
-  var icon = icons[iconFunction]();
+  //var icon = icons[iconFunction]();
   // var icon = icons.IconHFMicrowave();
-  console.log(icon)
+  var src = "./icons/hf_" + props.hfName.replace(/\s+/g, '').toLowerCase() +"_lg.svg";
+  var icon = (<img className="hfcard-icon" src={src} alt="My Happy SVG" />)
 
   return(
     <div className={styles.container} onClick={() => router.push('/homefeaturedetails')}>

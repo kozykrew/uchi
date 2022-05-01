@@ -61,7 +61,7 @@ ul li.active {
   letter-spacing: 0.2rem;
 }
 
-h1, h2, h3, h4, a, th, button, button.nav-link, .smallHeader, .modal-title {
+h1, h2, h3, h4, a, th, button, button.nav-link, .callout, .smallHeader, .modal-title {
   font-family: 'Karla', sans-serif;
 }
 
@@ -85,8 +85,16 @@ th, td, .btn, .modal-title, .textDark {
   color: var(--textDark);
 }
 
-.smallHeader {
+.callout {
+  font-size: 1.25rem;
+}
+
+.callout, .smallHeader {
   font-weight: 500;
+}
+
+.page-tagline {
+  display: none;
 }
 
 .tag {
@@ -175,6 +183,10 @@ tr {
 .iconLast {
   margin-left: 0.5rem;
 }
+
+.hfcard-icon {
+  width: 60%;
+}
 /* END icon rules */
 
 /* selectable card rules */
@@ -220,6 +232,7 @@ ul.nav.nav-pills, button.nav-link {
 }
 
 .tab-content {
+  width: inherit;
   padding-bottom: 1rem;
 }
 /* END tabbar rules */
@@ -231,13 +244,20 @@ ul.nav.nav-pills, button.nav-link {
     background: var(--light-gradient);
   }
 
-  .vanilla-bg {
+  .vanilla-bg, .dashboard-desktop {
     width: 100%;
+  }
+
+  .vanilla-bg {
     height: 100%;
     padding: 24px;
     border-radius: 20px;
     background-color: var(--vanilla);
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
     overflow-y: auto;
+  }
+
+  .page-tagline {
+    display: block;
   }
 }

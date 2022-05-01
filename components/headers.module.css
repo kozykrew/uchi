@@ -1,6 +1,6 @@
 .header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 0.5rem;
 }
 
@@ -29,4 +29,12 @@
 
 .progressbar {
   width: 20% !important;
+}
+
+/* ----------------------------------- @media rules ----------------------------------- */
+
+@media screen and (min-width: 1008px) {
+  .header {
+    align-items: flex-start;
+  }
 }

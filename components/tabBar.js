@@ -55,3 +55,27 @@ export function TabBar(props) {
     </Tabs>
   )
 }
+
+// PROPS
+// tabs: array of strings
+// tabContent: array of task/step objects arrays
+export function CalendarTabs(props) {
+  var tabContent;
+  tabContent = props.tabContent.map((content, i) => (
+    <TaskList key={i} dashboard={true} tasks={content} />
+  ));
+
+  var tabs = props.tabs.map((tab, i) => (
+    <Tab key={i} eventKey={tab.replace(/\s+/g, '').toLowerCase()} title={tab}>
+      {tabContent[i]}
+    </Tab>
+  ));
+
+  var defaultActive = props.tabs[0].replace(/\s+/g, '').toLowerCase();
+
+  return (
+    <Tabs defaultActiveKey={defaultActive} id="tabbar" className="mb-3" variant="pills">
+      {tabs}
+    </Tabs>
+  )
+}

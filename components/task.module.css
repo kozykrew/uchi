@@ -13,6 +13,7 @@
   padding: 1rem;
   box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
   position: relative;
+  overflow-y: scroll;
 }
 
 .container, .taskDetailsContainer {
@@ -35,8 +36,21 @@
     width: 30%;
   }
 
-  .taskDetailsContainer {
+  .taskDetailsContainerDashboard {
     height: 30vh;
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--chocolate80);
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow-y: scroll;
+  }
+
+  .taskDetailsContainer {
+    height: 20vh;
     align-items: flex-start;
   }
 

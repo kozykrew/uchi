@@ -1,4 +1,5 @@
 import {Task} from './task.js'
+import Link from 'next/link'
 
 import styles from './taskList.module.css'
 
@@ -11,11 +12,23 @@ export function TaskList(props) {
   ));
 
   if (props.dashboard == true) {
+    let additionalTaskLink;
+    if (children.length > 3) {
+      additionalTaskLink = (
+        <Link href="/tasks">
+          <a className="labelAdditional">+ {children.length - 3} more</a>
+        </Link>
+      );
+    }
+
     return (
-      <div className={styles.container}>
-        {children[0]}
-        {children[1]}
-        {children[2]}
+      <div>
+        <div className={styles.container}>
+          {children[0]}
+          {children[1]}
+          {children[2]}
+        </div>
+        {additionalTaskLink}
       </div>
     )
   } else {

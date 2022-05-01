@@ -18,7 +18,7 @@ export default function Layout({ children }) {
         <div className={styles.displaySide}>
           <UchiSideNavbar />
         </div>
-        <div className={router.pathname == "/dashboard" ? "": "vanilla-bg"}>
+        <div className={router.pathname == "/dashboard" ? "dashboard-desktop": "vanilla-bg"}>
           {children}
         </div>
       </div>

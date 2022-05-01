@@ -12,3 +12,17 @@
   border-radius: 15px;
   background-color: var(--mint60);
 }
+
+/* ----------------------------------- @media rules ----------------------------------- */
+
+@media screen and (min-width: 1008px) {
+  .container {
+    width: 20%;
+  }
+
+  .card {
+    width: 100%;
+    padding-top: 50%;
+    padding-bottom: 50%;
+  }
+}
