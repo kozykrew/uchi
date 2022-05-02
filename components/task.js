@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import AppContext from "../AppContext.js"
+import AppContext from '../AppContext.js'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import {Pill} from './pill.js'

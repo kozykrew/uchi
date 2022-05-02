@@ -4,7 +4,7 @@
   margin-bottom: 1rem;
 }
 
-.taskDetailsContainer {
+.taskDetailsContainer, .taskDetailsContainerDashboard {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,7 +16,7 @@
   overflow-y: scroll;
 }
 
-.container, .taskDetailsContainer {
+.container, .taskDetailsContainer, .taskDetailsContainerDashboard {
   width: 100%;
 }
 

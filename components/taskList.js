@@ -22,15 +22,13 @@ export function TaskList(props) {
     }
 
     return (
-      <div>
-        <div className={styles.container}>
+        [<div className={styles.container}>
           {children[0]}
           {children[1]}
           {children[2]}
-        </div>
-        {additionalTaskLink}
-      </div>
-    )
+        </div>,
+        additionalTaskLink]
+      )
   } else {
     return (
       <div className={styles.container}>

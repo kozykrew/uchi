@@ -16,3 +16,11 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
+/* ----------------------------------- @media rules ----------------------------------- */
+
+@media screen and (min-width: 1008px) {
+  .cardContainer {
+    justify-content: space-between;
+  }
+}

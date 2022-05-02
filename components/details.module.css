@@ -25,6 +25,18 @@
   margin-bottom: 1rem;
 }
 
+.detailsContainerDesktop {
+  display: none;
+}
+
+.addHFHeaderDesktop {
+  display: flex;
+}
+
+.addHFHeaderDesktopIcon {
+  height: 2.5rem;
+}
+
 .mainDetailsContainer {
   border: 1px solid var(--textDark);
   border-radius: 15px;
@@ -42,4 +54,21 @@
 .purpose {
   font-family: 'Karla', sans-serif;
   margin-bottom: 0;
+}
+
+/* ----------------------------------- @media rules ----------------------------------- */
+
+@media screen and (min-width: 1008px) {
+  .detailsContainer {
+    display: none;
+  }
+
+  .detailsContainerDesktop {
+    display: block;
+  }
+
+  .chocolate60bg {
+    height: auto;
+    background-color: transparent;
+  }
 }

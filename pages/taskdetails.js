@@ -1,5 +1,5 @@
 import {useState, useContext} from 'react'
-import AppContext from "../AppContext.js"
+import AppContext from '../AppContext.js'
 import Head from 'next/head'
 import Layout from '../components/layout.js'
 import {SectionHeader, DetailsHeader} from '../components/headers.js'

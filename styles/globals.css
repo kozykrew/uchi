@@ -23,6 +23,10 @@
   --alert: #940D0D;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   margin: 0;
@@ -131,16 +135,71 @@ tr {
   border: none !important;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 .btn {
   display: flex !important;
   align-items: center !important;
   border: none !important;
   border-radius: 50px;
 }
+
+.btn-back {
+  width: 36px;
+  margin-left: -24px;
+  margin-bottom: 1rem;
+}
+
+.addhfbtn-container {
+  justify-content: flex-end;
+}
+
+.addhfbtn-container, .addhfprocessbtn-container {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.addhfbtn-container button, .addhfprocessbtn-container button {
+  margin-left: 1rem;
+}
+
+.addhfprocessbtn-container {
+  display: none;
+}
+
+/* dropdown rules */
+.selecthf-container {
+  width: fit-content;
+}
+
+#dropdown-hfs {
+  background-color: var(--vanillaToasted);
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#dropdown-hfs:active, .btn-secondary:hover, .btn-secondary:focus, .show > .btn-secondary.dropdown-toggle {
+  color: var(--textDark);
+}
+
+#dropdown-hfs, .dropdown-menu {
+  width: 100%;
+}
+
+#dropdown-hfs, .dropdown-menu a {
+  font-size: 1.25rem;
+}
+
+#dropdown-hfs img, .dropdown-menu a img {
+  margin-right: 0.5rem;
+}
+
+.dropdown-toggle::after {
+  margin-left: auto;
+}
+
+.dropdown-menu {
+  color: var(--textLight);
+}
+/* END dropdown rules */
 
 /* modal rules */
 .modal-content {
@@ -232,7 +291,7 @@ ul.nav.nav-pills, button.nav-link {
 }
 
 .tab-content {
-  width: inherit;
+  width: 100%;
   padding-bottom: 1rem;
 }
 /* END tabbar rules */
@@ -264,4 +323,23 @@ ul.nav.nav-pills, button.nav-link {
   .hfadd-icon, .no-hfs-notice {
     display: none;
   }
+
+  .addhfprocessbtn-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* selectable card rules */
+  .selectableContainer, .selectedContainer {
+    width: 18%;
+  }
+
+  .selectableContainer {
+    background-color: var(--vanillaToasted);
+  }
+
+  .selectedContainer {
+    background-color: var(--vanillaBurnt);
+  }
+  /* END selectable card rules */
 }

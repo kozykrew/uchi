@@ -1,5 +1,7 @@
 import {useState} from 'react'
+import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Layout, {AddHFFooter} from '../../components/layout.js'
 import {AddHFHeader} from '../../components/headers.js'
@@ -8,10 +10,13 @@ import {MainDetailsTable} from '../../components/mainDetailsTable.js'
 
 import styles from '../../components/details.module.css'
 import addingStyles from '../../components/addingHomeFeature.module.css'
+import btnStyles from '../../components/button.module.css'
 
 const additional = [{header:"Has built-in ice maker?", data:"yes"}]
 
 export default function Confirmation() {
+  const router = useRouter();
+
   // brand select state
   const [selectedBrand, setSelectedBrand] = useState(null);
 
@@ -24,17 +29,24 @@ export default function Confirmation() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Layout>
-        <div className={styles.chocolate60filler}>
+        <div className={styles.chocolate60bg}>
           <div className={styles.detailsContainer}>
             <div className="pageContent">
               <AddHFHeader name="Refrigerator" previous="/addinghomefeature/age" />
             </div>
           </div>
           <div className="pageContent">
+            <div className={styles.detailsContainerDesktop}>
+              <img className="btn-back" src="../icons/carrotbtn_left_line.svg" alt="Back" onClick={() => router.back()} />
+              <div className={styles.addHFHeaderDesktop}>
+                <img className={styles.addHFHeaderDesktopIcon} src="../icons/hf_refrigerator_lg.svg" alt="Refrigerator" />
+                <h1>Add a Refrigerator</h1>
+              </div>
+            </div>
             <div className={addingStyles.prompt}>
               <h2 className="textDark"><span className="brand">UCHI</span> is almost ready to create your custom Maintenance Guide.</h2>
             </div>
-            <div>
+            <div className={addingStyles.confirmationContainerDesktop}>
               <p className="smallHeader textDark">Here&apos;s what you&apos;ve shared with <span className="brand">UCHI</span> so far:</p>
               <div className={addingStyles.confirmationContainer}>
                 <MainDetailsTable type="confirmation" additional={additional} />
@@ -61,6 +73,20 @@ export default function Confirmation() {
                   <Form.Control className={addingStyles.form} type="text" placeholder="Enter model #" />
                 </div>
               </Form>
+            </div>
+            <div className="addhfprocessbtn-container">
+              <Button className={btnStyles.cancelDesktop} onClick={() => router.push("/homefeatures")}>
+                <span className="iconFirst">
+                  <img src="../icons/close_line_dark.svg" alt="Cancel" />
+                </span>
+                Cancel
+              </Button>
+              <Button className={btnStyles.addDesktop} onClick={() => router.push("/homefeaturedetails")}>
+                <span className="iconFirst">
+                  <img src="../icons/flag_line_dark.svg" alt="Finish" />
+                </span>
+                Finish
+              </Button>
             </div>
           </div>
         </div>

@@ -5,6 +5,25 @@ import '../styles/globals.css'
 import AppContext from "../AppContext.js"
 
 import { useEffect, useState } from 'react'
+import Router from 'next/router'
+import NProgress from 'nprogress' //nprogress module
+import 'nprogress/nprogress.css' //styles of nprogress
+
+//Binding events.
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
+
+let spaceObject = {
+  Bathroom: ["Showerhead", "Toilet"],
+  Exterior: ["Gutters", "Roof", "Windows"],
+  Kitchen: ["Dishwasher", "Garbage Disposal", "Range", "Range Hood", "Refrigerator"],
+  Outdoors: ["Driveway", "Fence", "Lawn"],
+  Surfaces: ["Carpet Flooring", "Hardwood Flooring"],
+  Systems: ["Fireplace", "Smoke Detectors", "Ventilation"],
+  Utility: ["Dryer", "Washer", "Water Heater"],
+  Miscellaneous: ["Attic", "Basement"]
+}
 
 // if all tasks are saved here,
 //    can use taskObject as a map to access their details
@@ -48,14 +67,18 @@ function UchiApp({ Component, pageProps }) {
     import("bootstrap/dist/js/bootstrap.js");
   }, []);
 
+  const [spaceName, setSpaceName] = useState("Bathroom");
   const [viewingTaskID, setViewingTaskID] = useState(1);
 
   return (
     <AppContext.Provider
       value = { {
         state: {
+          space: spaceName,
+          hfs: spaceObject[spaceName],
           task: taskObject[viewingTaskID]
         },
+        setSpaceName: setSpaceName,
         setViewingTaskID: setViewingTaskID
       }}
     >
