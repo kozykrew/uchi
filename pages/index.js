@@ -13,7 +13,60 @@ export default function Landing() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Layout>
-        <div className="pageContent">
+        <div className={styles.visualContainer}>
+          <div className={styles.visualChocolate80}>
+            <img src="/landing-visual.png" alt="A person cheers next to their home." />
+          </div>
+          <div className={styles.visualVanillaToasted}>
+            <p className="brand noMB">U&#8226;CHI</p>
+            <p className={styles.phonetic}>/ <span className={styles.overline}>oo</span>CH<span className={styles.overline}>e</span> /</p>
+            <p className={styles.definition}>make a house your home</p>
+          </div>
+        </div>
+        <div className={styles.pageContent}>
+          <h1 className={styles.title}><span className={styles.brand}>UCHI</span></h1>
+          <p className={styles.info}>Approximately two-thirds of first-time American homeowners ignore home maintenance
+          until parts of their home begin to malfunction, resulting in unexpected expenses.
+          To mitigate homebuyer’s regret caused by being unprepared for home maintenance,
+          UCHI organizes maintenance tasks relevant to each home. With UCHI’s recommendations
+          and reminders to stay up-to-date with home maintenance tasks, first-time homeowners
+          are able to protect their investments and better care for their homes.
+          </p>
+          <hr className={styles.hr} />
+          <h2>Key Features</h2>
+          <div className={styles.keyFeaturesContainer}>
+            <KeyFeature name="Education" desc="Provide education and guidance." img="/images/key-features/education.png" />
+            <KeyFeature name="Task Tracker" desc="Track and notify about tasks." img="/images/key-features/task-tracker.png" />
+            <KeyFeature name="Customizability" desc="Personalize a one-stop home maintenance experience." img="/images/key-features/customizability.png" />
+          </div>
+          <h2>Demonstration Video</h2>
+          <h2>Team KozyKrew</h2>
+          <div className={styles.profilesContainer}>
+            <TeamProfile name="Ariane Apigo" roles="UX Designer, Front-end Developer" img="/images/team/ariane.png" linkedin="" />
+            <TeamProfile name="Rachel Chung" roles="UX Designer, Researcher" img="/images/team/rachel.png" linkedin="" />
+            <TeamProfile name="John-Luke Dokupil" roles="Data Scientist, Researcher" img="/images/team/johnluke.png" linkedin="" />
+            <TeamProfile name="Ratul Jain" roles="Data Scientist, Back-end Developer" img="/images/team/ratul.png" linkedin="" />
+          </div>
+          <h2>Project Status</h2>
+          <p className={styles.info}>UCHI started as a student-driven Capstone project
+           for the Information School at the University of Washington, Winter/Spring 2022.
+           As of May 25, 2022, UCHI will transition to be an <span className={styles.bodybold}>open source project</span> for future
+           iSchool Capstone teams to further develop.
+          </p>
+        </div>
+        <div className={styles.visualContainer}>
+          <div className={styles.visualMint80}>
+            <h1 className="noMB">Try <span className="brand">UCHI</span> today!</h1>
+          </div>
+          <div className={styles.visualOrange60}>
+            <p className={styles.signup}>Sign Up</p>
+            <img src="/icons/arrowcircle_right_line_dark.svg" alt="Sign Up Today" />
+          </div>
+        </div>
+        <div className={styles.footer}>
+          <p className="brand">UCHI</p>
+          <img className={styles.ischool} src="/iSchoolLogo_UCHI_TextLight.png" alt="University of Washington Information School" />
+          <p>&copy; 2022 UCHI. All rights reserved.</p>
         </div>
       </Layout>
     </div>
@@ -56,6 +109,37 @@ export default function Landing() {
   //     </footer>
   //   </div>
   // )
+}
+
+function KeyFeature(props) {
+  return (
+    <div className={styles.keyFeaturesContainer}>
+      <div className={styles.bubbleContainer}>
+        <div className={styles.keyFeatureBubble}>
+          <div>
+            <img className={styles.keyFeatureImg} src={props.img} alt={props.name} />
+          </div>
+        </div>
+      </div>
+      <h3>{props.name}</h3>
+      <p>{props.desc}</p>
+    </div>
+  )
+}
+
+function TeamProfile(props) {
+  return (
+    <div className={styles.profileContainer}>
+      <img className={styles.memberProfileImg} src={props.img} alt={props.name} />
+      <div className={styles.profileDetailsContainer}>
+        <h3>{props.name}</h3>
+        <p>{props.roles}</p>
+        <a href={props.linkedin}>
+          <img className={styles.linkedIn} src="/icons/linkedin_dark.svg" alt={props.name + "&#39;s LinkedIn Profile"} />
+        </a>
+      </div>
+    </div>
+  )
 }
 
 // ---------- some resources that came with default next.js app ----------

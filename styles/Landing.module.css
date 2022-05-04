@@ -1,4 +1,158 @@
-.container {
+.visualContainer {
+  position: relative;
+}
+
+.visualChocolate80 {
+  width: 90%;
+  padding: 1rem;
+  background-color: var(--chocolate80);
+}
+
+.visualChocolate80, .visualMint80 {
+  border-radius: 0 100px 100px 0;
+}
+
+.visualVanillaToasted, .visualOrange60 {
+  border-radius: 100px 0 0 100px;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+
+.visualVanillaToasted {
+  width: 65%;
+  padding: 1rem 0.5rem 0.5rem 2rem;
+  background-color: var(--vanillaToasted);
+  bottom: -64px;
+}
+
+.phonetic, .definition, .signup {
+  font-family: 'Karla';
+  font-weight: 500;
+}
+
+.overline {
+  text-decoration: underline;
+  text-underline-offset: -0.75rem;
+}
+
+.definition {
+  text-align: right;
+}
+
+.pageContent, .footer {
+  margin-top: 7rem;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.title {
+   width: 100%;
+   text-align: center;
+   border-bottom: 1.5px solid var(--textDark);
+   line-height: 0.1em;
+   margin-bottom: 2rem;
+}
+
+.brand {
+  padding: 0 1rem;
+  background-color: var(--vanilla);
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+}
+
+.info {
+  text-align: justify;
+}
+
+.hr {
+  color: var(--textDark);
+  opacity: 1;
+}
+
+.keyFeaturesContainer, .profileContainer, .profilesContainer, .footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.keyFeaturesContainer, .bubbleContainer, .profileContainer, .ischool {
+  margin-bottom: 1rem;
+}
+
+.bubbleContainer {
+  width: 70vw;
+}
+
+.keyFeatureBubble {
+  width: 100%;
+  padding-top: 100%;
+  border-radius: 100%;
+  background-color: var(--vanillaToasted);
+  position: relative;
+}
+
+.keyFeatureImg {
+  width: 50%;
+  /* absolute centering reference: https://medium.com/front-end-weekly/absolute-centering-in-css-ea3a9d0ad72e */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.profileContainer {
+  width: 250px;
+}
+
+.memberProfileImg {
+  border-radius: 20px;
+  margin-bottom: 0.5rem;
+}
+
+.profileDetailsContainer {
+  width: 100%;
+  position: relative;
+}
+
+.linkedIn {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.bodybold {
+  font-weight: 600;
+}
+
+.visualMint80 {
+  width: 75%;
+  padding: 1rem 1rem 1rem 2rem;
+  background-color: var(--mint80);
+}
+
+.visualOrange60 {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.5rem 0.5rem 2rem;
+  background-color: var(--orange60);
+  bottom: -36px;
+}
+
+.signup {
+  margin-bottom: 0;
+  padding-right: 0.5rem;
+}
+
+.ischool {
+  width: 70%;
+}
+
+/* Original Next JS css */
+/* .container {
   padding: 0 2rem;
 }
 
@@ -113,4 +267,4 @@
     width: 100%;
     flex-direction: column;
   }
-}
+} */
