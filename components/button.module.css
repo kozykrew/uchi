@@ -52,3 +52,20 @@
 .cancelDesktop {
   background-color: var(--chocolate60);
 }
+
+/* ----------------------------------- @media rules ----------------------------------- */
+
+@media screen and (min-width: 1008px) {
+  .complete {
+    width: 100%;
+  }
+
+  .complete, .postpone, .delete {
+    font-size: 1.25rem;
+    justify-content: center;
+  }
+
+  .postpone, .delete {
+    width: 48%;
+  }
+}

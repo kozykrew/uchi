@@ -303,17 +303,37 @@ ul.nav.nav-pills, button.nav-link {
     background: var(--light-gradient);
   }
 
-  .vanilla-bg, .dashboard-desktop {
+  .desktopContainer-vanilla, .dashboard-desktop {
     width: 100%;
   }
 
-  .vanilla-bg {
+  .desktopContainer-vanilla, .dashboard-desktop, .desktopContainer-vanillaToasted, .desktopContainer-chocolate80 {
+    flex-grow: 1;
+  }
+
+  .desktopContainer-vanilla, .desktopContainer-vanillaToasted, .desktopContainer-chocolate80 {
     height: 100%;
     padding: 24px;
     border-radius: 20px;
-    background-color: var(--vanilla);
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
     overflow-y: auto;
+  }
+
+  .desktopContainer-vanilla {
+    background-color: var(--vanilla);
+  }
+
+  .desktopContainer-vanillaToasted {
+    background-color: var(--vanillaToasted);
+  }
+
+  .desktopContainer-chocolate80 {
+    background-color: var(--chocolate80);
+  }
+
+  .vanillaToastedbg-desktop {
+    height: 100%;
+    background-color: var(--vanillaToasted);
   }
 
   .page-tagline {

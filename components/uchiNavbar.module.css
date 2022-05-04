@@ -58,3 +58,9 @@
 .profileBtnContainer button, .profileBtnContainer button:hover, .profileBtnContainer button:active {
   background-color: var(--vanillaToasted);
 }
+
+.profileBtnImg {
+  width: 40px;
+  border-radius: 100%;
+  margin-right: 0.5rem;
+}

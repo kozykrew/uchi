@@ -8,6 +8,18 @@ import styles from './layout.module.css'
 
 export default function Layout({ children }) {
   const router = useRouter();
+  var desktopContainerClass = "";
+  if (router.pathname == "/dashboard") {
+    desktopContainerClass = "dashboard-desktop";
+  } else if (router.pathname == "/homefeaturedetails" || router.pathname == "/profile") {
+    desktopContainerClass = "desktopContainer-vanillaToasted";
+  } else if (router.pathname == "/taskdetails") {
+    desktopContainerClass = "desktopContainer-chocolate80";
+  } else {
+    desktopContainerClass = "desktopContainer-vanilla";
+  }
+
+  // router.pathname == "/dashboard" ? "dashboard-desktop": "vanilla-bg"
 
   return (
     <div>
@@ -18,7 +30,7 @@ export default function Layout({ children }) {
         <div className={styles.displaySide}>
           <UchiSideNavbar />
         </div>
-        <div className={router.pathname == "/dashboard" ? "dashboard-desktop": "vanilla-bg"}>
+        <div className={desktopContainerClass}>
           {children}
         </div>
       </div>

@@ -66,7 +66,10 @@ export function UchiSideNavbar() {
       </div>
       <div className={styles.profileBtnContainer}>
         <Dropdown as={ButtonGroup}>
-          <Button variant="light">Kai O.</Button>
+          <Button variant="light" onClick={() => router.push('/profile')}>
+            <img className={styles.profileBtnImg} src="/profile.png" alt="Profile Image" />
+            Kai O.
+          </Button>
 
           <Dropdown.Toggle variant="light" split id="dropdown-split-basic" />
 

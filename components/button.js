@@ -10,9 +10,7 @@ import styles from './button.module.css'
 export function BtnComplete(props) {
   return (
     <Button className={styles.complete} size="sm" onClick={props.handleComplete}>
-      <span className="iconFirst">
-        <IconCheckbox_Dark />
-      </span>
+      <img src="./icons/check_line_dark.svg" alt="Complete" />
       Complete
     </Button>
   )
@@ -21,9 +19,7 @@ export function BtnComplete(props) {
 export function BtnPostpone() {
   return (
     <Button className={styles.postpone} size="sm">
-      <span className="iconFirst">
-        <IconClock_Line_Dark />
-      </span>
+      <img src="./icons/clock_line_dark.svg" alt="Postpone" />
       Postpone
     </Button>
   )
@@ -32,9 +28,7 @@ export function BtnPostpone() {
 export function BtnDelete() {
   return (
     <Button className={styles.delete} size="sm">
-      <span className="iconFirst">
-        <IconTrash_Line_Dark />
-      </span>
+      <img src="./icons/trash_line_dark.svg" alt="Delete" />
       Delete
     </Button>
   )

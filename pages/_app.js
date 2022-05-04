@@ -6,10 +6,12 @@ import AppContext from "../AppContext.js"
 
 import { useEffect, useState } from 'react'
 import Router from 'next/router'
+
+// page loader reference: https://levelup.gitconnected.com/improve-ux-of-your-next-js-app-in-3-minutes-with-page-loading-indicator-3a422113304d
 import NProgress from 'nprogress' //nprogress module
 import 'nprogress/nprogress.css' //styles of nprogress
 
-//Binding events.
+//Binding events
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());

@@ -144,3 +144,20 @@ export function AddHFHeader(props) {
     </div>
   )
 }
+
+// PROPS
+// profileImg: string - src of profile image
+// name: string - user's name
+// home: string - home type and build month/year
+export function ProfileHeader(props) {
+  const router = useRouter();
+  return (
+    <div className={styles.profile}>
+      <img className={styles.profileImg} src={props.profileImg} alt="Profile Image" />
+      <div className={styles.profileInfo}>
+        <h1 className={styles.pageHeader}>{props.name}</h1>
+        <p className="callout">{props.home}</p>
+      </div>
+    </div>
+  )
+}

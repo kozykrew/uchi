@@ -1,12 +1,18 @@
 import {useState, useContext} from 'react'
 import AppContext from '../AppContext.js'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Layout from '../components/layout.js'
 import {SectionHeader, DetailsHeader} from '../components/headers.js'
+import {BtnComplete, BtnPostpone, BtnDelete} from '../components/button.js'
 import {MainDetailsTable} from '../components/mainDetailsTable.js'
 import {TabBar} from '../components/tabBar.js'
 
 import styles from '../components/details.module.css'
+
+// progress bar component from https://www.npmjs.com/package/react-circular-progressbar
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 const task1 = {
   name:"Default task",
@@ -25,6 +31,7 @@ const task1 = {
 }
 
 function TaskDetails({ ssrTask }) {
+  const router = useRouter();
   const contextValue = useContext(AppContext);
   let task = task1;
   // Alternatively, only save task ID in AppContext,
@@ -41,13 +48,14 @@ function TaskDetails({ ssrTask }) {
 
   // progress bar state
   const [ progressValue, setProgressValue ] = useState(0);
-  // checkbox state
-  const [ isChecked, setChecked ] = useState(false);
 
   const handleComplete = (e) => {
     setProgressValue(1);
     setChecked(true);
   }
+
+  // checkbox state
+  const [ isChecked, setChecked ] = useState(false);
 
   return (
     <div className={styles.chocolate80bg}>
@@ -67,6 +75,31 @@ function TaskDetails({ ssrTask }) {
               </div>
             </div>
           </div>
+
+          <div className={styles.detailsContainerDetailsPagesDesktop}>
+            <div className="pageContent">
+              <img className="btn-back" src="../icons/carrotbtn_left_line.svg" alt="Back" onClick={() => router.back()} />
+              <div className={styles.addHFHeaderDesktop}>
+                <div>
+                  <h1>{task.name}</h1>
+                  <div>
+                    <BtnComplete handleComplete={handleComplete} />
+                    <div className={styles.actionBtnContainerDesktop}>
+                      <BtnPostpone />
+                      <BtnDelete />
+                    </div>
+                  </div>
+                </div>
+                <CircularProgressbar className={styles.progressbar} value={progressValue} maxValue={1} text={progressValue*100 + '%'} />
+                <div className={styles.mainDetailsContainer}>
+                  <MainDetailsTable type="task" space={task.space} difficulty={task.difficulty} time={task.time} frequency={task.frequency} />
+                  <hr className={styles.hr} />
+                  <p className={styles.purpose}>{task.desc}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="pageContent">
             <h2>How To</h2>
             <p><span className="brand">UCHI</span> recommends to {task.uchirec}</p>
