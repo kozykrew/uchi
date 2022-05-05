@@ -22,7 +22,7 @@ export function PageHeader(props) {
         </div>
         <div>
           <h1 className={styles.pageHeader}>{props.headertext}</h1>
-          <p className="callout page-tagline">Let's maintain your home sweet home.</p>
+          <p className="callout page-tagline">Let&apos;s maintain your home sweet home.</p>
         </div>
       </div>
     )
@@ -34,7 +34,7 @@ export function PageHeader(props) {
         </div>
         <div>
           <h1 className={styles.pageHeader}>{props.headertext}</h1>
-          <p className="callout page-tagline">Let's maintain your home sweet home.</p>
+          <p className="callout page-tagline">Let&apos;s maintain your home sweet home.</p>
         </div>
       </div>
     )
@@ -46,7 +46,7 @@ export function PageHeader(props) {
         </div>
         <div>
           <h1 className={styles.pageHeader}>{props.headertext}</h1>
-          <p className="callout page-tagline">Let's maintain your home sweet home.</p>
+          <p className="callout page-tagline">Let&apos;s maintain your home sweet home.</p>
         </div>
       </div>
     )
