@@ -170,6 +170,11 @@ tr {
   margin-left: auto;
   margin-right: 0 !important;
 }
+
+#landing-nav .navbar-nav a {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
 /* END landing navbar rules */
 
 /* dropdown rules */
@@ -356,6 +361,17 @@ ul.nav.nav-pills, button.nav-link {
     justify-content: center;
   }
 
+  /* landing page rules */
+  #education, #customizability {
+    align-self: flex-start;
+  }
+
+  #tasktracker {
+    flex-flow: row-reverse;
+    align-self: flex-end;
+  }
+  /* END landing page rules */
+
   /* selectable card rules */
   .selectableContainer, .selectedContainer {
     width: 18%;
@@ -369,15 +385,4 @@ ul.nav.nav-pills, button.nav-link {
     background-color: var(--vanillaBurnt);
   }
   /* END selectable card rules */
-
-  /* landing page rules */
-  #education, #customizability {
-    align-self: flex-start;
-  }
-
-  #tasktracker {
-    flex-flow: row-reverse;
-    align-self: flex-end;
-  }
-  /* END landing page rules */
 }
