@@ -15,14 +15,14 @@ export function TaskList(props) {
     let additionalTaskLink;
     if (children.length > 3) {
       additionalTaskLink = (
-        <Link href="/tasks">
+        <Link key="additional" href="/tasks">
           <a className="labelAdditional">+ {children.length - 3} more</a>
         </Link>
       );
     }
 
     return (
-        [<div className={styles.container}>
+        [<div key="tasklist" className={styles.container}>
           {children[0]}
           {children[1]}
           {children[2]}
