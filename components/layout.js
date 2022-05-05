@@ -9,15 +9,36 @@ import styles from './layout.module.css'
 export default function Layout({ children }) {
   const router = useRouter();
   var desktopContainerClass = "";
-  if (router.pathname == "/dashboard") {
-    desktopContainerClass = "dashboard-desktop";
-  } else if (router.pathname == "/homefeaturedetails" || router.pathname == "/profile") {
-    desktopContainerClass = "desktopContainer-vanillaToasted";
-  } else if (router.pathname == "/taskdetails") {
-    desktopContainerClass = "desktopContainer-chocolate80";
-  } else {
-    desktopContainerClass = "desktopContainer-vanilla";
+
+  switch (router.pathname) {
+    case "/dashboard":
+      desktopContainerClass = "dashboard-desktop";
+      break;
+    case "/homefeaturedetails":
+      desktopContainerClass = "desktopContainer-vanillaToasted";
+      break;
+    case "/profile":
+      desktopContainerClass = "desktopContainer-vanillaToasted";
+      break;
+    case "/taskdetails":
+      desktopContainerClass = "desktopContainer-chocolate80";
+      break;
+    case "/":
+      break;
+    default:
+      desktopContainerClass = "desktopContainer-vanilla";
   }
+  // if (router.pathname == "/dashboard") {
+  //   desktopContainerClass = "dashboard-desktop";
+  // } else if (router.pathname == "/homefeaturedetails" || router.pathname == "/profile") {
+  //   desktopContainerClass = "desktopContainer-vanillaToasted";
+  // } else if (router.pathname == "/taskdetails") {
+  //   desktopContainerClass = "desktopContainer-chocolate80";
+  // } else if (router.pathname == "/") {
+  //   break;
+  // } else {
+  //   desktopContainerClass = "desktopContainer-vanilla";
+  // }
 
   // router.pathname == "/dashboard" ? "dashboard-desktop": "vanilla-bg"
 

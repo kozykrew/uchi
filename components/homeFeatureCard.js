@@ -13,8 +13,8 @@ export function HomeFeatureCard(props) {
   const contextValue = useContext(AppContext);
 
   const router = useRouter();
-  
-  var src = "./icons/hf_" + props.hfName.replace(/\s+/g, '').toLowerCase() +"_lg.svg";
+
+  var src = "./icons/hf_" + props.hfName.replace(/\s+/g, '').toLowerCase() + "_lg.svg";
   if (props.hfName == "Add a Feature") {
     return(
       <div className={styles.containerAdd} onClick={() => {

@@ -1,30 +1,82 @@
+import { useRouter } from 'next/router'
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+import Container from 'react-bootstrap/Container'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import Layout from '../components/layout.js'
+import {UchiNavbar} from '../components/uchiNavbar.js'
 
 import styles from '../styles/Landing.module.css'
+import navStyles from '../components/uchiNavbar.module.css'
 
 export default function Landing() {
+  const router = useRouter();
+
+  var navbar = (
+    <Navbar id="landing-nav" bg="#FFF8E6" expand="lg">
+      <Container>
+        <Navbar.Brand className={navStyles.brand} href="#">UCHI</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="#about">About</Nav.Link>
+            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="#demo">Demo</Nav.Link>
+            <Nav.Link href="#team">Team</Nav.Link>
+            <Nav.Link href="#status">Status</Nav.Link>
+            <Nav.Link href="#link">Sign Up</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  )
+
+  // var uchinavbar = (
+  //   <div className={styles.topbar}>
+  //     <Navbar collapseOnSelect expand="lg" bg="#FFF8E6" variant="light">
+  //       <Container>
+  //       <Navbar.Brand className={styles.brand} href="/dashboard">UCHI</Navbar.Brand>
+  //       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  //       <Navbar.Collapse id="responsive-navbar-nav">
+  //         <Nav>
+  //           <ul>
+  //             <li className={router.pathname == "/dashboard" ? "active" : ""}><Link href="/dashboard"><a>Dashboard</a></Link></li>
+  //             <li className={router.pathname == "/homefeatures" ? "active" : ""}><Link href="/homefeatures"><a>Home Features</a></Link></li>
+  //             <li className={router.pathname == "/tasks" ? "active" : ""}><Link href="/tasks"><a>Tasks</a></Link></li>
+  //           </ul>
+  //         </Nav>
+  //       </Navbar.Collapse>
+  //       </Container>
+  //     </Navbar>
+  //   </div>
+  // )
+
   return (
-    <div>
+    <div className={styles.bg}>
       <Head>
         <title>UCHI</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Layout>
+      <div className={styles.displayTop}>
+        {navbar}
+      </div>
         <div className={styles.visualContainer}>
           <div className={styles.visualChocolate80}>
             <img src="/landing-visual.png" alt="A person cheers next to their home." />
           </div>
           <div className={styles.visualVanillaToasted}>
-            <p className="brand noMB">U&#8226;CHI</p>
-            <p className={styles.phonetic}>/ <span className={styles.overline}>oo</span>CH<span className={styles.overline}>e</span> /</p>
-            <p className={styles.definition}>make a house your home</p>
+            <div className={styles.dictionaryContainer}>
+              <p className="brand noMB">U&#8226;CHI</p>
+              <p className={styles.phonetic}>/ <span className={styles.overline}>oo</span>CH<span className={styles.overline}>e</span> /</p>
+              <p className={styles.definition}>make a house your home</p>
+            </div>
           </div>
         </div>
         <div className={styles.pageContent}>
-          <h1 className={styles.title}><span className={styles.brand}>UCHI</span></h1>
+          <h1 id="about" className={styles.title}><span className={styles.titleBrand}>UCHI</span></h1>
           <p className={styles.info}>Approximately two-thirds of first-time American homeowners ignore home maintenance
           until parts of their home begin to malfunction, resulting in unexpected expenses.
           To mitigate homebuyer’s regret caused by being unprepared for home maintenance,
@@ -33,21 +85,22 @@ export default function Landing() {
           are able to protect their investments and better care for their homes.
           </p>
           <hr className={styles.hr} />
-          <h2>Key Features</h2>
+          <h2 id="features" className={styles.heading}><span className={styles.headingText}>Key Features</span></h2>
           <div className={styles.keyFeaturesContainer}>
             <KeyFeature name="Education" desc="Provide education and guidance." img="/images/key-features/education.png" />
             <KeyFeature name="Task Tracker" desc="Track and notify about tasks." img="/images/key-features/task-tracker.png" />
             <KeyFeature name="Customizability" desc="Personalize a one-stop home maintenance experience." img="/images/key-features/customizability.png" />
           </div>
-          <h2>Demonstration Video</h2>
-          <h2>Team KozyKrew</h2>
+          <h2 id="demo" className={styles.heading}><span className={styles.headingText}>Demonstration Video</span></h2>
+          <iframe className={styles.demo} width="894" height="783" src="https://www.youtube.com/embed/dRpH8uqyBCk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <h2 id="team" className={styles.heading}><span className={styles.headingText}>Team KozyKrew</span></h2>
           <div className={styles.profilesContainer}>
             <TeamProfile name="Ariane Apigo" roles="UX Designer, Front-end Developer" img="/images/team/ariane.png" linkedin="" />
             <TeamProfile name="Rachel Chung" roles="UX Designer, Researcher" img="/images/team/rachel.png" linkedin="" />
             <TeamProfile name="John-Luke Dokupil" roles="Data Scientist, Researcher" img="/images/team/johnluke.png" linkedin="" />
             <TeamProfile name="Ratul Jain" roles="Data Scientist, Back-end Developer" img="/images/team/ratul.png" linkedin="" />
           </div>
-          <h2>Project Status</h2>
+          <h2 id="status" className={styles.heading}><span className={styles.headingText}>Project Status</span></h2>
           <p className={styles.info}>UCHI started as a student-driven Capstone project
            for the Information School at the University of Washington, Winter/Spring 2022.
            As of May 25, 2022, UCHI will transition to be an <span className={styles.bodybold}>open source project</span> for future
@@ -59,16 +112,17 @@ export default function Landing() {
             <h1 className="noMB">Try <span className="brand">UCHI</span> today!</h1>
           </div>
           <div className={styles.visualOrange60}>
-            <p className={styles.signup}>Sign Up</p>
+            <h2 className={styles.signup}>Sign Up</h2>
             <img src="/icons/arrowcircle_right_line_dark.svg" alt="Sign Up Today" />
           </div>
         </div>
         <div className={styles.footer}>
-          <p className="brand">UCHI</p>
+          <div>
+            <p className={styles.brand}>UCHI</p>
+            <p>&copy; 2022 UCHI. All rights reserved.</p>
+          </div>
           <img className={styles.ischool} src="/iSchoolLogo_UCHI_TextLight.png" alt="University of Washington Information School" />
-          <p>&copy; 2022 UCHI. All rights reserved.</p>
         </div>
-      </Layout>
     </div>
   )
   // MVP below
@@ -112,8 +166,10 @@ export default function Landing() {
 }
 
 function KeyFeature(props) {
+  var id = props.name.replace(/\s+/g, '').toLowerCase()
+
   return (
-    <div className={styles.keyFeaturesContainer}>
+    <div id={id} className={styles.keyFeatureContainer}>
       <div className={styles.bubbleContainer}>
         <div className={styles.keyFeatureBubble}>
           <div>
@@ -121,8 +177,10 @@ function KeyFeature(props) {
           </div>
         </div>
       </div>
-      <h3>{props.name}</h3>
-      <p>{props.desc}</p>
+      <div className={styles.keyFeatureText}>
+        <h3>{props.name}</h3>
+        <p>{props.desc}</p>
+      </div>
     </div>
   )
 }
