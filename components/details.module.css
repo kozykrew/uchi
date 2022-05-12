@@ -41,10 +41,12 @@
 
 .addHFHeaderDesktop {
   display: flex;
+  align-items: flex-start;
 }
 
 .addHFHeaderDesktopIcon {
   height: 2.5rem;
+  margin-right: 1rem;
 }
 
 .mainDetailsContainer {

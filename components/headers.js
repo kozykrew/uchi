@@ -101,7 +101,7 @@ export function DetailsHeader(props) {
             <IconCircleCarrot_Left_Line_Light />
           </div>
           <h1 className={styles.taskHeader}>{props.name}</h1>
-          <CircularProgressbar className={styles.progressbar} progressValue={props.progressValue} maxValue={1} text={props.progressValue*100 + '%'} />
+          <CircularProgressbar className={styles.progressbar} value={props.progressValue} maxValue={1} text={props.progressValue*100 + '%'} />
         </div>
         <div className={styles.btnRow}>
           <BtnComplete handleComplete={props.handleComplete} />
@@ -118,7 +118,7 @@ export function DetailsHeader(props) {
             <IconCircleCarrot_Left_Line_Light />
           </div>
           <div className="iconRegular iconFirst">
-            <IconHFRefrigerator />
+            <img src={props.iconpath} alt={props.name} />
           </div>
           <h1 className={styles.pageHeader}>{props.name}</h1>
         </div>
@@ -133,11 +133,11 @@ export function AddHFHeader(props) {
   return (
     <div>
       <div className={styles.detailsRow}>
-        <div className="iconRegular iconFirst" onClick={() => router.push(props.previous)}>
+        <div className="iconRegular iconFirst" onClick={() => router.back()}>
           <IconCircleCarrot_Left_Line_Light />
         </div>
         <div className="iconRegular iconFirst">
-          <IconHFRefrigerator />
+          <img src={props.iconpath} alt={props.name} />
         </div>
         <h1 className={styles.pageHeader}>{props.name}</h1>
       </div>

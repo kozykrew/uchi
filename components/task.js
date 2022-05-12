@@ -27,9 +27,9 @@ export function Task(props) {
           <div>
             <h3>{props.taskTitle}</h3>
             <div className={styles.pillContainer}>
-              <Pill tag={"Complex"} />
-              <Pill tag={"1 hour"} />
-              <Pill tag={"Exterior"} />
+              <Pill tag={props.taskDifficulty} />
+              <Pill tag={props.taskTime} />
+              <Pill tag={props.taskTag3} />
             </div>
             <p>{props.taskDesc}</p>
           </div>
@@ -53,9 +53,9 @@ export function Task(props) {
           <div>
             <h3>{props.taskTitle}</h3>
             <div className={styles.pillContainer}>
-              <Pill tag={"Complex"} />
-              <Pill tag={"1 hour"} />
-              <Pill tag={"Exterior"} />
+              <Pill tag={props.taskDifficulty} />
+              <Pill tag={props.taskTime} />
+              <Pill tag={props.taskTag3} />
             </div>
             <p>{props.taskDesc}</p>
           </div>

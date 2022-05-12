@@ -17,7 +17,7 @@ export default function Profile() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Layout>
-        <div className={styles.vanillaToastedbg}>
+        <div className={styles.vanillaToastedFiller}>
           <div className={styles.detailsContainer}>
             <div className="pageContent">
               <ProfileHeader profileImg="/profile.png" name={"Kai Ong"} home={"New build (December 2021)"} />

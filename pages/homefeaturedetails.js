@@ -7,22 +7,21 @@ import {TaskList} from '../components/taskList.js'
 
 import styles from '../components/details.module.css'
 
-const tasks = [{title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
-                {title:"Clean fireplace", difficulty:"Easy", description:"Remove ash and scrub tray"},
-                {title:"Clean gutter", difficulty:"Easy", description:"Remove leaves and other debris"},
-                {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
-                {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"},
-                {title:"Fertilize lawn", difficulty:"Easy", description:"Feed lawn with nutrients"}]
+const addHF = "Roof";
+const addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
 
-const mgTasks = [{title:"Fill Refrigerator", difficulty:"Easy", frequency:"Occasionally"},
-                {title:"Refresh ice maker", difficulty:"Easy", frequency:"Quarterly"},
-                {title:"Clean coils", difficulty:"Easy", frequency:"Annually"}];
+const mgTasksRefrigerator = [{title:"Fill Refrigerator", difficulty:"Simple", frequency:"Occasionally"},
+                {title:"Refresh ice maker", difficulty:"Simple", frequency:"Quarterly"},
+                {title:"Clean coils", difficulty:"Simple", frequency:"Annually"}];
 
-const additional = [{header:"Has built-in ice maker?", data:"yes"}]
+const mgTasksRoof = [{title:"Wash Roof", difficulty:"Average", time:"3-7 hours", tag3:"May 2022"}]
+
+const additionalRefrigerator = [{header:"Has built-in ice maker?", data:"yes"}]
+const additionalRoof = [];
 
 export default function HomeFeatureDetails() {
   const router = useRouter();
-  
+
   return (
     <div className={styles.chocolate60bg}>
       <Head>
@@ -33,9 +32,9 @@ export default function HomeFeatureDetails() {
         <div className={styles.chocolate60bg}>
           <div className={styles.detailsContainer}>
             <div className="pageContent">
-              <DetailsHeader type="hf" name="Refrigerator" />
+              <DetailsHeader type="hf" name={addHF} iconpath={addHFiconpath} />
               <div className={styles.mainDetailsContainer}>
-                <MainDetailsTable type="hf" additional={additional} />
+                <MainDetailsTable type="hf" hf={addHF} additional={additionalRoof} />
               </div>
             </div>
           </div>
@@ -43,20 +42,20 @@ export default function HomeFeatureDetails() {
             <div className="pageContent">
               <img className="btn-back" src="../icons/carrotbtn_left_line.svg" alt="Back" onClick={() => router.push("/homefeatures")} />
               <div className={styles.addHFHeaderDesktop}>
-                <img className={styles.addHFHeaderDesktopIcon} src="../icons/hf_refrigerator_lg.svg" alt="Refrigerator" />
+                <img className={styles.addHFHeaderDesktopIcon} src={addHFiconpath} alt={addHF} />
                 <div>
-                  <h1>Refrigerator</h1>
-                  <p className="smallHeader">Average Lifespan: 10 years</p>
+                  <h1>{addHF}</h1>
+                  <p className="smallHeader">Average Lifespan: 20-30 years</p>
                 </div>
                 <div className={styles.mainDetailsContainer}>
-                  <MainDetailsTable type="hf" additional={additional} />
+                  <MainDetailsTable type="hf" hf={addHF} additional={additionalRoof} />
                 </div>
               </div>
             </div>
           </div>
           <div className="pageContent">
             <h2>Maintenance Guide</h2>
-            <TaskList dashboard={false} tasks={mgTasks} />
+            <TaskList dashboard={false} tasks={mgTasksRoof} />
           </div>
         </div>
         <div className={styles.chocolate60filler}>

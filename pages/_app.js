@@ -32,10 +32,27 @@ let spaceObject = {
 //    via value.state.task in AppContext
 
 let taskObject = {
-  0: {
+  0:{
+      name:"Wash roof",
+      space:"Exterior",
+      difficulty:"Moderate",
+      time:"3-7 hours",
+      frequency:"Annually",
+      desc:"Roofs are exposed to all kinds of elements and moisture. If not routinely cleaned, algae spores and moss buildup can occur. Moss can push up on shingles causing them to blow off which can result in leaks.",
+      uchirec:"DIY this task because it is more cost-efficient.",
+      tools:["Bleach", "Garden hose", "Garden sprayer", "Ladder", "Plastic tarp"],
+      steps:[[{title:"Protect your landscape", description:"Place a plastic tarp below your roof to protect your lanscape from the bleach solution."},
+                      {title:"Create cleaning solution", description:"Fill a garden sprayer with a 50% water and 50% bleach solution."},
+                      {title:"Set up ladder", description:"Set your ladder against a sturdy surface (do not lean it against the gutters!)."},
+                      {title:"Spray solution", description:"Spray the bleach solution over all the shingles of your roof."},
+                      {title:"Wait 20 minutes", description:"Let the solution sit on your roof for 15-20 minutes."},
+                      {title:"Rinse roof", description:"Rinse your roof thoroughly with a garden hose (do NOT use a power washer! Power washers can loosen your shingles and cause leaks)."}],
+                    [{title:"Interview contractors", description:"Ask key questions to determine their reliability."}]]
+  },
+  1: {
       name:"Clean gutters",
       space:"Exterior",
-      difficulty:"Easy",
+      difficulty:"Simple",
       time:"2 hours",
       frequency:"Annually",
       desc:"When gutters fill with leaves, sticks, and other debris, it causes clogs that can result in water creeping into the roof or even into the foundation of the house.",
@@ -47,10 +64,10 @@ let taskObject = {
                       {title:"Flush the gutters", description:"Use a garden hose to flush out the gutters and clear out any remaining debris."}],
                     [{title:"Interview contractors", description:"Ask key questions to determine their reliability."}]]
   },
-  1: {
+  2: {
       name:"Clean gutters 2",
       space:"Haha",
-      difficulty:"Haha",
+      difficulty:"Simple",
       time:"2 Haha",
       frequency:"Haha",
       desc:"Haha gutters fill with leaves, sticks, and other debris, it causes clogs that can result in water creeping into the roof or even into the foundation of the house.",

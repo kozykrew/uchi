@@ -9,6 +9,9 @@ import styles from '../../components/details.module.css'
 import addingStyles from '../../components/addingHomeFeature.module.css'
 import btnStyles from '../../components/button.module.css'
 
+const addHF = "Roof";
+const addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
+
 export default function Type() {
   const router = useRouter();
 
@@ -22,19 +25,19 @@ export default function Type() {
         <div className={styles.chocolate60bg}>
           <div className={styles.detailsContainer}>
             <div className="pageContent">
-              <AddHFHeader name="Refrigerator" previous={"/homefeatures"} />
+              <AddHFHeader name={addHF} iconpath={addHFiconpath} />
             </div>
           </div>
           <div className="pageContent">
             <div className={styles.detailsContainerDesktop}>
               <img className="btn-back" src="../icons/carrotbtn_left_line.svg" alt="Back" onClick={() => router.back()} />
               <div className={styles.addHFHeaderDesktop}>
-                <img className={styles.addHFHeaderDesktopIcon} src="../icons/hf_refrigerator_lg.svg" alt="Refrigerator" />
-                <h1>Add a Refrigerator</h1>
+                <img className={styles.addHFHeaderDesktopIcon} src={addHFiconpath} alt={addHF} />
+                <h1>Add a {addHF}</h1>
               </div>
             </div>
             <div className={addingStyles.prompt}>
-              <h2 className="textDark">What type of Refrigerator do you have?</h2>
+              <h2 className="textDark">What type of {addHF} do you have?</h2>
             </div>
             <TypeCards>
             </TypeCards>
