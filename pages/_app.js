@@ -35,7 +35,7 @@ let taskObject = {
   0:{
       name:"Wash roof",
       space:"Exterior",
-      difficulty:"Moderate",
+      difficulty:"Average",
       time:"3-7 hours",
       frequency:"Annually",
       desc:"Roofs are exposed to all kinds of elements and moisture. If not routinely cleaned, algae spores and moss buildup can occur. Moss can push up on shingles causing them to blow off which can result in leaks.",

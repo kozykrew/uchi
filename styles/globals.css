@@ -182,17 +182,17 @@ tr {
   width: fit-content;
 }
 
-#dropdown-hfs {
-  background-color: var(--vanillaToasted);
+#dropdown-hfs, #dropdown-hfs-mobile, #dropdown-brands {
+  background-color: var(--vanilla);
   border-radius: 10px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#dropdown-hfs:active, .btn-secondary:hover, .btn-secondary:focus, .show > .btn-secondary.dropdown-toggle {
+#dropdown-hfs:active, #dropdown-hfs-mobile, #dropdown-brands:active, .btn-secondary:hover, .btn-secondary:focus, .show > .btn-secondary.dropdown-toggle {
   color: var(--textDark);
 }
 
-#dropdown-hfs, .dropdown-menu {
+#dropdown-hfs, #dropdown-hfs-mobile, #dropdown-brands, .dropdown-menu {
   width: 100%;
 }
 
@@ -371,6 +371,12 @@ ul.nav.nav-pills, button.nav-link {
     align-self: flex-end;
   }
   /* END landing page rules */
+
+  /* dropdown rules */
+  #dropdown-hfs, #dropdown-brands {
+    background-color: var(--vanillaToasted);
+  }
+  /* END dropdown rules */
 
   /* selectable card rules */
   .selectableContainer, .selectedContainer {

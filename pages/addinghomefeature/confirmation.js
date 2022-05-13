@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import Dropdown from 'react-bootstrap/Dropdown'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Layout, {AddHFFooter} from '../../components/layout.js'
@@ -55,6 +56,43 @@ export default function Confirmation() {
     </Form.Select>
   )
 
+  // new dropdown (captured by screen recorder)
+  var brandsRoofList = ["Atlas", "Brava", "Certainteed", "GAF", "IKO", "Malarkey", "Owens Corning", "Pabco", "Tamko"];
+  const brandsRoofOptions = brandsRoofList.map((brand) => {
+    var obj = {
+      code: brand.replace(/\s+/g, '').toLowerCase(),
+      brand: brand
+    };
+    return obj;
+  });
+
+  const [roofBrands] = useState(brandsRoofOptions);
+  const [toggleContents, setToggleContents] = useState("Select a Brand");
+  const [selectedRoofBrand, setSelectedRoofBrand] = useState();
+
+  var brandsRoof2 = (
+    <Form className={addingStyles.form}>
+      <Dropdown
+        onSelect={eventKey => {
+          const { code, brand } = roofBrands.find(({ code }) => eventKey === code);
+
+          setSelectedRoofBrand(eventKey);
+          setToggleContents(<>{brand}</>);
+        }}
+      >
+        <Dropdown.Toggle variant="secondary" id="dropdown-brands">
+          {toggleContents}
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          {roofBrands.map(({ code, brand }) => (
+            <Dropdown.Item key={code} eventKey={code}>{brand}</Dropdown.Item>
+          ))}
+        </Dropdown.Menu>
+      </Dropdown>
+    </Form>
+  );
+
   var modelNumber = (
     <div className={addingStyles.addInfoContainer}>
       <Form.Label className="selectLabel">Model #</Form.Label>
@@ -98,7 +136,7 @@ export default function Confirmation() {
                 <p className="smallHeader textDark">Tell <span className="brand">UCHI</span> additional information (optional):</p>
                 <div className={addingStyles.addInfoContainer}>
                   <Form.Label className="selectLabel">Brand</Form.Label>
-                  {brandsRoof}
+                  {brandsRoof2}
                 </div>
                 {modelNumber}
               </Form>
