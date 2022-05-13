@@ -12,8 +12,11 @@ import styles from './tabBar.module.css'
 // tabs: array of strings
 // tabContent: array of task/step objects arrays
 // tools: array of strings (optional - only for steps tabbars) // TODO: tool object (opens dictionary on click)
-// handleComplete: function handling check state of steps
-// isChecked: state of checkboxes
+
+// PROPS if props.type == "steps"
+// stepsComplete: state variable - array holding complete status of all steps
+// setStepsComplete: state function - sets stepsComplete state variable
+// handleProgress: function handling progress bar value based on step completion
 export function TabBar(props) {
   var tabContent;
   var diyTools = [];
@@ -25,7 +28,7 @@ export function TabBar(props) {
     ));
   } else if (props.type == "steps") {
     tabContent = props.tabContent.map((content, i) => (
-      <StepList key={i} steps={content} handleComplete={props.handleComplete} isChecked={props.isChecked} />
+      <StepList key={i} steps={content} stepsComplete={props.stepsComplete} setStepsComplete={props.setStepsComplete} handleProgress={props.handleProgress} />
     ));
     diyTools = props.tools.map((tool, i) => (
       <BtnTool key={i} name={tool} />

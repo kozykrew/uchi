@@ -95,13 +95,13 @@ export function DetailsHeader(props) {
 
   if (props.type == "task") {
     return (
-      <div>
+      <div className={styles.sticky}>
         <div className={styles.detailsRow}>
           <div className="iconRegular iconFirst" onClick={() => router.back()}>
             <IconCircleCarrot_Left_Line_Light />
           </div>
           <h1 className={styles.taskHeader}>{props.name}</h1>
-          <CircularProgressbar className={styles.progressbar} value={props.progressValue} maxValue={1} text={props.progressValue*100 + '%'} />
+          <CircularProgressbar className={styles.progressbar} value={props.progressValue} maxValue={100} text={props.progressValue + '%'} />
         </div>
         <div className={styles.btnRow}>
           <BtnComplete handleComplete={props.handleComplete} />

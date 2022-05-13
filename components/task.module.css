@@ -13,7 +13,7 @@
   padding: 1rem;
   box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
   position: relative;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .container, .taskDetailsContainer, .taskDetailsContainerDashboard {
@@ -46,7 +46,7 @@
     padding: 1rem;
     box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
     position: relative;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   .taskDetailsContainer {

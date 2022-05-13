@@ -50,12 +50,32 @@ function TaskDetails({ ssrTask }) {
   const [ progressValue, setProgressValue ] = useState(0);
 
   const handleComplete = (e) => {
-    setProgressValue(1);
-    setChecked(true);
+    setProgressValue(100);
+    var stepsCompleted = [];
+    for (var i = 0; i < task.steps[0].length; i++) {
+      stepsCompleted.push(1);
+    }
+    setStepsComplete(stepsCompleted)
   }
 
-  // checkbox state
-  const [ isChecked, setChecked ] = useState(false);
+  var stepsIncomplete = [];
+  for (var i = 0; i < task.steps[0].length; i++) {
+    stepsIncomplete.push(0);
+  }
+  // checkbox state (individually controlled by one state)
+  const [ stepsComplete, setStepsComplete ] = useState(stepsIncomplete);
+  console.log(stepsComplete)
+
+  const handleProgress = () => {
+    var numerator = 0;
+    for (var i = 0; i < stepsComplete.length; i++) {
+      if (stepsComplete[i] == 1) {
+        numerator++;
+      }
+    }
+    var percent = Math.round((numerator / stepsComplete.length)*100);
+    setProgressValue(percent);
+  }
 
   return (
     <div className={styles.chocolate80bg}>
@@ -90,7 +110,7 @@ function TaskDetails({ ssrTask }) {
                     </div>
                   </div>
                 </div>
-                <CircularProgressbar className={styles.progressbar} value={progressValue} maxValue={1} text={progressValue*100 + '%'} />
+                <CircularProgressbar className={styles.progressbar} value={progressValue} maxValue={100} text={progressValue + '%'} />
                 <div className={styles.mainDetailsContainer}>
                   <MainDetailsTable type="task" space={task.space} difficulty={task.difficulty} time={task.time} frequency={task.frequency} />
                   <hr className={styles.hr} />
@@ -103,7 +123,7 @@ function TaskDetails({ ssrTask }) {
           <div className="pageContent">
             <h2>How To</h2>
             <p><span className="brand">UCHI</span> recommends to {task.uchirec}</p>
-            <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={task.steps} tools={task.tools} handleComplete={handleComplete} isChecked={isChecked} />
+            <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={task.steps} tools={task.tools} stepsComplete={stepsComplete} setStepsComplete={setStepsComplete} handleProgress={handleProgress} />
           </div>
         </div>
         <div className={styles.chocolate80filler}>
