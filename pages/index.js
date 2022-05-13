@@ -106,7 +106,7 @@ export default function Landing() {
            As of May 25, 2022, UCHI will transition to be an <span className={styles.bodybold}>open source project</span> for future
            iSchool Capstone teams to further develop.
           </p>
-          <div className="text-center"><a className={styles.githubLink} href="https://github.com/ari-apigo/uchi" target="_blank">UCHI on GitHub<img className={styles.github} src="/icons/github_dark.svg" alt={"UCHI on GitHub"} /></a></div>
+          <div className="text-center"><a className={styles.githubLink} href="https://github.com/ari-apigo/uchi" target="_blank" rel="noreferrer">UCHI on GitHub<img className={styles.github} src="/icons/github_dark.svg" alt={"UCHI on GitHub"} /></a></div>
         </div>
         <div className={styles.visualContainer}>
           <div className={styles.visualMint80}>
