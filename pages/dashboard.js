@@ -53,7 +53,7 @@ export default function Dashboard() {
         <div className="pageContent">
           <PageHeader page={"dashboard"} headertext={"Welcome, " + user + "!"} />
           <SectionHeader iconpath="/icons/calendar_duotone.png" headertext={"2022"} />
-          <CalendarTabs tabs={["May", "Jun", "Jul", "Aug", "Sep", "Oct"]} tabContent={tasksByMonth} />
+          <CalendarTabs tabs={["May", "Jun", "Jul", "Aug", "Sep", "Oct"]} tabContent={tasksByMonthRoof} />
         </div>
       </Layout>
     </div>
