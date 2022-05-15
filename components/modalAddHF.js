@@ -49,7 +49,7 @@ export function ModalAddHF(props) {
         onSelect={eventKey => {
           const { code, hf } = hfs.find(({ code }) => eventKey === code);
 
-          setSelectedRoofBrand(eventKey);
+          setSelectedHF(eventKey);
           setToggleContents(<>{hf}</>);
         }}
       >

@@ -4,7 +4,8 @@ import {PageHeader} from '../components/headers.js'
 import {TaskList} from '../components/taskList.js'
 import {TabBar} from '../components/tabBar.js'
 
-const tasksByStatus = [[{id: 1, title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"},
+const tasksByStatus = [[{id: 0, title:"Wash roof", difficulty:"Average", time:"3-7 hours", tag3:"Exterior", description:"Clean off moss and algae"},
+                {id: 1, title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"},
                 {id: 2, title:"Clean fireplace", difficulty:"Simple", time:"20-30 minutes", tag3:"Systems", description:"Remove ash and scrub tray"},
                 {id: 3, title:"Clean gutter", difficulty:"Average", time:"2-4 hours", tag3:"Exterior", description:"Remove leaves and other debris"}],
                 [],
