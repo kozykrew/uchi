@@ -33,27 +33,7 @@ export default function Landing() {
       </Container>
     </Navbar>
   )
-
-  // var uchinavbar = (
-  //   <div className={styles.topbar}>
-  //     <Navbar collapseOnSelect expand="lg" bg="#FFF8E6" variant="light">
-  //       <Container>
-  //       <Navbar.Brand className={styles.brand} href="/dashboard">UCHI</Navbar.Brand>
-  //       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-  //       <Navbar.Collapse id="responsive-navbar-nav">
-  //         <Nav>
-  //           <ul>
-  //             <li className={router.pathname == "/dashboard" ? "active" : ""}><Link href="/dashboard"><a>Dashboard</a></Link></li>
-  //             <li className={router.pathname == "/homefeatures" ? "active" : ""}><Link href="/homefeatures"><a>Home Features</a></Link></li>
-  //             <li className={router.pathname == "/tasks" ? "active" : ""}><Link href="/tasks"><a>Tasks</a></Link></li>
-  //           </ul>
-  //         </Nav>
-  //       </Navbar.Collapse>
-  //       </Container>
-  //     </Navbar>
-  //   </div>
-  // )
-
+  
   return (
     <div className={styles.bg}>
       <Head>
@@ -198,8 +178,29 @@ function TeamProfile(props) {
         </a>
       </div>
     </div>
+    
   )
 }
+
+
+
+// export default function Home() {
+//   const [session, setSession] = useState(null)
+
+//   useEffect(() => {
+//     setSession(supabase.auth.session())
+
+//     supabase.auth.onAuthStateChange((_event, session) => {
+//       setSession(session)
+//     })
+//   }, [])
+
+//   return (
+//     <div className="container" style={{ padding: '50px 0 100px 0' }}>
+//       {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
+//     </div>
+//   )
+// }
 
 // ---------- some resources that came with default next.js app ----------
 // <div className={styles.grid}>

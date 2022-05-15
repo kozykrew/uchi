@@ -4,9 +4,8 @@ import Tab from 'react-bootstrap/Tab'
 import {TaskList} from './taskList.js'
 import {StepList} from './stepList.js'
 import {BtnTool} from './button.js'
-
 import styles from './tabBar.module.css'
-
+ 
 // PROPS
 // type: string - type of tab bar (tasks or steps)
 // tabs: array of strings
@@ -21,21 +20,20 @@ export function TabBar(props) {
   var tabContent;
   var diyTools = [];
   var tools;
-
   if (props.type == "tasks") {
     tabContent = props.tabContent.map((content, i) => (
       <TaskList key={i} dashboard={false} tasks={content} />
-    ));
-  } else if (props.type == "steps") {
+    )); 
+  } else if (props.type == "steps") { 
     tabContent = props.tabContent.map((content, i) => (
       <StepList key={i} steps={content} stepsComplete={props.stepsComplete} setStepsComplete={props.setStepsComplete} handleProgress={props.handleProgress} />
     ));
     diyTools = props.tools.map((tool, i) => (
-      <BtnTool key={i} name={tool} />
+      <BtnTool key={i} name={tool} /> 
     ));
     tools = (
       <div>
-        <h3>Major Tools</h3>
+        <h3>Major Tools</h3> 
         <div className={styles.toolContainer}>
           {diyTools}
         </div>

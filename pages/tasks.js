@@ -5,6 +5,10 @@ import Layout from '../components/layout.js'
 import {PageHeader} from '../components/headers.js'
 import {TaskList} from '../components/taskList.js'
 import {TabBar} from '../components/tabBar.js'
+import { useState, useEffect } from 'react'
+import { supabase } from '../utils/supabaseClient'
+
+const user = supabase.auth.user()  
 
 const user = supabase.auth.user()
 
@@ -33,6 +37,8 @@ const tasksByStatus = [[{id: 0, title:"Wash roof", difficulty:"Average", time:"3
 //     </div>
 //   )
 // }
+
+
 
 export default function Tasks() {
   const [completedTasks, setCompletedTasks] = useState([])
@@ -75,7 +81,7 @@ export default function Tasks() {
           <PageHeader page={"tasks"} headertext={"Tasks"} />
           <TaskList dashboard={false} tasks={tasksByStatus[0]} />
         </div>
-      </Layout>
+      </Layout> 
     </div>
   )
 }

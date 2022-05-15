@@ -1,7 +1,12 @@
+import {useState} from 'react'
+import { supabase } from '../utils/supabaseClient'
+
 import Form from 'react-bootstrap/Form'
 import Accordion from 'react-bootstrap/Accordion'
 
 import styles from './step.module.css'
+
+const user = supabase.auth.user()
 
 // PROPS
 // id: integer - id of step in step array
@@ -11,6 +16,23 @@ import styles from './step.module.css'
 // setStepsComplete: state function - sets stepsComplete state variable
 // handleProgress: function handling progress bar value based on step completion
 export function Step(props) {
+  const [isCompleted, setIsCompleted] = useState(props.isChecked)
+  const toggle = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('userSteps')
+        .update({ stepsStatus: !isCompleted })
+        .eq('UserID', user.id)
+        .eq('id', props.stepid)
+        .single()
+      if (error) {
+        throw new Error(error)
+      }
+      setIsCompleted(data.stepsStatus)
+    } catch (error) {
+      console.log('error', error)
+    }
+  }
   return (
     <div id={props.id} className={styles.container}>
       <Form className={styles.checkbox}>

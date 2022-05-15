@@ -7,7 +7,8 @@ import {PageHeader, SectionHeader} from '../components/headers.js'
 import {Calendar} from '../components/calendar.js'
 import {CalendarTabs} from '../components/tabBar.js'
 import {TaskList} from '../components/taskList.js'
-import {Task} from '../components/task.js'
+import { useState, useEffect } from 'react'
+import { supabase } from '../utils/supabaseClient'
 
 const user = supabase.auth.user();
 
@@ -131,7 +132,6 @@ export default function Dashboard({session}) {
     }
   }
 
-
   async function addSteps(taskID) {
     try {
       const user = supabase.auth.user()
@@ -160,7 +160,7 @@ export default function Dashboard({session}) {
       alert(error.message)
     }
   }
-
+  
   return (
     <div>
       <Head>
