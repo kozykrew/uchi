@@ -1,3 +1,6 @@
+import { useState, useEffect } from 'react'
+import { supabase } from '../utils/supabaseClient'
+
 import Link from 'next/link'
 import { useRouter } from "next/router";
 
@@ -10,6 +13,8 @@ import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 import styles from './uchiNavbar.module.css'
+
+const user = supabase.auth.user()
 
 export function UchiNavbar() {
   const router = useRouter();
@@ -46,7 +51,23 @@ export function UchiNavbar() {
   )
 }
 
-export function UchiSideNavbar() {
+export function UchiSideNavbar({session}) {
+  const [username, setUsername] = useState(null)
+
+  useEffect(() => {
+    getProfile()
+  }, [session])
+
+  async function getProfile() {
+
+      let { data} = await supabase
+        .from('profiles')
+        .select(`username, website, avatar_url`)
+        .eq('id', user.id)
+        .single()
+      setUsername(data.username);
+  }
+
   const router = useRouter();
 
   return (
@@ -69,7 +90,7 @@ export function UchiSideNavbar() {
         <Dropdown as={ButtonGroup}>
           <Button variant="light" onClick={() => router.push('/profile')}>
             <img className={styles.profileBtnImg} src="/profile.png" alt="Profile Image" />
-            Kai O.
+            {username}
           </Button>
 
           <Dropdown.Toggle variant="light" split id="dropdown-split-basic" />

@@ -7,8 +7,6 @@ import {PageHeader, SectionHeader} from '../components/headers.js'
 import {Calendar} from '../components/calendar.js'
 import {CalendarTabs} from '../components/tabBar.js'
 import {TaskList} from '../components/taskList.js'
-import { useState, useEffect } from 'react'
-import { supabase } from '../utils/supabaseClient'
 
 const user = supabase.auth.user();
 
@@ -160,7 +158,9 @@ export default function Dashboard({session}) {
       alert(error.message)
     }
   }
-  
+
+  var tasksTEMP = [tasks, tasks, tasks, tasks, tasks, tasks]
+
   return (
     <div>
       <Head>
@@ -171,7 +171,7 @@ export default function Dashboard({session}) {
         <div className="pageContent">
           <PageHeader page={"dashboard"} headertext={"Welcome, " + username + "!"} />
           <SectionHeader iconpath="/icons/calendar_duotone.png" headertext={"2022"} />
-          <CalendarTabs tabs={["May", "Jun", "Jul", "Aug", "Sep", "Oct"]} tabContent={tasks} />
+          <CalendarTabs tabs={["May", "Jun", "Jul", "Aug", "Sep", "Oct"]} tabContent={tasksTEMP} />
           <button className="button block" onClick={() => addRow("Lawn")}>
           Add lawn and user id to UserFeature column
           </button>
