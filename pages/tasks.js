@@ -1,8 +1,12 @@
+import { useState, useEffect } from 'react'
+import { supabase } from '../utils/supabaseClient'
 import Head from 'next/head'
 import Layout from '../components/layout.js'
 import {PageHeader} from '../components/headers.js'
 import {TaskList} from '../components/taskList.js'
 import {TabBar} from '../components/tabBar.js'
+
+const user = supabase.auth.user()
 
 const tasksByStatus = [[{id: 0, title:"Wash roof", difficulty:"Average", time:"3-7 hours", tag3:"Exterior", description:"Clean off moss and algae"},
                 {id: 1, title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"},
@@ -31,6 +35,35 @@ const tasksByStatus = [[{id: 0, title:"Wash roof", difficulty:"Average", time:"3
 // }
 
 export default function Tasks() {
+  const [completedTasks, setCompletedTasks] = useState([])
+  useEffect(() => {
+    fetchCompletedTasks()
+  }, [])
+  const fetchCompletedTasks = async () => {
+    let { data: completedTasks, error } = await supabase.from('userTasks').select(`
+    *,
+    UserHome!inner(*)`)
+    .eq('UserHome.UserID', user.id)
+    .eq('taskStatus', true)
+    if (error) console.log('error', error)
+    else setCompletedTasks(completedTasks)
+  }
+  const [notTasks, setNotTasks] = useState([])
+  useEffect(() => {
+    fetchNotTasks()
+  }, [])
+  const fetchNotTasks = async () => {
+    let { data: notTasks, error } = await supabase.from('userTasks').select(`
+    *,
+    UserHome!inner(*)`)
+    .eq('UserHome.UserID', user.id)
+    .eq('taskStatus', false)
+    if (error) console.log('error', error)
+    else setNotTasks(notTasks)
+  }
+  tasksByStatus[0] = notTasks
+  tasksByStatus[2] = completedTasks
+  
   return (
     <div>
       <Head>

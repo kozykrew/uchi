@@ -1,4 +1,5 @@
-import {useState, useContext} from 'react'
+import {useState, useContext, useEffect} from 'react'
+import { supabase } from '../utils/supabaseClient'
 import AppContext from '../AppContext.js'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
@@ -30,21 +31,61 @@ const task1 = {
                 [{title:"Interview contractors", description:"Ask key questions to determine their reliability."}]]
 }
 
+const user = supabase.auth.user()
+export async function getServerSideProps(context) {
+  return {
+    props: {}, // will be passed to the page component as props
+  };
+}
+
 function TaskDetails({ ssrTask }) {
   const router = useRouter();
-  const contextValue = useContext(AppContext);
-  let task = task1;
-  // Alternatively, only save task ID in AppContext,
-  //   then fetch details by task ID here with useEffect
-  //   https://www.learnbestcoding.com/post/25/nextjs-how-to-use-getserversideprops
+  // const contextValue = useContext(AppContext);
+  // let task = task1;
+  // // Alternatively, only save task ID in AppContext,
+  // //   then fetch details by task ID here with useEffect
+  // //   https://www.learnbestcoding.com/post/25/nextjs-how-to-use-getserversideprops
+  //
+  // console.log(contextValue.state.task)
+  //
+  // if (contextValue.state.task != undefined) {
+  //   task = contextValue.state.task;
+  // }
+  //
+  // console.log(task)
 
-  console.log(contextValue.state.task)
+  const taskID = router.query.taskid
+  const [steps, setSteps] = useState([])
 
-  if (contextValue.state.task != undefined) {
-    task = contextValue.state.task;
+  useEffect(() => {
+    fetchSteps()
+  }, [])
+  const steps1 = []
+  const fetchSteps = async () => {
+  let { data: steps} = await supabase.from('userSteps').select(`*`)
+  .eq('UserID', user.id)
+  .eq('userTasksID', taskID)
+  .order('title')
+  steps1.push(steps)
+  steps1.push([{title:"Interview contractors", description:"Ask key questions to determine their reliability.", stepsStatus: false}])
+  setSteps(steps1)
   }
 
-  console.log(task)
+  const [taske, setTask] = useState([])
+  useEffect(() => {
+    fetchTasks()
+  }, [])
+  const fetchTasks = async () => {
+    let { data: taske, error } = await supabase.from('userTasks').select(`
+    *,
+    UserHome!inner(*)
+    `)
+    .eq('UserHome.UserID', user.id)
+    .eq('id', taskID)
+    .single()
+    if (error) console.log('error', error)
+    else setTask(taske)
+  }
 
   // progress bar state
   const [ progressValue, setProgressValue ] = useState(0);
@@ -87,11 +128,11 @@ function TaskDetails({ ssrTask }) {
         <div className={styles.chocolate80filler}>
           <div className={styles.detailsContainer}>
             <div className="pageContent">
-              <DetailsHeader type="task" name={task.name} progressValue={progressValue} handleComplete={handleComplete} />
+              <DetailsHeader type="task" name={taske.title} progressValue={progressValue} handleComplete={handleComplete} />
               <div className={styles.mainDetailsContainer}>
-                <MainDetailsTable type="task" space={task.space} difficulty={task.difficulty} time={task.time} frequency={task.frequency} />
+                <MainDetailsTable type="task" space={task.space} difficulty={taske.difficulty} time={task.time} frequency={task.frequency} />
                 <hr className={styles.hr} />
-                <p className={styles.purpose}>{task.desc}</p>
+                <p className={styles.purpose}>{taske.description}</p>
               </div>
             </div>
           </div>
@@ -101,7 +142,7 @@ function TaskDetails({ ssrTask }) {
               <img className="btn-back" src="../icons/carrotbtn_left_line.svg" alt="Back" onClick={() => router.back()} />
               <div className={styles.addHFHeaderDesktop}>
                 <div>
-                  <h1>{task.name}</h1>
+                  <h1>{taske.title}</h1>
                   <div>
                     <BtnComplete handleComplete={handleComplete} />
                     <div className={styles.actionBtnContainerDesktop}>
@@ -112,9 +153,9 @@ function TaskDetails({ ssrTask }) {
                 </div>
                 <CircularProgressbar className={styles.progressbar} value={progressValue} maxValue={100} text={progressValue + '%'} />
                 <div className={styles.mainDetailsContainer}>
-                  <MainDetailsTable type="task" space={task.space} difficulty={task.difficulty} time={task.time} frequency={task.frequency} />
+                  <MainDetailsTable type="task" space={task.space} difficulty={taske.difficulty} time={task.time} frequency={task.frequency} />
                   <hr className={styles.hr} />
-                  <p className={styles.purpose}>{task.desc}</p>
+                  <p className={styles.purpose}>{taske.description}</p>
                 </div>
               </div>
             </div>
@@ -123,7 +164,7 @@ function TaskDetails({ ssrTask }) {
           <div className="pageContent">
             <h2>How To</h2>
             <p><span className="brand">UCHI</span> recommends to {task.uchirec}</p>
-            <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={task.steps} tools={task.tools} stepsComplete={stepsComplete} setStepsComplete={setStepsComplete} handleProgress={handleProgress} />
+            <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={steps} tools={task.tools} stepsComplete={stepsComplete} setStepsComplete={setStepsComplete} handleProgress={handleProgress} />
           </div>
         </div>
         <div className={styles.chocolate80filler}>
@@ -132,23 +173,3 @@ function TaskDetails({ ssrTask }) {
     </div>
   )
 }
-
-// getServerSideProps pre-renders the page on each request using the data it returns
-// Documentation: https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props
-// Tutorial: https://www.youtube.com/watch?v=cPqG8-NoxM0
-// export async function getServerSideProps() {
-//   const contextValue = useContext(AppContext);
-//   let data = contextValue.state.task;
-//   // fetch data
-//   // const response = await fetch('');
-//   // const data = await response.json();
-//
-//   // pass data to the page via props
-//   return {
-//     props: {
-//       task: data
-//     }
-//   }
-// }
-
-export default TaskDetails
