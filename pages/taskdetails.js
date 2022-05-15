@@ -1,7 +1,11 @@
-import {useState} from 'react'
+import {useState, useContext, useEffect} from 'react'
+import { supabase } from '../utils/supabaseClient'
+import AppContext from '../AppContext.js'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Layout from '../components/layout.js'
 import {SectionHeader, DetailsHeader} from '../components/headers.js'
+import {BtnComplete, BtnPostpone, BtnDelete} from '../components/button.js'
 import {MainDetailsTable} from '../components/mainDetailsTable.js'
 import {TabBar} from '../components/tabBar.js'
 import { useRouter } from 'next/router'
@@ -10,8 +14,12 @@ import { useEffect } from 'react'
 import { supabase } from '../utils/supabaseClient'
 
 
-const task = {
-  name:"Clean gutters",
+// progress bar component from https://www.npmjs.com/package/react-circular-progressbar
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+
+const task1 = {
+  name:"Default task",
   space:"Exterior",
   difficulty:"Easy",
   time:"2 hours",
@@ -25,39 +33,94 @@ const task = {
                   {title:"Flush the gutters", description:"Use a garden hose to flush out the gutters and clear out any remaining debris."}],
                 [{title:"Interview contractors", description:"Ask key questions to determine their reliability."}]]
 }
+
 const user = supabase.auth.user()
+
 export async function getServerSideProps(context) {
   return {
     props: {}, // will be passed to the page component as props
   };
 }
-export default function TaskDetails() {
+
+function TaskDetails({ ssrTask }) {
   const router = useRouter();
+  // const contextValue = useContext(AppContext);
+  // let task = task1;
+  // // Alternatively, only save task ID in AppContext,
+  // //   then fetch details by task ID here with useEffect
+  // //   https://www.learnbestcoding.com/post/25/nextjs-how-to-use-getserversideprops
+  //
+  // console.log(contextValue.state.task)
+  //
+  // if (contextValue.state.task != undefined) {
+  //   task = contextValue.state.task;
+  // }
+  //
+  // console.log(task)
+
   const taskID = router.query.taskid
   const [steps, setSteps] = useState([])
-  
+
   useEffect(() => {
     fetchSteps()
-  }, []) 
+  }, [])
+  
   const steps1 = []
   const fetchSteps = async () => {
   let { data: steps} = await supabase.from('userSteps').select(`*`)
   .eq('UserID', user.id)
   .eq('userTasksID', taskID)
-  .order('title')     
+  .order('title')
   steps1.push(steps)
   steps1.push([{title:"Interview contractors", description:"Ask key questions to determine their reliability.", stepsStatus: false}])
   setSteps(steps1)
   }
   
+  const [taske, setTask] = useState([])
+  useEffect(() => {
+    fetchTasks()
+  }, [])
+  const fetchTasks = async () => {
+    let { data: taske, error } = await supabase.from('userTasks').select(`
+    *,
+    UserHome!inner(*)
+    `)
+    .eq('UserHome.UserID', user.id)
+    .eq('id', taskID)
+    .single()
+    if (error) console.log('error', error)
+    else setTask(taske)
+  }
+
   // progress bar state
-  const [ value, setValue ] = useState(0);
-  // checkbox state
-  const [ isChecked, setChecked ] = useState(false);
+  const [ progressValue, setProgressValue ] = useState(0);
 
   const handleComplete = (e) => {
-    setValue(1);
-    setChecked(true);
+    setProgressValue(100);
+    var stepsCompleted = [];
+    for (var i = 0; i < task.steps[0].length; i++) {
+      stepsCompleted.push(1);
+    }
+    setStepsComplete(stepsCompleted)
+  }
+
+  var stepsIncomplete = [];
+  for (var i = 0; i < task.steps[0].length; i++) {
+    stepsIncomplete.push(0);
+  }
+  // checkbox state (individually controlled by one state)
+  const [ stepsComplete, setStepsComplete ] = useState(stepsIncomplete);
+  console.log(stepsComplete)
+
+  const handleProgress = () => {
+    var numerator = 0;
+    for (var i = 0; i < stepsComplete.length; i++) {
+      if (stepsComplete[i] == 1) {
+        numerator++;
+      }
+    }
+    var percent = Math.round((numerator / stepsComplete.length)*100);
+    setProgressValue(percent);
   }
   
   const [taske, setTask] = useState([])
@@ -86,7 +149,7 @@ export default function TaskDetails() {
         <div className={styles.chocolate80filler}>
           <div className={styles.detailsContainer}>
             <div className="pageContent">
-              <DetailsHeader type="task" name={taske.title} value={value} handleComplete={handleComplete} />
+              <DetailsHeader type="task" name={taske.title} progressValue={progressValue} handleComplete={handleComplete} />
               <div className={styles.mainDetailsContainer}>
                 <MainDetailsTable type="task" space={task.space} difficulty={taske.difficulty} time={task.time} frequency={task.frequency} />
                 <hr className={styles.hr} />
@@ -94,10 +157,35 @@ export default function TaskDetails() {
               </div>
             </div>
           </div>
+
+          <div className={styles.detailsContainerDetailsPagesDesktop}>
+            <div className="pageContent">
+              <img className="btn-back" src="../icons/carrotbtn_left_line.svg" alt="Back" onClick={() => router.back()} />
+              <div className={styles.addHFHeaderDesktop}>
+                <div>
+                  <h1>{taske.title}</h1>
+                  <div>
+                    <BtnComplete handleComplete={handleComplete} />
+                    <div className={styles.actionBtnContainerDesktop}>
+                      <BtnPostpone />
+                      <BtnDelete />
+                    </div>
+                  </div>
+                </div>
+                <CircularProgressbar className={styles.progressbar} value={progressValue} maxValue={100} text={progressValue + '%'} />
+                <div className={styles.mainDetailsContainer}>
+                  <MainDetailsTable type="task" space={task.space} difficulty={taske.difficulty} time={task.time} frequency={task.frequency} />
+                  <hr className={styles.hr} />
+                  <p className={styles.purpose}>{taske.description}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="pageContent">
             <h2>How To</h2>
             <p><span className="brand">UCHI</span> recommends to {task.uchirec}</p>
-            <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={steps} tools={task.tools} handleComplete={handleComplete} isChecked={isChecked} />
+            <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={steps} tools={task.tools} stepsComplete={stepsComplete} setStepsComplete={setStepsComplete} handleProgress={handleProgress} />
           </div>
         </div>
         <div className={styles.chocolate80filler}>

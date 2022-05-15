@@ -3,11 +3,11 @@ import Layout from '../components/layout.js'
 import {PageHeader} from '../components/headers.js'
 import {Space} from '../components/space.js'
 
-const kitchenHfs = [{name:"Dishwasher", iconpath:"/../public/icons/hf_window.png"},
-            {name:"Garbage Disposal", iconpath:"/../public/icons/hf_microwave.svg"},
-            {name:"Microwave", iconpath:"/../public/icons/hf_window.png"}];
+const kitchenHfs = [{name:"Dishwasher"},
+            {name:"Garbage Disposal"},
+            {name:"Range"}];
 
-const exteriorHfs = [{name:"Windows", iconpath:"/../public/icons/hf_window.png"}];
+const exteriorHfs = [{name:"Windows"}];
 
 export default function HomeFeatures() {
   return (
@@ -18,12 +18,15 @@ export default function HomeFeatures() {
       </Head>
       <Layout>
         <div className="pageContent">
-          <PageHeader iconpath="/icons/homefeatures_gradient.png" headertext={"Home Features"} />
+          <PageHeader page={"homefeatures"} headertext={"Home Features"} />
           <Space name={"Exterior"} hfs={exteriorHfs} />
           <Space name={"Kitchen"} hfs={kitchenHfs} />
           <Space name={"Bathroom"} hfs={[]} />
+          <Space name={"Outdoors"} hfs={[]} />
           <Space name={"Surfaces"} hfs={[]} />
           <Space name={"Systems"} hfs={[]} />
+          <Space name={"Utility"} hfs={[]} />
+          <Space name={"Miscellaneous"} hfs={[]} />
         </div>
       </Layout>
     </div>

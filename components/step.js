@@ -1,11 +1,20 @@
-import Accordion from 'react-bootstrap/Accordion'
-import styles from './step.module.css'
 import {useState} from 'react'
 import { supabase } from '../utils/supabaseClient'
-// PROPS
-// handleComplete: function handling check state of steps
-// isChecked: state of checkboxes
+
+import Form from 'react-bootstrap/Form'
+import Accordion from 'react-bootstrap/Accordion'
+
+import styles from './step.module.css'
+
 const user = supabase.auth.user()
+
+// PROPS
+// id: integer - id of step in step array
+// stepTitle: string - title of step
+// stepDesc: string - description of step
+// stepsComplete: state variable - array holding complete status of all steps
+// setStepsComplete: state function - sets stepsComplete state variable
+// handleProgress: function handling progress bar value based on step completion
 export function Step(props) {
   const [isCompleted, setIsCompleted] = useState(props.isChecked)
   const toggle = async () => {
@@ -25,11 +34,20 @@ export function Step(props) {
     }
   }
   return (
-    <div className={styles.container}>
-      <div className="form-check">
-        <input className="form-check-input" type="checkbox" onChange={(e) => {e.preventDefault()
-        toggle()}} checked={isCompleted} />
-      </div>
+    <div id={props.id} className={styles.container}>
+      <Form className={styles.checkbox}>
+        <Form.Group controlId={props.id}>
+          <Form.Check type="checkbox"
+            checked={props.stepsComplete[props.id] == 1}
+            onChange={(e) => {
+            var updateStepsComplete = props.stepsComplete;
+            (updateStepsComplete[e.target.id] == 0) ? (updateStepsComplete[e.target.id] = 1) : (updateStepsComplete[e.target.id] = 0);
+            props.setStepsComplete(updateStepsComplete);
+            console.log(props.stepsComplete)
+            props.handleProgress()
+          }} aria-label={"Checkbox " + props.stepTitle} />
+        </Form.Group>
+      </Form>
       <Accordion flush>
         <Accordion.Item eventKey="0">
           <Accordion.Header>{props.stepTitle}</Accordion.Header>
@@ -38,4 +56,16 @@ export function Step(props) {
       </Accordion>
     </div>
   )
+
+  // <div id={props.id} className={styles.container}>
+  //   <div className="form-check">
+  //     <input className="form-check-input" type="checkbox" onChange={(e) => props.handleComplete} checked={props.isChecked} />
+  //   </div>
+  //   <Accordion flush>
+  //     <Accordion.Item eventKey="0">
+  //       <Accordion.Header>{props.stepTitle}</Accordion.Header>
+  //       <Accordion.Body>{props.stepDesc}</Accordion.Body>
+  //     </Accordion.Item>
+  //   </Accordion>
+  // </div>
 }

@@ -11,11 +11,14 @@ import styles from './tabBar.module.css'
 // tabs: array of strings
 // tabContent: array of task/step objects arrays
 // tools: array of strings (optional - only for steps tabbars) // TODO: tool object (opens dictionary on click)
-// handleComplete: function handling check state of steps
-// isChecked: state of checkboxes
-export function TabBar(props) { 
-  var tabContent;  
-  var diyTools = [];    
+
+// PROPS if props.type == "steps"
+// stepsComplete: state variable - array holding complete status of all steps
+// setStepsComplete: state function - sets stepsComplete state variable
+// handleProgress: function handling progress bar value based on step completion
+export function TabBar(props) {
+  var tabContent;
+  var diyTools = [];
   var tools;
   if (props.type == "tasks") {
     tabContent = props.tabContent.map((content, i) => (
@@ -23,7 +26,7 @@ export function TabBar(props) {
     )); 
   } else if (props.type == "steps") { 
     tabContent = props.tabContent.map((content, i) => (
-      <StepList key={i} steps={content} handleComplete={props.handleComplete} isChecked={props.isChecked} />
+      <StepList key={i} steps={content} stepsComplete={props.stepsComplete} setStepsComplete={props.setStepsComplete} handleProgress={props.handleProgress} />
     ));
     diyTools = props.tools.map((tool, i) => (
       <BtnTool key={i} name={tool} /> 
@@ -51,5 +54,29 @@ export function TabBar(props) {
     <Tabs defaultActiveKey={defaultActive} id="tabbar" className="mb-3" variant="pills">
       {tabs}
     </Tabs>
-  ) 
-}  
+  )
+}
+
+// PROPS
+// tabs: array of strings
+// tabContent: array of task/step objects arrays
+export function CalendarTabs(props) {
+  var tabContent;
+  tabContent = props.tabContent.map((content, i) => (
+    <TaskList key={i} dashboard={true} tasks={content} />
+  ));
+
+  var tabs = props.tabs.map((tab, i) => (
+    <Tab key={i} eventKey={tab.replace(/\s+/g, '').toLowerCase()} title={tab}>
+      {tabContent[i]}
+    </Tab>
+  ));
+
+  var defaultActive = props.tabs[0].replace(/\s+/g, '').toLowerCase();
+
+  return (
+    <Tabs defaultActiveKey={defaultActive} id="tabbar" className="mb-3" variant="pills">
+      {tabs}
+    </Tabs>
+  )
+}

@@ -35,7 +35,7 @@ export function MainDetailsTable(props) {
   } else if (props.type == "hf") {
     var additional = [];
     // var additionalTable = [];
-    if (props.additional != []) {
+    if (props.additional.length > 0) {
       additional = determineAdditional(props.additional);
     //   additionalTable = props.additional.map((add => (
     //     <tr>
@@ -51,21 +51,29 @@ export function MainDetailsTable(props) {
     //   ];
     }
 
+    // model number is not available for every home feature
+    var modelNumber = (
+      <tr>
+        <th>Model #</th>
+        <td>ABCDEFG123456</td>
+      </tr>
+    );
+    if (props.hf == "Roof") {
+      modelNumber = "";
+    }
+
     return (
       <div>
         <Table>
           <tr>
             <th>Type</th>
-            <td>French door</td>
+            <td>Asphalt</td>
           </tr>
           <tr>
             <th>Brand</th>
-            <td>Samsung</td>
+            <td>Malarkey</td>
           </tr>
-          <tr>
-            <th>Model #</th>
-            <td>ABCDEFG123456</td>
-          </tr>
+          {modelNumber}
           <tr>
             <th>Age</th>
             <td>4 years</td>
@@ -76,7 +84,7 @@ export function MainDetailsTable(props) {
     )
   } else if (props.type == "confirmation") {
     var additional = [];
-    if (props.additional != []) {
+    if (props.additional.length > 0) {
       additional = determineAdditional(props.additional);
     }
 
@@ -85,7 +93,7 @@ export function MainDetailsTable(props) {
         <Table>
           <tr>
             <th>Type</th>
-            <td>French door</td>
+            <td>Asphalt</td>
           </tr>
           <tr>
             <th>Age</th>

@@ -18,11 +18,35 @@
   background-color: var(--chocolate60);
 }
 
+.vanillaToastedbg {
+  height: 100vh;
+  background-color: var(--vanillaToasted);
+}
+
+.vanillaToastedFiller {
+  height: auto;
+  background-color: var(--vanillaToasted);
+}
+
 .detailsContainer {
   background-color: var(--vanilla);
   border-radius: 0 0 15px 15px;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
+}
+
+.detailsContainerDesktop, .detailsContainerDetailsPagesDesktop {
+  display: none;
+}
+
+.addHFHeaderDesktop {
+  display: flex;
+  align-items: flex-start;
+}
+
+.addHFHeaderDesktopIcon {
+  height: 2.5rem;
+  margin-right: 1rem;
 }
 
 .mainDetailsContainer {
@@ -42,4 +66,50 @@
 .purpose {
   font-family: 'Karla', sans-serif;
   margin-bottom: 0;
+}
+
+/* ----------------------------------- @media rules ----------------------------------- */
+
+@media screen and (min-width: 1008px) {
+  .detailsContainer {
+    display: none;
+  }
+
+  .detailsContainerDesktop, .detailsContainerDetailsPagesDesktop {
+    display: block;
+  }
+
+  .detailsContainerDetailsPagesDesktop {
+    margin-top: -24px;
+    margin-left: -24px;
+    margin-right: -24px;
+    margin-bottom: 2rem;
+    padding-top: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 2rem;
+    background-color: var(--vanilla);
+    border-radius: 20px;
+  }
+
+  .mainDetailsContainer {
+    width: 50%;
+    margin-top: -48px;
+    margin-left: auto;
+  }
+
+  .chocolate60bg, .chocolate80bg, .vanillaToastedbg {
+    height: auto;
+    background-color: transparent;
+  }
+
+  .actionBtnContainerDesktop {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .progressbar {
+    width: 20% !important;
+    padding: 2rem;
+  }
 }

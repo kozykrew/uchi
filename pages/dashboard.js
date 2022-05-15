@@ -1,13 +1,50 @@
+import { useState, useEffect } from 'react'
+import { supabase } from '../utils/supabaseClient'
 import Head from 'next/head'
+import Link from 'next/link'
 import Layout from '../components/layout.js'
 import {PageHeader, SectionHeader} from '../components/headers.js'
 import {Calendar} from '../components/calendar.js'
+import {CalendarTabs} from '../components/tabBar.js'
 import {TaskList} from '../components/taskList.js'
 import { useState, useEffect } from 'react'
 import { supabase } from '../utils/supabaseClient'
 
+const user = supabase.auth.user();
 
-const user = supabase.auth.user()                
+const tasksByMonth = [
+  [{title:"Clean gutter", difficulty:"Average", time:"2-4 hours", tag3:"Exterior", description:"Remove leaves and other debris"},
+                  {title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"},
+                  {title:"Clean fireplace", difficulty:"Simple", time:"20-30 minutes", tag3:"Systems", description:"Remove ash and scrub tray"},
+                  {title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"},
+                  {title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"},
+                  {title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"}],
+  [{title:"June Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"}],
+  [{title:"July Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"},
+    {title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"}],
+  [{title:"August Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"}],
+  [{title:"September Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"},
+    {title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"}],
+  [{title:"OctoberFertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"}]
+];
+
+const tasksByMonthRoof = [
+  [{title:"Wash roof", difficulty:"Average", time:"3-7 hours", tag3:"Exterior", description:"Clean off moss and algae"},
+                  {title:"Clean gutter", difficulty:"Average", time:"2-4 hours", tag3:"Exterior", description:"Remove leaves and other debris"},
+                  {title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"},
+                  {title:"Clean fireplace", difficulty:"Simple", time:"20-30 minutes", tag3:"Systems", description:"Remove ash and scrub tray"},
+                  {title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"},
+                  {title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"},
+                  {title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"}],
+  [{title:"June Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"}],
+  [{title:"July Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"},
+    {title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"}],
+  [{title:"August Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"}],
+  [{title:"September Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"},
+    {title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"}],
+  [{title:"OctoberFertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"}]
+];
+
 export default function Dashboard({session}) {
   const [username, setUsername] = useState(null)
   const [tasks, setTasks] = useState([])
@@ -23,18 +60,9 @@ export default function Dashboard({session}) {
     `)
     .eq('UserHome.UserID', user.id)
     if (error) console.log('error', error)
-    else setTasks(tasks)   
+    else setTasks(tasks)
   }
-  
-  // const deleteTasks = async (id) => {
-  //   try {
-  //     await supabase.from('tasks').delete().eq('id', id)
-  //     setTasks(todos.filter((x) => x.id != id))
-  //   } catch (error) {
-  //     console.log('error', error)
-  //   } 
-  // } 
-    
+
   useEffect(() => {
     getProfile()
   }, [session])
@@ -46,18 +74,18 @@ export default function Dashboard({session}) {
         .select(`username, website, avatar_url`)
         .eq('id', user.id)
         .single()
-      setUsername(data.username);  
+      setUsername(data.username);
   }
 
   async function addRow(name) {
     try {
       const user = supabase.auth.user()
-      
+
       let {data: fID} = await supabase.from('HomeFeatures').select('id').eq('FeatureName', name).single()
       const updates = {
         UserID: user.id,
         FeatureID: fID.id,
-      } 
+      }
       let { error } = await supabase.from('UserHome').upsert(updates, {
         returning: 'minimal', // Don't return the value after inserting
       })
@@ -69,7 +97,7 @@ export default function Dashboard({session}) {
       }
     } catch (error) {
       alert(error.message)
-    } 
+    }
   }
 
   async function addTasks(feaID) {
@@ -98,12 +126,11 @@ export default function Dashboard({session}) {
             throw error
           }
         })
-      })       
+      })
     } catch (error) {
       alert(error.message)
-    } 
+    }
   }
-  
 
   async function addSteps(taskID) {
     try {
@@ -126,13 +153,13 @@ export default function Dashboard({session}) {
           })
           if (error) {
             throw error
-          }            
+          }
         })
-      })      
+      })
     } catch (error) {
       alert(error.message)
-    } 
-  } 
+    }
+  }
   
   return (
     <div>
@@ -142,19 +169,34 @@ export default function Dashboard({session}) {
       </Head>
       <Layout>
         <div className="pageContent">
-          <PageHeader iconpath={"/icons/dashboard_gradient.png"} headertext={"Welcome, " + username + "!"} />
+          <PageHeader page={"dashboard"} headertext={"Welcome, " + username + "!"} />
           <SectionHeader iconpath="/icons/calendar_duotone.png" headertext={"2022"} />
-          <Calendar months={["Mar", "Apr", "May", "Jun", "Jul"]} />
-          <SectionHeader iconpath="/icons/tasks_duotone.png" headertext="March Tasks" />
-          <TaskList dashboard={true} tasks={tasks} />
+          <CalendarTabs tabs={["May", "Jun", "Jul", "Aug", "Sep", "Oct"]} tabContent={tasks} />
           <button className="button block" onClick={() => addRow("Lawn")}>
           Add lawn and user id to UserFeature column
-        </button>
-        <button className="button block" onClick={() => addRow("Refrigerator")}>
-          Add refrigerator and user id to UserFeature column
-        </button>
-        </div>  
+          </button>
+          <button className="button block" onClick={() => addRow("Refrigerator")}>
+            Add refrigerator and user id to UserFeature column
+          </button>
+        </div>
       </Layout>
     </div>
   )
+  // return (
+  //   <div>
+  //     <Head>
+  //       <title>UCHI | Dashboard</title>
+  //       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+  //     </Head>
+  //     <Layout>
+  //       <div className="pageContent">
+  //         <PageHeader page={"dashboard"} headertext={"Welcome, " + user + "!"} />
+  //         <SectionHeader iconpath="/icons/calendar_duotone.png" headertext={"2022"} />
+  //         <Calendar months={["May", "Jun", "Jul", "Aug", "Sep", "Oct"]} />
+  //         <SectionHeader iconpath="/icons/tasks_duotone.png" headertext="March Tasks" />
+  //         <TaskList dashboard={true} tasks={tasks} />
+  //       </div>
+  //     </Layout>
+  //   </div>
+  // )
 }

@@ -38,3 +38,23 @@
   background-color: var(--mint60);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 }
+
+/* ----------------------------------- @media rules ----------------------------------- */
+
+@media screen and (min-width: 1008px) {
+  .prompt {
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+  }
+
+  .confirmationContainer {
+    border-radius: 15px;
+    border: 1px var(--textLight) solid;
+  }
+
+  .confirmationContainerDesktop {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
