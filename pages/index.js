@@ -2,8 +2,21 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { useState, useEffect } from 'react'
+import { supabase } from '../utils/supabaseClient'
+import Auth from '../components/Auth'
+import Account from '../components/Account'
 
 export default function Home() {
+  const [session, setSession] = useState(null)
+
+  useEffect(() => {
+    setSession(supabase.auth.session())
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [])
   return (
     <div className={styles.container}>
       <Head>
@@ -24,9 +37,9 @@ export default function Home() {
 
         <p>We currently have only developed a mobile version of <span className="brand">UCHI</span>.</p>
         <p>Please resize your window to a width of 375 pixels to view <span className="brand">UCHI</span> properly.</p>
+        {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
 
       </main>
-
       <footer className={styles.footer}>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
@@ -39,9 +52,31 @@ export default function Home() {
           </span>
         </a>
       </footer>
+      
     </div>
+    
   )
 }
+
+
+
+// export default function Home() {
+//   const [session, setSession] = useState(null)
+
+//   useEffect(() => {
+//     setSession(supabase.auth.session())
+
+//     supabase.auth.onAuthStateChange((_event, session) => {
+//       setSession(session)
+//     })
+//   }, [])
+
+//   return (
+//     <div className="container" style={{ padding: '50px 0 100px 0' }}>
+//       {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
+//     </div>
+//   )
+// }
 
 // ---------- some resources that came with default next.js app ----------
 // <div className={styles.grid}>

@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css'
 // import '../styles/design_tokens.css'
 import '../styles/globals.css'
+import { supabase } from '../utils/supabaseClient'
 
 import { useEffect } from 'react'
 

@@ -6,7 +6,7 @@ import {Step} from './step.js'
 // isChecked: state of checkboxes
 export function StepList(props) {
   var children = props.steps.map((step, i) => (
-    <Step key={i} stepTitle={step.title} stepDesc={step.description} handleComplete={props.handleComplete} isChecked={props.isChecked} />
+    <Step key={i} stepTitle={step.title} stepDesc={step.description} handleComplete={props.handleComplete} isChecked={step.stepsStatus} stepid = {step.id} />
   ));
 
   return (
