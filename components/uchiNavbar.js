@@ -1,18 +1,13 @@
-import Link from 'next/link'
-import { useRouter } from "next/router";
-
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import Dropdown from 'react-bootstrap/Dropdown'
-import Button from 'react-bootstrap/Button'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
+
+import Link from 'next/link'
 
 import styles from './uchiNavbar.module.css'
 
 export function UchiNavbar() {
-  const router = useRouter();
   // <Nav className="me-auto">
   //   <Nav.Link href="#features">Dashboard</Nav.Link>
   //   <Nav.Link href="#pricing">Home Features</Nav.Link>
@@ -25,62 +20,19 @@ export function UchiNavbar() {
   //   </NavDropdown>
   // </Nav>
   return (
-    <div className={styles.topbar}>
-      <Navbar collapseOnSelect expand="lg" bg="#FFF8E6" variant="light">
-        <Container>
-        <Navbar.Brand className={styles.brand} href="/dashboard">UCHI</Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav>
-            <ul>
-              <li className={router.pathname == "/dashboard" ? "active" : ""}><Link href="/dashboard"><a>Dashboard</a></Link></li>
-              <li className={router.pathname == "/homefeatures" ? "active" : ""}><Link href="/homefeatures"><a>Home Features</a></Link></li>
-              <li className={router.pathname == "/tasks" ? "active" : ""}><Link href="/tasks"><a>Tasks</a></Link></li>
-              <li className={router.pathname == "/profile" ? "active" : ""}><Link href="/profile"><a>Profile</a></Link></li>
-            </ul>
-          </Nav>
-        </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </div>
-  )
-}
-
-export function UchiSideNavbar() {
-  const router = useRouter();
-
-  return (
-    <div className={styles.sidebar}>
-      <div>
-        <Link href="/dashboard"><a className={styles.brand}>UCHI</a></Link>
-        <ul>
-          <li className={router.pathname == "/dashboard" ? "active" : ""}>
-            <Link href="/dashboard"><a>Dashboard</a></Link>
-          </li>
-          <li className={router.pathname == "/homefeatures" ? "active" : ""}>
-            <Link href="/homefeatures"><a>Home Features</a></Link>
-          </li>
-          <li className={router.pathname == "/tasks" ? "active" : ""}>
-            <Link href="/tasks"><a>Tasks</a></Link>
-          </li>
-        </ul>
-      </div>
-      <div className={styles.profileBtnContainer}>
-        <Dropdown as={ButtonGroup}>
-          <Button variant="light" onClick={() => router.push('/profile')}>
-            <img className={styles.profileBtnImg} src="/profile.png" alt="Profile Image" />
-            Kai O.
-          </Button>
-
-          <Dropdown.Toggle variant="light" split id="dropdown-split-basic" />
-
-          <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">About UCHI</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item href="#/action-2">Sign Out</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      </div>
-    </div>
+    <Navbar collapseOnSelect expand="lg" bg="#FFF8E6" variant="light">
+      <Container>
+      <Navbar.Brand className={styles.brand} href="/dashboard">UCHI</Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav>
+          <Link href="/dashboard"><a>Dashboard</a></Link>
+          <Link href="/homefeatures"><a>Home Features</a></Link>
+          <Link href="/tasks"><a>Tasks</a></Link>
+          <Link href="/"><a>Profile</a></Link>
+        </Nav>
+      </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }

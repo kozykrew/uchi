@@ -2,12 +2,11 @@ import {Step} from './step.js'
 
 // PROPS
 // steps: array of step objects
-// stepsComplete: state variable - array holding complete status of all steps
-// setStepsComplete: state function - sets stepsComplete state variable
-// handleProgress: function handling progress bar value based on step completion
+// handleComplete: function handling check state of steps
+// isChecked: state of checkboxes
 export function StepList(props) {
   var children = props.steps.map((step, i) => (
-    <Step id={i} key={i} stepTitle={step.title} stepDesc={step.description} stepsComplete={props.stepsComplete} setStepsComplete={props.setStepsComplete} handleProgress={props.handleProgress} />
+    <Step key={i} stepTitle={step.title} stepDesc={step.description} handleComplete={props.handleComplete} isChecked={step.stepsStatus} stepid = {step.id} />
   ));
 
   return (

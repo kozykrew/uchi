@@ -1,16 +1,16 @@
-// -------------------- Line oldicons --------------------
-import Difficulty_Easy from '../public/oldicons/difficulty_easy.svg'
-import Arrow_Right_Dark from '../public/oldicons/arrow_right_dark.svg'
-import Carrot_Right_Light from '../public/oldicons/carrot_right_light.svg'
-import Carrot_Right_Dark from '../public/oldicons/carrot_right_dark.svg'
-import Calendar_Line_Light from '../public/oldicons/calendar_line_light.svg'
-import Calendar_Line_Dark from '../public/oldicons/calendar_line_dark.svg'
-import Checkbox_Dark from '../public/oldicons/checkbox_checked_dark.svg'
-import Clock_Line_Dark from '../public/oldicons/clock_line_dark.svg'
-import Trash_Line_Dark from '../public/oldicons/trash_line_dark.svg'
-import Add_Line_Light from '../public/oldicons/add_line_light.svg'
-import CircleCarrot_Left_Line_Light from '../public/oldicons/circlecarrot_left_line_light.svg'
-import CircleClose_Line_Dark from '../public/oldicons/circleclose_line_dark.svg'
+// -------------------- Line icons --------------------
+import Difficulty_Easy from '../public/icons/difficulty_easy.svg'
+import Arrow_Right_Dark from '../public/icons/arrow_right_dark.svg'
+import Carrot_Right_Light from '../public/icons/carrot_right_light.svg'
+import Carrot_Right_Dark from '../public/icons/carrot_right_dark.svg'
+import Calendar_Line_Light from '../public/icons/calendar_line_light.svg'
+import Calendar_Line_Dark from '../public/icons/calendar_line_dark.svg'
+import Checkbox_Dark from '../public/icons/checkbox_checked_dark.svg'
+import Clock_Line_Dark from '../public/icons/clock_line_dark.svg'
+import Trash_Line_Dark from '../public/icons/trash_line_dark.svg'
+import Add_Line_Light from '../public/icons/add_line_light.svg'
+import CircleCarrot_Left_Line_Light from '../public/icons/circlecarrot_left_line_light.svg'
+import CircleClose_Line_Dark from '../public/icons/circleclose_line_dark.svg'
 
 export function IconDifficulty_Easy() {
   return (
@@ -84,11 +84,11 @@ export function IconCircleClose_Line_Dark() {
   )
 }
 
-// -------------------- Bold oldicons --------------------
-import Flag_Bold_Dark from '../public/oldicons/flag_bold_dark.svg'
-import CircleClose_Bold_Dark from '../public/oldicons/circleclose_bold_dark.svg'
-import CircleArrow_Right_Bold_Dark from '../public/oldicons/circlearrow_right_bold_dark.svg'
-import CircleAdd_Bold_Dark from '../public/oldicons/circleadd_bold_dark.svg'
+// -------------------- Bold icons --------------------
+import Flag_Bold_Dark from '../public/icons/flag_bold_dark.svg'
+import CircleClose_Bold_Dark from '../public/icons/circleclose_bold_dark.svg'
+import CircleArrow_Right_Bold_Dark from '../public/icons/circlearrow_right_bold_dark.svg'
+import CircleAdd_Bold_Dark from '../public/icons/circleadd_bold_dark.svg'
 
 export function IconFlag_Bold_Dark() {
   return (
@@ -115,19 +115,19 @@ export function IconCircleAdd_Bold_Dark() {
 }
 
 // -------------------- Home features --------------------
-import HomeFeatures_Gradient from '../public/oldicons/homefeatures_gradient.svg'
+import HomeFeatures_Gradient from '../public/icons/homefeatures_gradient.svg'
 // exterior
-import Windows  from '../public/oldicons/hf_windows.svg'
-import Windows_lg  from '../public/oldicons/hf_windows_lg.svg'
+import Windows  from '../public/icons/hf_windows.svg'
+import Windows_lg  from '../public/icons/hf_windows_lg.svg'
 // kitchen
-import Dishwasher  from '../public/oldicons/hf_dishwasher.svg'
-import Dishwasher_lg  from '../public/oldicons/hf_dishwasher_lg.svg'
-import GarbageDisposal  from '../public/oldicons/hf_garbagedisposal.svg'
-import GarbageDisposal_lg  from '../public/oldicons/hf_garbagedisposal_lg.svg'
-import Microwave  from '../public/oldicons/hf_microwave.svg'
-import Microwave_lg  from '../public/oldicons/hf_microwave_lg.svg'
-import Refrigerator from '../public/oldicons/hf_refrigerator.svg'
-import Refrigerator_DT from '../public/oldicons/hf_refrigerator_duotone.svg'
+import Dishwasher  from '../public/icons/hf_dishwasher.svg'
+import Dishwasher_lg  from '../public/icons/hf_dishwasher_lg.svg'
+import GarbageDisposal  from '../public/icons/hf_garbagedisposal.svg'
+import GarbageDisposal_lg  from '../public/icons/hf_garbagedisposal_lg.svg'
+import Microwave  from '../public/icons/hf_microwave.svg'
+import Microwave_lg  from '../public/icons/hf_microwave_lg.svg'
+import Refrigerator from '../public/icons/hf_refrigerator.svg'
+import Refrigerator_DT from '../public/icons/hf_refrigerator_duotone.svg'
 
 export function IconHomeFeatures_Gradient() {
   return (

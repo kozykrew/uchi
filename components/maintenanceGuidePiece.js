@@ -1,9 +1,3 @@
-// DEPRECATED.
-// As of Desktop Version user testing (SP22), it was realized that maintenance guide tasks
-// would be better recognizable as tasks if they followed the convention of how tasks appear
-// in other places on UCHI. Thus, the unique styling defined by maintenanceGuide.js,
-// maintenanceGuidePiece.js, and maintenanceGuidePiece.module.css are unnecessary.
-
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import {IconArrowRight_Dark, IconDifficulty_Easy, IconCalendar_Line_Light, IconCarrot_Right_Light} from './icons.js'

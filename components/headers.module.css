@@ -1,12 +1,6 @@
-.header, .detailsRow, .btnRow, .profile {
-  display: flex;
-}
-
-.header, .detailsRow, .profile {
-  align-items: center;
-}
-
 .header {
+  display: flex;
+  align-items: flex-end;
   margin-bottom: 0.5rem;
 }
 
@@ -18,19 +12,14 @@
   margin-right: auto;
 }
 
-/* .sticky {
-  position: sticky;
-  top: 0;
-  background-color: var(--vanilla);
-  border-radius: 0 0 15px 15px;
-  z-index: 1;
-} */
-
 .detailsRow {
+  display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .btnRow {
+  display: flex;
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -40,42 +29,4 @@
 
 .progressbar {
   width: 20% !important;
-}
-
-.profile {
-  flex-direction: column;
-}
-
-.profileImg {
-  width: 50%;
-  max-width: 250px;
-  border-radius: 100%;
-  margin-bottom: 1rem;
-}
-
-.profileInfo {
-  text-align: center;
-}
-
-/* ----------------------------------- @media rules ----------------------------------- */
-
-@media screen and (min-width: 1008px) {
-  .header {
-    align-items: flex-start;
-  }
-
-  .profile {
-    flex-direction: row;
-    margin: auto;
-  }
-
-  .profileImg {
-    border-radius: 100%;
-    margin-right: 2rem;
-    margin-bottom: 0;
-  }
-
-  .profileInfo {
-    text-align: left;
-  }
 }

@@ -8,7 +8,6 @@ export function Calendar(props) {
       <MonthCard selected={false} month={props.months[2]} />
       <MonthCard selected={false} month={props.months[3]} />
       <MonthCard selected={false} month={props.months[4]} />
-      <MonthCard selected={false} month={props.months[5]} />
     </div>
   )
 }

@@ -8,7 +8,7 @@ export function Space(props) {
   return (
     <div>
       <SpaceHeader headertext={props.name} />
-      <HomeFeatureList space={props.name} hfs={props.hfs} />
+      <HomeFeatureList name={props.name} hfs={props.hfs} />
     </div>
   )
 }

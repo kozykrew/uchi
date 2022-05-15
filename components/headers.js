@@ -11,49 +11,10 @@ import styles from './headers.module.css'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-// PROPS
-// page: string - page name
 export function PageHeader(props) {
-  if (props.page == "dashboard") {
-    return (
-      <div className={styles.header}>
-        <div className="iconFirst">
-          <img src="./icons/dashboard_gradient.svg" alt="Dashboard" />
-        </div>
-        <div>
-          <h1 className={styles.pageHeader}>{props.headertext}</h1>
-          <p className="callout page-tagline">Let&apos;s maintain your home sweet home.</p>
-        </div>
-      </div>
-    )
-  } else if (props.page == "homefeatures") {
-    return (
-      <div className={styles.header}>
-        <div className="iconFirst">
-          <img src="./icons/homefeatures_gradient.svg" alt="Home Features" />
-        </div>
-        <div>
-          <h1 className={styles.pageHeader}>{props.headertext}</h1>
-          <p className="callout page-tagline">Let&apos;s maintain your home sweet home.</p>
-        </div>
-      </div>
-    )
-  } else if (props.page == "tasks") {
-    return (
-      <div className={styles.header}>
-        <div className="iconFirst">
-          <img src="./icons/tasks_gradient.svg" alt="Tasks" />
-        </div>
-        <div>
-          <h1 className={styles.pageHeader}>{props.headertext}</h1>
-          <p className="callout page-tagline">Let&apos;s maintain your home sweet home.</p>
-        </div>
-      </div>
-    )
-  }
   return (
     <div className={styles.header}>
-      <div className="iconFirst">
+      <div className="iconFirst iconSelected">
         <Image src={props.iconpath} width={45} height={45} alt="Page header icon" />
       </div>
       <h1 className={styles.pageHeader}>{props.headertext}</h1>
@@ -82,8 +43,8 @@ export function SpaceHeader(props) {
   return (
     <div className={styles.header}>
       <h2 className={styles.pageHeader}>{props.headertext}</h2>
-      <div className="iconLast iconRegular hfadd-icon" onClick={handleShow}>
-        <img src="./icons/plus_line.svg" alt="Add Home Feature" />
+      <div className="iconLast iconRegular" onClick={handleShow}>
+        <IconAdd_Line_Light />
       </div>
       <ModalAddHF show={show} handleClose={handleClose} headertext={props.headertext} />
     </div>
@@ -95,13 +56,13 @@ export function DetailsHeader(props) {
 
   if (props.type == "task") {
     return (
-      <div className={styles.sticky}>
+      <div>
         <div className={styles.detailsRow}>
-          <div className="iconRegular iconFirst" onClick={() => router.back()}>
+          <div className="iconRegular iconFirst" onClick={() => router.push('/tasks')}>
             <IconCircleCarrot_Left_Line_Light />
           </div>
           <h1 className={styles.taskHeader}>{props.name}</h1>
-          <CircularProgressbar className={styles.progressbar} value={props.progressValue} maxValue={100} text={props.progressValue + '%'} />
+          <CircularProgressbar className={styles.progressbar} value={props.value} maxValue={1} text={props.value*100 + '%'} />
         </div>
         <div className={styles.btnRow}>
           <BtnComplete handleComplete={props.handleComplete} />
@@ -118,7 +79,7 @@ export function DetailsHeader(props) {
             <IconCircleCarrot_Left_Line_Light />
           </div>
           <div className="iconRegular iconFirst">
-            <img src={props.iconpath} alt={props.name} />
+            <IconHFRefrigerator />
           </div>
           <h1 className={styles.pageHeader}>{props.name}</h1>
         </div>
@@ -133,30 +94,13 @@ export function AddHFHeader(props) {
   return (
     <div>
       <div className={styles.detailsRow}>
-        <div className="iconRegular iconFirst" onClick={() => router.back()}>
+        <div className="iconRegular iconFirst" onClick={() => router.push(props.previous)}>
           <IconCircleCarrot_Left_Line_Light />
         </div>
         <div className="iconRegular iconFirst">
-          <img src={props.iconpath} alt={props.name} />
+          <IconHFRefrigerator />
         </div>
         <h1 className={styles.pageHeader}>{props.name}</h1>
-      </div>
-    </div>
-  )
-}
-
-// PROPS
-// profileImg: string - src of profile image
-// name: string - user's name
-// home: string - home type and build month/year
-export function ProfileHeader(props) {
-  const router = useRouter();
-  return (
-    <div className={styles.profile}>
-      <img className={styles.profileImg} src={props.profileImg} alt="Profile Image" />
-      <div className={styles.profileInfo}>
-        <h1 className={styles.pageHeader}>{props.name}</h1>
-        <p className="callout">{props.home}</p>
       </div>
     </div>
   )

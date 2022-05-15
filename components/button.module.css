@@ -26,7 +26,7 @@
   background-color: var(--chocolate100);
 }
 
-.next, .addDesktop {
+.next {
   background-color: var(--orange60);
 }
 
@@ -40,32 +40,4 @@
   border: 1px solid var(--textDark) !important;
   margin-right: 1rem;
   margin-bottom: 1rem;
-}
-
-.addDesktop, .cancelDesktop {
-  min-width: 8rem;
-  border-radius: 8px;
-  justify-content: center;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.cancelDesktop {
-  background-color: var(--chocolate60);
-}
-
-/* ----------------------------------- @media rules ----------------------------------- */
-
-@media screen and (min-width: 1008px) {
-  .complete {
-    width: 100%;
-  }
-
-  .complete, .postpone, .delete {
-    font-size: 1.25rem;
-    justify-content: center;
-  }
-
-  .postpone, .delete {
-    width: 48%;
-  }
 }

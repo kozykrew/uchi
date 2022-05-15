@@ -6,25 +6,23 @@ import {HomeFeatureCard} from './homeFeatureCard.js'
 import styles from './homeFeatureList.module.css'
 
 // PROPS
-// space: string - name of space
+// name: string - name of space
 // hfs: array of home features
 export function HomeFeatureList(props) {
   if (props.hfs.length > 0) {
     var hfcards = props.hfs.map((hf) => (
-      <HomeFeatureCard key={hf.name.replace(/\s+/g, '')} space={props.space} hfName={hf.name} />
+      <HomeFeatureCard key={hf.name.replace(/\s+/g, '')} hfName={hf.name} iconpath={hf.iconpath} />
     ));
     return (
-      <div className={styles.container}>
-        <HomeFeatureCard space={props.space} hfName="Add a Feature" />
-        {hfcards}
+      <div className={styles.wrapper}>
+        <div className={styles.container}>
+          {hfcards}
+        </div>
       </div>
     )
   } else {
     return (
-      <div>
-        <p className="smallHeader no-hfs-notice">Home Features added to the {props.space} Space will appear here</p>
-        <HomeFeatureCard space={props.space} hfName="Add a Feature" />
-      </div>
+      <p className="smallHeader">Home Features will be added to the {props.name} Space will appear here</p>
     )
   }
 

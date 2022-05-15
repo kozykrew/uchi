@@ -3,11 +3,6 @@
   flex-direction: column;
 }
 
-/* ----------------------------------- @media rules ----------------------------------- */
-
-@media screen and (min-width: 1008px) {
-  .container {
-    flex-direction: row;
-    justify-content: space-between;
-  }
+.labelAddtional {
+  align-self: flex-end;
 }
