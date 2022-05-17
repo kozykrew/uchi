@@ -71,8 +71,8 @@ export default function Landing() {
           <hr className={styles.hr} />
           <h2 id="features" className={styles.heading}><span className={styles.headingText}>Key Features</span></h2>
           <div className={styles.keyFeaturesContainer}>
-            <KeyFeature name="Education" desc="Provide education and guidance." img="/images/key-features/education.png" />
-            <KeyFeature name="Task Tracker" desc="Track and notify about tasks." img="/images/key-features/task-tracker.png" />
+            <KeyFeature name="Education" desc="Provide guidance for home maintenance tasks." img="/images/key-features/education.png" />
+            <KeyFeature name="Task Tracker" desc="Track and organize maintenance tasks." img="/images/key-features/task-tracker.png" />
             <KeyFeature name="Customizability" desc="Personalize a one-stop home maintenance experience." img="/images/key-features/customizability.png" />
           </div>
           <h2 id="demo" className={styles.heading}><span className={styles.headingText}>Demonstration Video</span></h2>
