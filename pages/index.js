@@ -33,7 +33,7 @@ export default function Landing() {
       </Container>
     </Navbar>
   )
-  
+
   return (
     <div className={styles.bg}>
       <Head>
@@ -57,12 +57,16 @@ export default function Landing() {
         </div>
         <div className={styles.pageContent}>
           <h1 id="about" className={styles.title}><span className={styles.titleBrand}>UCHI</span></h1>
-          <p className={styles.info}>Approximately two-thirds of first-time American homeowners ignore home maintenance
-          until parts of their home begin to malfunction, resulting in unexpected expenses.
-          To mitigate homebuyer’s regret caused by being unprepared for home maintenance,
-          UCHI organizes maintenance tasks relevant to each home. With UCHI’s recommendations
-          and reminders to stay up-to-date with home maintenance tasks, first-time homeowners
-          are able to protect their investments and better care for their homes.
+          <p className={styles.info}>First-time homeownership is abundant in resources on purchasing a
+          home, but resources about caring for one’s home lack in comparison.
+          Additionally, these resources lack organization and information applicable to
+          individual needs. As a result, two-thirds of first-time American homeowners
+          ignore home maintenance until parts of their home begin to malfunction,
+          leading to unexpected expenses. To mitigate homebuyer’s regret caused by
+          being unprepared for home maintenance, UCHI organizes maintenance tasks
+          relevant to each home. With UCHI’s recommendations and reminders to stay
+          up-to-date with home maintenance tasks, first-time homeowners are able to
+          protect their investments and better care for their homes.
           </p>
           <hr className={styles.hr} />
           <h2 id="features" className={styles.heading}><span className={styles.headingText}>Key Features</span></h2>
@@ -72,7 +76,7 @@ export default function Landing() {
             <KeyFeature name="Customizability" desc="Personalize a one-stop home maintenance experience." img="/images/key-features/customizability.png" />
           </div>
           <h2 id="demo" className={styles.heading}><span className={styles.headingText}>Demonstration Video</span></h2>
-          <iframe className={styles.demo} width="894" height="783" src="https://www.youtube.com/embed/dRpH8uqyBCk" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <iframe className={styles.demo} width="894" height="783" src="https://youtu.be/eOnztFnFFAg" title="UCHI Demonstration" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           <h2 id="team" className={styles.heading}><span className={styles.headingText}>Team KozyKrew</span></h2>
           <div className={styles.profilesContainer}>
             <TeamProfile name="Ariane Apigo" roles="UX Designer, Front-end Developer" img="/images/team/ariane.png" linkedin="" />
@@ -178,7 +182,7 @@ function TeamProfile(props) {
         </a>
       </div>
     </div>
-    
+
   )
 }
 
