@@ -176,3 +176,5 @@ function TaskDetails({ ssrTask }) {
     </div>
   )
 }
+
+export default TaskDetails
