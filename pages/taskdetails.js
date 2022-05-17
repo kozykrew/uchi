@@ -8,10 +8,8 @@ import {SectionHeader, DetailsHeader} from '../components/headers.js'
 import {BtnComplete, BtnPostpone, BtnDelete} from '../components/button.js'
 import {MainDetailsTable} from '../components/mainDetailsTable.js'
 import {TabBar} from '../components/tabBar.js'
-import { useRouter } from 'next/router'
+
 import styles from '../components/details.module.css'
-import { useEffect } from 'react'
-import { supabase } from '../utils/supabaseClient'
 
 
 // progress bar component from https://www.npmjs.com/package/react-circular-progressbar
@@ -64,7 +62,7 @@ function TaskDetails({ ssrTask }) {
   useEffect(() => {
     fetchSteps()
   }, [])
-  
+
   const steps1 = []
   const fetchSteps = async () => {
   let { data: steps} = await supabase.from('userSteps').select(`*`)
@@ -75,7 +73,7 @@ function TaskDetails({ ssrTask }) {
   steps1.push([{title:"Interview contractors", description:"Ask key questions to determine their reliability.", stepsStatus: false}])
   setSteps(steps1)
   }
-  
+
   const [taske, setTask] = useState([])
   useEffect(() => {
     fetchTasks()
@@ -122,7 +120,7 @@ function TaskDetails({ ssrTask }) {
     var percent = Math.round((numerator / stepsComplete.length)*100);
     setProgressValue(percent);
   }
-  
+
   const [taske, setTask] = useState([])
   useEffect(() => {
     fetchTasks()
@@ -136,7 +134,7 @@ function TaskDetails({ ssrTask }) {
     .eq('id', taskID)
     .single()
     if (error) console.log('error', error)
-    else setTask(taske)   
+    else setTask(taske)
   }
 
   return (
