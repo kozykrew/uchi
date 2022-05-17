@@ -121,22 +121,6 @@ function TaskDetails({ ssrTask }) {
     setProgressValue(percent);
   }
 
-  const [taske, setTask] = useState([])
-  useEffect(() => {
-    fetchTasks()
-  }, [])
-  const fetchTasks = async () => {
-    let { data: taske, error } = await supabase.from('userTasks').select(`
-    *,
-    UserHome!inner(*)
-    `)
-    .eq('UserHome.UserID', user.id)
-    .eq('id', taskID)
-    .single()
-    if (error) console.log('error', error)
-    else setTask(taske)
-  }
-
   return (
     <div className={styles.chocolate80bg}>
       <Head>

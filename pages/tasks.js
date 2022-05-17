@@ -8,8 +8,6 @@ import {TabBar} from '../components/tabBar.js'
 
 const user = supabase.auth.user()
 
-const user = supabase.auth.user()
-
 const tasksByStatus = [[{id: 0, title:"Wash roof", difficulty:"Average", time:"3-7 hours", tag3:"Exterior", description:"Clean off moss and algae"},
                 {id: 1, title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"},
                 {id: 2, title:"Clean fireplace", difficulty:"Simple", time:"20-30 minutes", tag3:"Systems", description:"Remove ash and scrub tray"},
