@@ -40,12 +40,15 @@ export function Step(props) {
           <Form.Check type="checkbox"
             checked={props.stepsComplete[props.id] == 1}
             onChange={(e) => {
-            var updateStepsComplete = props.stepsComplete;
-            (updateStepsComplete[e.target.id] == 0) ? (updateStepsComplete[e.target.id] = 1) : (updateStepsComplete[e.target.id] = 0);
-            props.setStepsComplete(updateStepsComplete);
-            console.log(props.stepsComplete)
-            props.handleProgress()
-          }} aria-label={"Checkbox " + props.stepTitle} />
+              e.preventDefault()
+              toggle()
+              var updateStepsComplete = props.stepsComplete;
+              (updateStepsComplete[e.target.id] == 0) ? (updateStepsComplete[e.target.id] = 1) : (updateStepsComplete[e.target.id] = 0);
+              props.setStepsComplete(updateStepsComplete);
+              console.log(props.stepsComplete)
+              props.handleProgress()
+            }} aria-label={"Checkbox " + props.stepTitle}
+          />
         </Form.Group>
       </Form>
       <Accordion flush>
