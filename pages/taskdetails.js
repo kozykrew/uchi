@@ -1,6 +1,5 @@
 import {useState, useContext, useEffect} from 'react'
 import { supabase } from '../utils/supabaseClient'
-import AppContext from '../AppContext.js'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Layout from '../components/layout.js'
@@ -58,6 +57,8 @@ function TaskDetails({ ssrTask }) {
 
   const taskID = router.query.taskid
   const [steps, setSteps] = useState([])
+  var [stepsCompleted, setStepsCompleted] = useState([]);
+  const [ progressValue, setProgressValue ] = useState(0);
 
   useEffect(() => {
     fetchSteps()
@@ -72,6 +73,23 @@ function TaskDetails({ ssrTask }) {
   steps1.push(steps)
   steps1.push([{title:"Interview contractors", description:"Ask key questions to determine their reliability.", stepsStatus: false}])
   setSteps(steps1)
+
+  for (var i = 0; i < steps.length; i++) {
+    if (steps[i].stepsStatus) {
+      stepsCompleted.push(1);
+    } else {
+      stepsCompleted.push(0);
+    }
+  }
+  var numerator = 0;
+    for (var i = 0; i < stepsCompleted.length; i++) { 
+      if (stepsCompleted[i] == 1) {
+        numerator++;
+      }
+    }
+    
+  var percent = Math.ceil((numerator / stepsCompleted.length)*100);
+  setProgressValue(percent);
   }
 
   const [taske, setTask] = useState([])
@@ -87,38 +105,56 @@ function TaskDetails({ ssrTask }) {
     .eq('id', taskID)
     .single()
     if (error) console.log('error', error)
-    else setTask(taske)
+    else {
+      setTask(taske)
+    }
   }
-
-  // progress bar state
-  const [ progressValue, setProgressValue ] = useState(0);
 
   const handleComplete = (e) => {
-    setProgressValue(100);
-    var stepsCompleted = [];
-    for (var i = 0; i < task.steps[0].length; i++) {
-      stepsCompleted.push(1);
+    setProgressValue(100);  
+    for (var i = 0; i < steps.length; i++) {
+      stepsCompleted[i] = 1;
     }
-    setStepsComplete(stepsCompleted)
+    setStepsCompleted(stepsCompleted)
+    toggleTasks()
+    toggleSteps()
   }
 
-  var stepsIncomplete = [];
-  for (var i = 0; i < task.steps[0].length; i++) {
-    stepsIncomplete.push(0);
+  const toggleTasks = async () => {
+      const { data, error } = await supabase
+        .from('userTasks')
+        .update({ taskStatus: 'true' })
+        .eq('id', taskID)
+        .single()
   }
+  const toggleSteps = async () => {
+    for (var i = 0; i < steps[0].length; i++) {
+      const { data, error } = await supabase
+      .from('userSteps')
+      .update({ stepsStatus: 'true' })
+      .eq('UserID', user.id)
+      .eq('id', steps[0][i].id)
+    }       
+  }
+  // var stepsIncomplete = [];
+  // for (var i = 0; i < steps.length; i++) {
+  //   stepsIncomplete.push(0);
+  // }
   // checkbox state (individually controlled by one state)
-  const [ stepsComplete, setStepsComplete ] = useState(stepsIncomplete);
-  console.log(stepsComplete)
+  // const [ stepsComplete, setStepsComplete ] = useState(stepsIncomplete);
+  // console.log(stepsComplete)
 
   const handleProgress = () => {
     var numerator = 0;
-    for (var i = 0; i < stepsComplete.length; i++) {
-      if (stepsComplete[i] == 1) {
+    for (var i = 0; i < stepsCompleted.length; i++) { 
+      if (stepsCompleted[i] == 1) {
         numerator++;
       }
     }
-    var percent = Math.round((numerator / stepsComplete.length)*100);
+    
+    var percent = Math.ceil((numerator / stepsCompleted.length)*100);
     setProgressValue(percent);
+    if (numerator == stepsCompleted.length) handleComplete()
   }
 
   return (
@@ -133,7 +169,7 @@ function TaskDetails({ ssrTask }) {
             <div className="pageContent">
               <DetailsHeader type="task" name={taske.title} progressValue={progressValue} handleComplete={handleComplete} />
               <div className={styles.mainDetailsContainer}>
-                <MainDetailsTable type="task" space={task.space} difficulty={taske.difficulty} time={task.time} frequency={task.frequency} />
+                <MainDetailsTable type="task" space={task1.space} difficulty={taske.difficulty} time={task1.time} frequency={task1.frequency} />
                 <hr className={styles.hr} />
                 <p className={styles.purpose}>{taske.description}</p>
               </div>
@@ -156,18 +192,18 @@ function TaskDetails({ ssrTask }) {
                 </div>
                 <CircularProgressbar className={styles.progressbar} value={progressValue} maxValue={100} text={progressValue + '%'} />
                 <div className={styles.mainDetailsContainer}>
-                  <MainDetailsTable type="task" space={task.space} difficulty={taske.difficulty} time={task.time} frequency={task.frequency} />
+                  <MainDetailsTable type="task" space={task1.space} difficulty={taske.difficulty} time={task1.time} frequency={task1.frequency} />
                   <hr className={styles.hr} />
                   <p className={styles.purpose}>{taske.description}</p>
                 </div>
               </div>
             </div>
           </div>
-
+ 
           <div className="pageContent">
             <h2>How To</h2>
-            <p><span className="brand">UCHI</span> recommends to {task.uchirec}</p>
-            <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={steps} tools={task.tools} stepsComplete={stepsComplete} setStepsComplete={setStepsComplete} handleProgress={handleProgress} />
+            <p><span className="brand">UCHI</span> recommends to {task1.uchirec}</p>
+            <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={steps} tools={task1.tools} stepsComplete={stepsCompleted} setStepsComplete={setStepsCompleted} handleProgress={handleProgress} />
           </div>
         </div>
         <div className={styles.chocolate80filler}>

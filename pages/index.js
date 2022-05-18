@@ -27,7 +27,7 @@ export default function Landing() {
             <Nav.Link href="#demo">Demo</Nav.Link>
             <Nav.Link href="#team">Team</Nav.Link>
             <Nav.Link href="#status">Status</Nav.Link>
-            <Nav.Link href="#link">Sign Up</Nav.Link>
+            <Nav.Link href="/signin">Sign Up</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

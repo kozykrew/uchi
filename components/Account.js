@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../utils/supabaseClient'
+import { useRouter } from 'next/router'
 
 export default function Account({ session }) {
   const [loading, setLoading] = useState(true)
   const [username, setUsername] = useState(null)
   const [website, setWebsite] = useState(null)
   const [avatar_url, setAvatarUrl] = useState(null)
-
+  const router = useRouter();
+  
   useEffect(() => {
     getProfile()
   }, [session])
@@ -104,6 +106,9 @@ export default function Account({ session }) {
       <div>
         <button className="button block" onClick={() => supabase.auth.signOut()}>
           Sign Out
+        </button>
+        <button className="button block" onClick={() => router.push('/dashboard')}>
+          Dashboard
         </button>
       </div>
     </div>

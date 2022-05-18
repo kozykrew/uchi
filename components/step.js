@@ -16,6 +16,7 @@ const user = supabase.auth.user()
 // setStepsComplete: state function - sets stepsComplete state variable
 // handleProgress: function handling progress bar value based on step completion
 export function Step(props) {
+  //console.log(props)
   const [isCompleted, setIsCompleted] = useState(props.isChecked)
   const toggle = async () => {
     try {
@@ -39,12 +40,16 @@ export function Step(props) {
         <Form.Group controlId={props.id}>
           <Form.Check type="checkbox"
             checked={props.stepsComplete[props.id] == 1}
-            onChange={(e) => {
+            // checked={isCompleted}
+            onChange={(e) => { 
+            e.preventDefault()
+            toggle()
             var updateStepsComplete = props.stepsComplete;
             (updateStepsComplete[e.target.id] == 0) ? (updateStepsComplete[e.target.id] = 1) : (updateStepsComplete[e.target.id] = 0);
             props.setStepsComplete(updateStepsComplete);
             console.log(props.stepsComplete)
             props.handleProgress()
+            
           }} aria-label={"Checkbox " + props.stepTitle} />
         </Form.Group>
       </Form>

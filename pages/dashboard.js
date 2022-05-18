@@ -46,7 +46,7 @@ const tasksByMonthRoof = [
 export default function Dashboard({session}) {
   const [username, setUsername] = useState(null)
   const [tasks, setTasks] = useState([])
-  const [steps, setSteps] = useState([])
+  const tasks1 = []
 
   useEffect(() => {
     fetchTasks()
@@ -58,8 +58,16 @@ export default function Dashboard({session}) {
     `)
     .eq('UserHome.UserID', user.id)
     if (error) console.log('error', error)
-    else setTasks(tasks)
+    else {
+      tasks1.push(tasks)
+      setTasks(tasks1)
+    } 
+    
+    
+    console.log(tasks)
   }
+
+  
 
   useEffect(() => {
     getProfile()
@@ -83,6 +91,7 @@ export default function Dashboard({session}) {
       const updates = {
         UserID: user.id,
         FeatureID: fID.id,
+        tag3: fID.tag3
       }
       let { error } = await supabase.from('UserHome').upsert(updates, {
         returning: 'minimal', // Don't return the value after inserting
@@ -101,8 +110,7 @@ export default function Dashboard({session}) {
   async function addTasks(feaID) {
     try {
       const user = supabase.auth.user()
-
-      let {data: count} = await supabase.from('UserHome').select('FeatureID, id').eq('UserID', user.id).eq('FeatureID', feaID)
+      let {data: count} = await supabase.from('UserHome').select('FeatureID, id, tag3').eq('UserID', user.id).eq('FeatureID', feaID)
       count.map(async (ftID) => {
         console.log(ftID)
         let {data: list} = await supabase.from('tasks').select('*').eq('HomeFeatureID', ftID.FeatureID)
@@ -114,7 +122,9 @@ export default function Dashboard({session}) {
             title: task.title,
             difficulty: task.difficulty,
             description: task.description,
-            UserID: user.id
+            UserID: user.id,
+            time: task.time,
+            tag3: ftID.tag3
           }
           let { error } = await supabase.from('userTasks').upsert(updates, {
             returning: 'minimal', // Don't return the value after inserting

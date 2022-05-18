@@ -12,7 +12,7 @@ const tasksByStatus = [[{id: 0, title:"Wash roof", difficulty:"Average", time:"3
                 {id: 1, title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"},
                 {id: 2, title:"Clean fireplace", difficulty:"Simple", time:"20-30 minutes", tag3:"Systems", description:"Remove ash and scrub tray"},
                 {id: 3, title:"Clean gutter", difficulty:"Average", time:"2-4 hours", tag3:"Exterior", description:"Remove leaves and other debris"}],
-                [],
+                
                 [{title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"},
                 {title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"},
                 {title:"Fertilize lawn", difficulty:"Simple", time:"20-30 minutes", tag3:"Exterior", description:"Feed lawn with nutrients"}]];
@@ -64,7 +64,7 @@ export default function Tasks() {
     else setNotTasks(notTasks)
   }
   tasksByStatus[0] = notTasks
-  tasksByStatus[2] = completedTasks
+  tasksByStatus[1] = completedTasks
 
   return (
     <div>
@@ -75,7 +75,8 @@ export default function Tasks() {
       <Layout>
         <div className="pageContent">
           <PageHeader page={"tasks"} headertext={"Tasks"} />
-          <TaskList dashboard={false} tasks={tasksByStatus[0]} />
+          {/* <TaskList dashboard={false} tasks={tasksByStatus[0]} /> */}
+          <TabBar type="tasks" tabs={["In Progress", "Completed"]} tabContent={tasksByStatus} />
         </div>
       </Layout>
     </div>
