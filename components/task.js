@@ -11,11 +11,11 @@ import styles from './task.module.css'
 
 export function Task(props) {
   const user = supabase.auth.user()
+  const value = useContext(AppContext);
   const router = useRouter();
+
   const [isCompleted, setIsCompleted] = useState(props.taskStatus)
   const [steps, setSteps] = useState([])
-  
-
 
   useEffect(() => {
     fetchSteps()
@@ -31,7 +31,19 @@ export function Task(props) {
   steps1.push([{title:"Interview contractors", description:"Ask key questions to determine their reliability.", stepsStatus: false}])
   setSteps(steps1)
   }
-
+  
+  const toggleSteps = async () => {
+    for (var i = 0; i < steps[0].length; i++) {
+      const stepsIsCompleted = steps[0][i].stepsStatus
+      console.log(steps)
+      const { data, error } = await supabase
+      .from('userSteps')
+      .update({ stepsStatus: !stepsIsCompleted})
+      .eq('UserID', user.id)
+      .eq('id', steps[0][i].id)
+    }
+  }
+  
   const toggle = async () => {
     try {
       const { data, error } = await supabase
@@ -46,27 +58,9 @@ export function Task(props) {
     } catch (error) {
       console.log('error', error)
     }
-  toggleSteps()
+    toggleSteps()
   }
-
-  const toggleSteps = async () => {
-    
-    for (var i = 0; i < steps[0].length; i++) {
-      const stepsIsCompleted = steps[0][i].stepsStatus
-      console.log(steps)
-      const { data, error } = await supabase
-      .from('userSteps')
-      .update({ stepsStatus: !stepsIsCompleted})
-      .eq('UserID', user.id)
-      .eq('id', steps[0][i].id)
-    }     
-  }
-
   
-  
-
-  const value = useContext(AppContext);
-
   var containerClass;
   if (router.pathname == "/dashboard") {
     return (
@@ -79,7 +73,7 @@ export function Task(props) {
           e.preventDefault(),
           router.push({
             pathname: '/taskdetails',
-            query: {taskid: props.taskid}, 
+            query: {taskid: props.taskid},
           })
           console.log(props.taskID)
           value.setViewingTaskID(props.taskID)
@@ -110,7 +104,7 @@ export function Task(props) {
           e.preventDefault(),
           router.push({
             pathname: '/taskdetails',
-            query: {taskid: props.taskid}, 
+            query: {taskid: props.taskid},
           })
           value.setViewingTaskID(props.taskID)
         }}>

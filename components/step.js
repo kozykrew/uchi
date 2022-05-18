@@ -40,17 +40,16 @@ export function Step(props) {
         <Form.Group controlId={props.id}>
           <Form.Check type="checkbox"
             checked={props.stepsComplete[props.id] == 1}
-            // checked={isCompleted}
-            onChange={(e) => { 
-            e.preventDefault()
-            toggle()
-            var updateStepsComplete = props.stepsComplete;
-            (updateStepsComplete[e.target.id] == 0) ? (updateStepsComplete[e.target.id] = 1) : (updateStepsComplete[e.target.id] = 0);
-            props.setStepsComplete(updateStepsComplete);
-            console.log(props.stepsComplete)
-            props.handleProgress()
-            
-          }} aria-label={"Checkbox " + props.stepTitle} />
+            onChange={(e) => {
+              e.preventDefault()
+              toggle()
+              var updateStepsComplete = props.stepsComplete;
+              (updateStepsComplete[e.target.id] == 0) ? (updateStepsComplete[e.target.id] = 1) : (updateStepsComplete[e.target.id] = 0);
+              props.setStepsComplete(updateStepsComplete);
+              console.log(props.stepsComplete)
+              props.handleProgress()
+            }} aria-label={"Checkbox " + props.stepTitle}
+          />
         </Form.Group>
       </Form>
       <Accordion flush>
@@ -61,16 +60,4 @@ export function Step(props) {
       </Accordion>
     </div>
   )
-
-  // <div id={props.id} className={styles.container}>
-  //   <div className="form-check">
-  //     <input className="form-check-input" type="checkbox" onChange={(e) => props.handleComplete} checked={props.isChecked} />
-  //   </div>
-  //   <Accordion flush>
-  //     <Accordion.Item eventKey="0">
-  //       <Accordion.Header>{props.stepTitle}</Accordion.Header>
-  //       <Accordion.Body>{props.stepDesc}</Accordion.Body>
-  //     </Accordion.Item>
-  //   </Accordion>
-  // </div>
 }

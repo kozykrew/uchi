@@ -44,10 +44,10 @@ const tasksByMonthRoof = [
 ];
 
 export default function Dashboard({session}) {
+  const user = supabase.auth.user();
   const [username, setUsername] = useState(null)
   const [tasks, setTasks] = useState([])
   const tasks1 = []
-  const user = supabase.auth.user();
 
   useEffect(() => {
     fetchTasks()
@@ -62,17 +62,15 @@ export default function Dashboard({session}) {
     else {
       tasks1.push(tasks)
       setTasks(tasks1)
-    } 
+    }
+    console.log(tasks)
   }
-
-  
 
   useEffect(() => {
     getProfile()
   }, [session])
 
   async function getProfile() {
-
       let { data} = await supabase
         .from('profiles')
         .select(`username, website, avatar_url`)
@@ -115,7 +113,6 @@ export default function Dashboard({session}) {
     try {
       const user = supabase.auth.user()
       let {data: count} = await supabase.from('UserHome').select('FeatureID, id, tag3').eq('UserID', user.id).eq('FeatureID', feaID)
-      console.log(count);
       count.map(async (ftID) => {
         console.log(ftID)
         let {data: list} = await supabase.from('tasks').select('*').eq('HomeFeatureID', ftID.FeatureID)
@@ -174,6 +171,9 @@ export default function Dashboard({session}) {
     }
   }
 
+  var tasksTEMP = [tasks, tasks, tasks, tasks, tasks, tasks]
+  console.log(tasksTEMP)
+
   return (
     <div>
       <Head>
@@ -184,7 +184,7 @@ export default function Dashboard({session}) {
         <div className="pageContent">
           <PageHeader page={"dashboard"} headertext={"Welcome, " + username + "!"} />
           <SectionHeader iconpath="/icons/calendar_duotone.png" headertext={"2022"} />
-          <CalendarTabs tabs={["May", "Jun", "Jul", "Aug", "Sep", "Oct"]} tabContent={tasks} />
+          <CalendarTabs tabs={["May", "Jun", "Jul", "Aug", "Sep", "Oct"]} tabContent={tasksTEMP} />
           <button className="button block" onClick={() => addRow("Lawn")}>
           Add lawn and user id to UserFeature column
           </button>

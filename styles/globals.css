@@ -65,7 +65,7 @@ ul li.active {
   letter-spacing: 0.2rem;
 }
 
-h1, h2, h3, h4, a, th, button, button.nav-link, .callout, .smallHeader, .modal-title {
+h1, h2, h3, h4, a, th, .form-group label, button, button.nav-link, .callout, .smallHeader, .modal-title {
   font-family: 'Karla', sans-serif;
 }
 
@@ -133,6 +133,10 @@ th, .selectLabel {
 
 tr {
   border: none !important;
+}
+
+.form-group {
+  margin-bottom: 1rem;
 }
 
 .btn {

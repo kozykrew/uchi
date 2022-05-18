@@ -10,12 +10,11 @@ import {TabBar} from '../components/tabBar.js'
 
 import styles from '../components/details.module.css'
 
-
 // progress bar component from https://www.npmjs.com/package/react-circular-progressbar
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const task1 = {
+const task = {
   name:"Default task",
   space:"Exterior",
   difficulty:"Easy",
@@ -41,19 +40,6 @@ export async function getServerSideProps(context) {
 
 function TaskDetails({ ssrTask }) {
   const router = useRouter();
-  // const contextValue = useContext(AppContext);
-  // let task = task1;
-  // // Alternatively, only save task ID in AppContext,
-  // //   then fetch details by task ID here with useEffect
-  // //   https://www.learnbestcoding.com/post/25/nextjs-how-to-use-getserversideprops
-  //
-  // console.log(contextValue.state.task)
-  //
-  // if (contextValue.state.task != undefined) {
-  //   task = contextValue.state.task;
-  // }
-  //
-  // console.log(task)
 
   const taskID = router.query.taskid
   const [steps, setSteps] = useState([])
@@ -82,12 +68,11 @@ function TaskDetails({ ssrTask }) {
     }
   }
   var numerator = 0;
-    for (var i = 0; i < stepsCompleted.length; i++) { 
+    for (var i = 0; i < stepsCompleted.length; i++) {
       if (stepsCompleted[i] == 1) {
         numerator++;
       }
     }
-    
   var percent = Math.ceil((numerator / stepsCompleted.length)*100);
   setProgressValue(percent);
   }
@@ -110,8 +95,39 @@ function TaskDetails({ ssrTask }) {
     }
   }
 
+  // --------- FRONTEND progress bar state
+  // const [ progressValue, setProgressValue ] = useState(0);
+  //
+  // const handleComplete = (e) => {
+  //   setProgressValue(100);
+  //   var stepsCompleted = [];
+  //   for (var i = 0; i < steps.length; i++) {
+  //     stepsCompleted.push(1);
+  //   }
+  //   setStepsComplete(stepsCompleted)
+  // }
+  // var stepsIncomplete = [];
+  // for (var i = 0; i < steps.length; i++) {
+  //   stepsIncomplete.push(0);
+  // }
+  // checkbox state (individually controlled by one state)
+  // const [ stepsComplete, setStepsComplete ] = useState(stepsIncomplete);
+  // console.log(stepsComplete)
+
+  // const handleProgress = () => {
+  //   var numerator = 0;
+  //   for (var i = 0; i < stepsComplete.length; i++) {
+  //     if (stepsComplete[i] == 1) {
+  //       numerator++;
+  //     }
+  //   }
+  //   var percent = Math.round((numerator / stepsComplete.length)*100);
+  //   setProgressValue(percent);
+  // }
+
+  // --------- BACKEND progress bar state
   const handleComplete = (e) => {
-    setProgressValue(100);  
+    setProgressValue(100);
     for (var i = 0; i < steps.length; i++) {
       stepsCompleted[i] = 1;
     }
@@ -134,28 +150,23 @@ function TaskDetails({ ssrTask }) {
       .update({ stepsStatus: 'true' })
       .eq('UserID', user.id)
       .eq('id', steps[0][i].id)
-    }       
+    }
   }
-  // var stepsIncomplete = [];
-  // for (var i = 0; i < steps.length; i++) {
-  //   stepsIncomplete.push(0);
-  // }
-  // checkbox state (individually controlled by one state)
-  // const [ stepsComplete, setStepsComplete ] = useState(stepsIncomplete);
-  // console.log(stepsComplete)
 
   const handleProgress = () => {
     var numerator = 0;
-    for (var i = 0; i < stepsCompleted.length; i++) { 
+    for (var i = 0; i < stepsCompleted.length; i++) {
       if (stepsCompleted[i] == 1) {
         numerator++;
       }
     }
-    
     var percent = Math.ceil((numerator / stepsCompleted.length)*100);
     setProgressValue(percent);
     if (numerator == stepsCompleted.length) handleComplete()
   }
+
+  // TO-DO: not yet implemented in database?
+  var uchirec = (<p><span className="brand">UCHI</span> recommends to {task1.uchirec}</p>)
 
   return (
     <div className={styles.chocolate80bg}>
@@ -202,7 +213,7 @@ function TaskDetails({ ssrTask }) {
  
           <div className="pageContent">
             <h2>How To</h2>
-            <p><span className="brand">UCHI</span> recommends to {task1.uchirec}</p>
+            {uchirec}
             <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={steps} tools={task1.tools} stepsComplete={stepsCompleted} setStepsComplete={setStepsCompleted} handleProgress={handleProgress} />
           </div>
         </div>
