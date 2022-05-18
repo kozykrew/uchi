@@ -26,7 +26,7 @@ export default function Auth() {
       <p>Enter your email and receive a magic link to sign into <span className="brand">UCHI</span>.</p>
       <form>
         <div className="form-group">
-          <label for="email" className="sr-only">Email</label>
+          <label htmlFor="email" className="sr-only">Email</label>
           <input
             id="email"
             className="form-control"

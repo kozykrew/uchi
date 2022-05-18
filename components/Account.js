@@ -72,7 +72,7 @@ export default function Account({ session }) {
     <div>
       <form>
         <div className="form-group">
-          <label for="email">Email</label>
+          <label htmlFor="email">Email</label>
           <input
             id="email"
             className="form-control"
@@ -83,7 +83,7 @@ export default function Account({ session }) {
           />
         </div>
         <div className="form-group">
-          <label for="username">Name</label>
+          <label htmlFor="username">Name</label>
           <input
             id="username"
             className="form-control"
@@ -93,7 +93,7 @@ export default function Account({ session }) {
           />
         </div>
         <div className="form-group">
-          <label for="website">Website</label>
+          <label htmlFor="website">Website</label>
           <input
             id="website"
             className="form-control"

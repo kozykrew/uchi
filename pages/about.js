@@ -70,10 +70,10 @@ export default function SignIn() {
           <hr className={styles.hr} />
           <h1>Behind the name</h1>
           <p><span className="brand">UCHI</span> is named after a word from the Japanese language,
-          meaning "one's home."
+          meaning &quot;one&apos;s home.&quot;
           </p>
           <p>The Japanese language uses the words うち <em>(uchi)</em> and いえ <em>(ie)</em> to refer to
-          a "home" and a "house," respectively. Similar to the connotation in English, うち <em>(uchi)</em> refers
+          a &quot;home&quot; and a &quot;house,&quot; respectively. Similar to the connotation in English, うち <em>(uchi)</em> refers
           to a place where someone lives, whereas いえ <em>(ie)</em> refers to the actual building where someone lives.
           Additionally, the word うち <em>(uchi)</em> can also refer to the people living in the home themselves.
           </p>
