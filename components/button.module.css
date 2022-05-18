@@ -10,7 +10,7 @@
   background-color: var(--mint60);
 }
 
-.postpone {
+.postpone, .signin {
   background-color: var(--orange60);
 }
 
@@ -51,6 +51,11 @@
 
 .cancelDesktop {
   background-color: var(--chocolate60);
+}
+
+.signin {
+  margin-left: auto;
+  margin-top: 1rem;
 }
 
 /* ----------------------------------- @media rules ----------------------------------- */
