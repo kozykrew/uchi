@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
+import Button from 'react-bootstrap/Button'
+
+import styles from './button.module.css'
 
 export default function Auth() {
   const [loading, setLoading] = useState(false)
@@ -8,7 +11,8 @@ export default function Auth() {
   const handleLogin = async (email) => {
     try {
       setLoading(true)
-      const { error } = await supabase.auth.signIn({ email })
+      const { error } = await supabase.auth.signIn({email},
+        { redirectTo: 'http://localhost:3000/dashboard' })
       if (error) throw error
       alert('Check your email for the login link!')
     } catch (error) {
@@ -19,31 +23,34 @@ export default function Auth() {
   }
 
   return (
-    <div className="row flex flex-center">
-      <div className="col-6 form-widget">
-        <p className="description">Sign in via magic link with your email below</p>
-        <div>
+    <div>
+      <p>Enter your email and receive a magic link to sign into <span className="brand">UCHI</span>.</p>
+      <form>
+        <div className="form-group">
+          <label htmlFor="email" className="sr-only">Email</label>
           <input
-            className="inputField"
+            id="email"
+            className="form-control"
             type="email"
-            placeholder="Your email"
+            placeholder="Enter your email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value)
+            }}
           />
         </div>
-        <div>
-          <button
-            onClick={(e) => {
-              e.preventDefault()
-              handleLogin(email)
-            }}
-            className="button block"
-            disabled={loading}
-          >
-            <span>{loading ? 'Loading' : 'Send magic link'}</span>
-          </button>
-        </div>
-      </div>
+        <Button
+          variant="light"
+          onClick={(e) => {
+            e.preventDefault()
+            handleLogin(email)
+          }}
+          className={styles.signin}
+          disabled={loading}
+        >
+          {loading ? 'Loading' : 'Send magic link'}
+        </Button>
+      </form>
     </div>
   )
 }

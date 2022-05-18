@@ -7,7 +7,6 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import Layout from '../components/layout.js'
-import {UchiNavbar} from '../components/uchiNavbar.js'
 
 import styles from '../styles/Landing.module.css'
 import navStyles from '../components/uchiNavbar.module.css'
@@ -22,12 +21,12 @@ export default function Landing() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#about">About</Nav.Link>
+            <Nav.Link href="/about">About</Nav.Link>
             <Nav.Link href="#features">Features</Nav.Link>
             <Nav.Link href="#demo">Demo</Nav.Link>
             <Nav.Link href="#team">Team</Nav.Link>
             <Nav.Link href="#status">Status</Nav.Link>
-            <Nav.Link href="#link">Sign Up</Nav.Link>
+            <Nav.Link href="/signin">Sign Up</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -96,10 +95,12 @@ export default function Landing() {
           <div className={styles.visualMint80}>
             <h1 className="noMB">Try <span className="brand">UCHI</span> today!</h1>
           </div>
-          <div className={styles.visualOrange60}>
-            <h2 className={styles.signup}>Sign Up</h2>
-            <img src="/icons/arrowcircle_right_line_dark.svg" alt="Sign Up Today" />
-          </div>
+          <Link href="/signin"><a>
+            <div className={styles.visualOrange60}>
+              <h2 className={styles.signup}>Sign Up</h2>
+              <img src="/icons/arrowcircle_right_line_dark.svg" alt="Sign Up Today" />
+            </div>
+          </a></Link>
         </div>
         <div className={styles.footer}>
           <div>

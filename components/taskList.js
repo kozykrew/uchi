@@ -7,7 +7,6 @@ import styles from './taskList.module.css'
 // dashboard: boolean - location of the TaskList
 // tasks: array of task objects
 export function TaskList(props) {
-  
   var children = props.tasks.map((task, i) => (
     <Task key={i} taskID={i} taskid={task.id} taskTitle={task.title} taskDifficulty={task.difficulty} taskTime={task.time} taskTag3={task.tag3} taskDesc={task.description} taskStatus={task.taskStatus} steps={task.steps} />
   ));
