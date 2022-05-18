@@ -98,7 +98,7 @@ export function UchiSideNavbar({session}) {
           <Dropdown.Menu>
             <Dropdown.Item href="#/action-1">About UCHI</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item href="#/action-2">Sign Out</Dropdown.Item>
+            <Dropdown.Item href="#/action-2"><img src="/icons/signout_dark.svg" alt="Sign out" />Sign Out</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>

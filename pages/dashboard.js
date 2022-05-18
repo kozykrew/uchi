@@ -160,6 +160,7 @@ export default function Dashboard({session}) {
   }
 
   var tasksTEMP = [tasks, tasks, tasks, tasks, tasks, tasks]
+  console.log(tasksTEMP)
 
   return (
     <div>

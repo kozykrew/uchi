@@ -14,7 +14,7 @@
   background-color: var(--orange60);
 }
 
-.delete {
+.delete, .signout {
   background-color: var(--chocolate80);
 }
 
