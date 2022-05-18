@@ -8,17 +8,15 @@ import {SectionHeader, DetailsHeader} from '../components/headers.js'
 import {BtnComplete, BtnPostpone, BtnDelete} from '../components/button.js'
 import {MainDetailsTable} from '../components/mainDetailsTable.js'
 import {TabBar} from '../components/tabBar.js'
-import { useRouter } from 'next/router'
+
 import styles from '../components/details.module.css'
-import { useEffect } from 'react'
-import { supabase } from '../utils/supabaseClient'
 
 
 // progress bar component from https://www.npmjs.com/package/react-circular-progressbar
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const task1 = {
+const task = {
   name:"Default task",
   space:"Exterior",
   difficulty:"Easy",
@@ -44,19 +42,6 @@ export async function getServerSideProps(context) {
 
 function TaskDetails({ ssrTask }) {
   const router = useRouter();
-  // const contextValue = useContext(AppContext);
-  // let task = task1;
-  // // Alternatively, only save task ID in AppContext,
-  // //   then fetch details by task ID here with useEffect
-  // //   https://www.learnbestcoding.com/post/25/nextjs-how-to-use-getserversideprops
-  //
-  // console.log(contextValue.state.task)
-  //
-  // if (contextValue.state.task != undefined) {
-  //   task = contextValue.state.task;
-  // }
-  //
-  // console.log(task)
 
   const taskID = router.query.taskid
   const [steps, setSteps] = useState([])
@@ -64,7 +49,7 @@ function TaskDetails({ ssrTask }) {
   useEffect(() => {
     fetchSteps()
   }, [])
-  
+
   const steps1 = []
   const fetchSteps = async () => {
   let { data: steps} = await supabase.from('userSteps').select(`*`)
@@ -75,7 +60,7 @@ function TaskDetails({ ssrTask }) {
   steps1.push([{title:"Interview contractors", description:"Ask key questions to determine their reliability.", stepsStatus: false}])
   setSteps(steps1)
   }
-  
+
   const [taske, setTask] = useState([])
   useEffect(() => {
     fetchTasks()
@@ -98,14 +83,14 @@ function TaskDetails({ ssrTask }) {
   const handleComplete = (e) => {
     setProgressValue(100);
     var stepsCompleted = [];
-    for (var i = 0; i < task.steps[0].length; i++) {
+    for (var i = 0; i < steps.length; i++) {
       stepsCompleted.push(1);
     }
     setStepsComplete(stepsCompleted)
   }
 
   var stepsIncomplete = [];
-  for (var i = 0; i < task.steps[0].length; i++) {
+  for (var i = 0; i < steps.length; i++) {
     stepsIncomplete.push(0);
   }
   // checkbox state (individually controlled by one state)
@@ -121,22 +106,6 @@ function TaskDetails({ ssrTask }) {
     }
     var percent = Math.round((numerator / stepsComplete.length)*100);
     setProgressValue(percent);
-  }
-  
-  const [taske, setTask] = useState([])
-  useEffect(() => {
-    fetchTasks()
-  }, [])
-  const fetchTasks = async () => {
-    let { data: taske, error } = await supabase.from('userTasks').select(`
-    *,
-    UserHome!inner(*)
-    `)
-    .eq('UserHome.UserID', user.id)
-    .eq('id', taskID)
-    .single()
-    if (error) console.log('error', error)
-    else setTask(taske)   
   }
 
   return (
@@ -194,3 +163,5 @@ function TaskDetails({ ssrTask }) {
     </div>
   )
 }
+
+export default TaskDetails

@@ -38,11 +38,11 @@ export function Task(props) {
           <input className="form-check-input" type="checkbox" onChange={(e) => {e.preventDefault()
             toggle()}} checked={isCompleted} id="flexCheckDefault" />
         </div>
-        <div className={styles.taskDetailsContainerDashboard} taskID={props.taskID} onClick={() => {
+        <div className={styles.taskDetailsContainerDashboard} taskID={props.taskID} onClick={(e) => {
           e.preventDefault(),
           router.push({
             pathname: '/taskdetails',
-            query: {taskid: props.taskid}, 
+            query: {taskid: props.taskid},
           })
           console.log(props.taskID)
           value.setViewingTaskID(props.taskID)
@@ -73,7 +73,7 @@ export function Task(props) {
           e.preventDefault(),
           router.push({
             pathname: '/taskdetails',
-            query: {taskid: props.taskid}, 
+            query: {taskid: props.taskid},
           })
           console.log(props.taskID)
           value.setViewingTaskID(props.taskID)
