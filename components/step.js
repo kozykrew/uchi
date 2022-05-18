@@ -16,6 +16,7 @@ const user = supabase.auth.user()
 // setStepsComplete: state function - sets stepsComplete state variable
 // handleProgress: function handling progress bar value based on step completion
 export function Step(props) {
+  //console.log(props)
   const [isCompleted, setIsCompleted] = useState(props.isChecked)
   const toggle = async () => {
     try {
@@ -59,16 +60,4 @@ export function Step(props) {
       </Accordion>
     </div>
   )
-
-  // <div id={props.id} className={styles.container}>
-  //   <div className="form-check">
-  //     <input className="form-check-input" type="checkbox" onChange={(e) => props.handleComplete} checked={props.isChecked} />
-  //   </div>
-  //   <Accordion flush>
-  //     <Accordion.Item eventKey="0">
-  //       <Accordion.Header>{props.stepTitle}</Accordion.Header>
-  //       <Accordion.Body>{props.stepDesc}</Accordion.Body>
-  //     </Accordion.Item>
-  //   </Accordion>
-  // </div>
 }

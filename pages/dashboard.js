@@ -8,7 +8,7 @@ import {Calendar} from '../components/calendar.js'
 import {CalendarTabs} from '../components/tabBar.js'
 import {TaskList} from '../components/taskList.js'
 
-const user = supabase.auth.user();
+
 
 const tasksByMonth = [
   [{title:"Clean gutter", difficulty:"Average", time:"2-4 hours", tag3:"Exterior", description:"Remove leaves and other debris"},
@@ -44,6 +44,7 @@ const tasksByMonthRoof = [
 ];
 
 export default function Dashboard({session}) {
+  const user = supabase.auth.user();
   const [username, setUsername] = useState(null)
   const [tasks, setTasks] = useState([])
   const tasks1 = []
@@ -70,7 +71,6 @@ export default function Dashboard({session}) {
   }, [session])
 
   async function getProfile() {
-
       let { data} = await supabase
         .from('profiles')
         .select(`username, website, avatar_url`)
@@ -89,14 +89,20 @@ export default function Dashboard({session}) {
         FeatureID: fID.id,
         tag3: fID.tag3
       }
-      let { error } = await supabase.from('UserHome').upsert(updates, {
-        returning: 'minimal', // Don't return the value after inserting
-      })
-
-      addTasks(fID.id)
-
-      if (error) {
-        throw error
+      let {data} = await supabase.from('UserHome').select('*').eq('FeatureID', fID.id).eq('UserID', user.id)
+      console.log(data.length)
+      if (data.length == 0) {
+        let { error } = await supabase.from('UserHome').upsert(updates, {
+          returning: 'minimal', // Don't return the value after inserting
+        })
+  
+        addTasks(fID.id)
+  
+        if (error) {
+          throw error
+        }
+      } else {
+        alert('Cannot have more than 1 Home Feature of the same type')  
       }
     } catch (error) {
       alert(error.message)
@@ -106,7 +112,6 @@ export default function Dashboard({session}) {
   async function addTasks(feaID) {
     try {
       const user = supabase.auth.user()
-
       let {data: count} = await supabase.from('UserHome').select('FeatureID, id, tag3').eq('UserID', user.id).eq('FeatureID', feaID)
       count.map(async (ftID) => {
         console.log(ftID)

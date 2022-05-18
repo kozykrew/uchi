@@ -10,7 +10,6 @@ import {TabBar} from '../components/tabBar.js'
 
 import styles from '../components/details.module.css'
 
-
 // progress bar component from https://www.npmjs.com/package/react-circular-progressbar
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -74,7 +73,6 @@ function TaskDetails({ ssrTask }) {
         numerator++;
       }
     }
-
   var percent = Math.ceil((numerator / stepsCompleted.length)*100);
   setProgressValue(percent);
   }
@@ -212,7 +210,7 @@ function TaskDetails({ ssrTask }) {
               </div>
             </div>
           </div>
-
+ 
           <div className="pageContent">
             <h2>How To</h2>
             {uchirec}

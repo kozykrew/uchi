@@ -11,7 +11,8 @@ export default function Auth() {
   const handleLogin = async (email) => {
     try {
       setLoading(true)
-      const { error } = await supabase.auth.signIn({ email })
+      const { error } = await supabase.auth.signIn({email},
+        { redirectTo: 'http://localhost:3000/dashboard' })
       if (error) throw error
       alert('Check your email for the login link!')
     } catch (error) {
@@ -33,7 +34,9 @@ export default function Auth() {
             type="email"
             placeholder="Enter your email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value)
+            }}
           />
         </div>
         <Button

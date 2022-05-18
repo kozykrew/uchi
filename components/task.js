@@ -31,7 +31,7 @@ export function Task(props) {
   steps1.push([{title:"Interview contractors", description:"Ask key questions to determine their reliability.", stepsStatus: false}])
   setSteps(steps1)
   }
-
+  
   const toggleSteps = async () => {
     for (var i = 0; i < steps[0].length; i++) {
       const stepsIsCompleted = steps[0][i].stepsStatus
@@ -43,7 +43,7 @@ export function Task(props) {
       .eq('id', steps[0][i].id)
     }
   }
-
+  
   const toggle = async () => {
     try {
       const { data, error } = await supabase
@@ -60,7 +60,7 @@ export function Task(props) {
     }
     toggleSteps()
   }
-
+  
   var containerClass;
   if (router.pathname == "/dashboard") {
     return (

@@ -17,7 +17,7 @@ import navStyles from '../components/uchiNavbar.module.css'
 
 export default function SignIn() {
   const router = useRouter();
-
+  
   const [session, setSession] = useState(null)
 
   useEffect(() => {
