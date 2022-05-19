@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
+import { useRouter } from 'next/router'
 import Button from 'react-bootstrap/Button'
 import { useRouter } from 'next/router'
 
@@ -55,7 +56,7 @@ export default function Auth() {
           <input
             type="password"
             className="form-control"
-            placeholder="Your password"
+            placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -64,12 +65,23 @@ export default function Auth() {
           variant="light"
           onClick={(e) => {
             e.preventDefault()
-            handleLogin('SIGNUP', email,password)
+            handleLogin('SIGNUP', email, password)
           }}
           className={styles.signin}
           disabled={loading}
         >
-          {loading ? 'Loading' : 'Sign Up!'}
+          {loading ? 'Loading' : 'Sign Up'}
+        </Button>
+        <Button
+          variant="light"
+          onClick={(e) => {
+            e.preventDefault()
+            handleLogin('LOGIN', email, password)
+          }}
+          className={styles.signin}
+          disabled={loading}
+        >
+          {loading ? 'Loading' : 'Sign In'}
         </Button>
         <Button
           variant="light"

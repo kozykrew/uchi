@@ -210,7 +210,7 @@ function TaskDetails({ ssrTask }) {
               </div>
             </div>
           </div>
- 
+
           <div className="pageContent">
             <h2>How To</h2>
             {uchirec}

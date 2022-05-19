@@ -74,7 +74,7 @@ export default function Dashboard({session}) {
   }, [session])
 
   async function getProfile() {
-      let { data} = await supabase
+      let {data} = await supabase
         .from('profiles')
         .select(`username, website, avatar_url`)
         .eq('id', user.id)
@@ -98,14 +98,14 @@ export default function Dashboard({session}) {
         let { error } = await supabase.from('UserHome').upsert(updates, {
           returning: 'minimal', // Don't return the value after inserting
         })
-  
+
         addTasks(fID.id)
-  
+
         if (error) {
           throw error
         }
       } else {
-        alert('Cannot have more than 1 Home Feature of the same type')  
+        alert('Cannot have more than 1 Home Feature of the same type')
       }
     } catch (error) {
       alert(error.message)

@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import Auth from '../components/Auth'
 import Account from '../components/Account'
-import { useRouter } from 'next/router'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Container from 'react-bootstrap/Container'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -18,7 +18,7 @@ import Dashboard from './dashboard'
 
 export default function SignIn() {
   const router = useRouter();
-  
+
   const [session, setSession] = useState(null)
 
   useEffect(() => {

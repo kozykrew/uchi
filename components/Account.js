@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import { useRouter } from 'next/router'
-import Button from 'react-bootstrap/Button'
 import Head from 'next/head'
+import Button from 'react-bootstrap/Button'
 import {ProfileHeader} from '../components/headers.js'
 import {ProfileCard} from '../components/profileCard.js'
 
@@ -16,7 +16,6 @@ export default function Account({ session }) {
   const [website, setWebsite] = useState(null)
   const [avatar_url, setAvatarUrl] = useState(null)
   const router = useRouter();
-  // router.push('/dashbaord')
 
   useEffect(() => {
     getProfile()
@@ -101,9 +100,7 @@ export default function Account({ session }) {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-      </form>
-
-      <Button
+        <Button
           variant="light"
           className={styles.signin}
           onClick={() => updateProfile({ username, website, avatar_url })}
@@ -111,14 +108,15 @@ export default function Account({ session }) {
         >
           {loading ? 'Loading ...' : 'Update'}
         </Button>
-        <Button
-          variant="light"
-          className={styles.signin}
-          onClick={() => router.push('/dashboard')}
-          disabled={loading}
-        >
-          {loading ? 'Loading ...' : 'Dashboard'}
-        </Button>  
+      </form>
+      <Button
+        variant="light"
+        className={styles.signin}
+        onClick={() => router.push('/dashboard')}
+        disabled={loading}
+      >
+        {loading ? 'Loading ...' : 'Dashboard'}
+      </Button>
       <Button
         variant="light"
         className={styles.signout}

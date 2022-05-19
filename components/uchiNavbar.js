@@ -14,8 +14,6 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 import styles from './uchiNavbar.module.css'
 
-
-
 export function UchiNavbar() {
   const router = useRouter();
   // <Nav className="me-auto">
@@ -42,6 +40,7 @@ export function UchiNavbar() {
               <li className={router.pathname == "/homefeatures" ? "active" : ""}><Link href="/homefeatures"><a>Home Features</a></Link></li>
               <li className={router.pathname == "/tasks" ? "active" : ""}><Link href="/tasks"><a>Tasks</a></Link></li>
               <li className={router.pathname == "/profile" ? "active" : ""}><Link href="/profile"><a>Profile</a></Link></li>
+              <li className={router.pathname == "/about" ? "active" : ""}><Link href="/about"><a>About <span className="brand">UCHI</span></a></Link></li>
             </ul>
           </Nav>
         </Navbar.Collapse>
@@ -52,6 +51,7 @@ export function UchiNavbar() {
 }
 
 export function UchiSideNavbar({session}) {
+  const user = supabase.auth.user()
   const [username, setUsername] = useState(null)
   const user = supabase.auth.user()
   useEffect(() => {
@@ -96,9 +96,9 @@ export function UchiSideNavbar({session}) {
           <Dropdown.Toggle variant="light" split id="dropdown-split-basic" />
 
           <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">About UCHI</Dropdown.Item>
+            <Dropdown.Item href="/about">About <span className="brand">UCHI</span></Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item href="/" onClick={() => supabase.auth.signOut()}><img src="/icons/signout_dark.svg" alt="Sign out"  />Sign Out</Dropdown.Item>
+            <Dropdown.Item href="/" onClick={() => supabase.auth.signOut()}><img src="/icons/signout_dark.svg" alt="Sign out" />Sign Out</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
