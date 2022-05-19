@@ -11,6 +11,13 @@ export function TaskList(props) {
     <Task key={i} taskID={i} taskid={task.id} taskTitle={task.title} taskDifficulty={task.difficulty} taskTime={task.time} taskTag3={task.tag3} taskDesc={task.description} taskStatus={task.taskStatus} steps={task.steps} />
   ));
 
+  if (children.length == 0) {
+    return (
+      <p>You have no Tasks to do!
+      </p>
+    )
+  }
+
   if (props.dashboard == true) {
     let additionalTaskLink;
     if (children.length > 3) {

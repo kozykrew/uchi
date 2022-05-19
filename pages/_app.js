@@ -85,6 +85,7 @@ function UchiApp({ Component, pageProps, session }) {
   const [username, setUsername] = useState(null)
   const [loggedIn, setLoggedIn] = useState(user != null)
   console.log(loggedIn)
+  console.log(username)
 
   useEffect(() => {
     import("bootstrap/dist/js/bootstrap.js");
@@ -99,11 +100,13 @@ function UchiApp({ Component, pageProps, session }) {
         state: {
           space: spaceName,
           hfs: spaceObject[spaceName],
-          loggedIn: loggedIn
+          loggedIn: loggedIn,
+          username: username
         },
         setSpaceName: setSpaceName,
         setViewingTaskID: setViewingTaskID,
-        setLoggedIn: setLoggedIn
+        setLoggedIn: setLoggedIn,
+        setUsername: setUsername
       }}
     >
       <Component {...pageProps} />

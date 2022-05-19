@@ -81,6 +81,7 @@ export default function Dashboard({session}) {
           .eq('id', user.id)
           .single()
         setUsername(data.username);
+        contextValue.setUsername(data.username);
     }
 
     async function addRow(name) {
@@ -185,7 +186,7 @@ export default function Dashboard({session}) {
         </Head>
         <Layout>
           <div className="pageContent">
-            <PageHeader page={"dashboard"} headertext={"Welcome, " + username + "!"} />
+            <PageHeader page={"dashboard"} headertext={"Welcome, " + contextValue.state.username + "!"} />
             <SectionHeader iconpath="/icons/calendar_duotone.png" headertext={"2022"} />
             <CalendarTabs tabs={["May", "Jun", "Jul", "Aug", "Sep", "Oct"]} tabContent={tasks} />
             <button className="button block" onClick={() => addRow("Lawn")}>

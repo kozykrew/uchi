@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect } from 'react'
-import { supabase } from '../utils/supabaseClient'
 import AppContext from '../AppContext.js'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
@@ -12,28 +11,10 @@ import SignIn from './signin.js'
 import styles from '../components/details.module.css'
 import profileCardStyles from '../components/profileCard.module.css'
 
-export default function Profile({session}) {
+export default function Profile() {
   const contextValue = useContext(AppContext);
 
   if (contextValue.state.loggedIn) {
-    const user = supabase.auth.user()
-
-    const [username, setUsername] = useState(null)
-
-    useEffect(() => {
-      getProfile()
-    }, [session])
-
-    async function getProfile() {
-
-        let { data} = await supabase
-          .from('profiles')
-          .select(`username, website, avatar_url`)
-          .eq('id', user.id)
-          .single()
-        setUsername(data.username);
-    }
-
     const router = useRouter();
 
     return (
@@ -46,13 +27,13 @@ export default function Profile({session}) {
           <div className={styles.vanillaToastedFiller}>
             <div className={styles.detailsContainer}>
               <div className="pageContent">
-                <ProfileHeader profileImg="/profile.png" name={username} home={"New build (December 2021)"} />
+                <ProfileHeader profileImg="/profile.png" name={contextValue.state.username} home={"New build (December 2021)"} />
               </div>
             </div>
             <div className={styles.detailsContainerDetailsPagesDesktop}>
               <div className="pageContent">
                 <div className={styles.addHFHeaderDesktop}>
-                  <ProfileHeader profileImg="/profile.png" name={username} home={"New build (December 2021)"} />
+                  <ProfileHeader profileImg="/profile.png" name={contextValue.state.username} home={"New build (December 2021)"} />
                 </div>
               </div>
             </div>

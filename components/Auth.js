@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { supabase } from '../utils/supabaseClient'
+import AppContext from '../AppContext.js'
 import { useRouter } from 'next/router'
 import Button from 'react-bootstrap/Button'
 import Tabs from 'react-bootstrap/Tabs'
@@ -8,6 +9,8 @@ import Tab from 'react-bootstrap/Tab'
 import styles from './button.module.css'
 
 export default function Auth() {
+  const contextValue = useContext(AppContext);
+
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
@@ -21,6 +24,7 @@ export default function Auth() {
         type === 'LOGIN'
           ? await supabase.auth.signIn({ email, password })
           : await supabase.auth.signUp({ email, password })
+      contextValue.setLoggedIn(true)
       if (!error && !user) alert('Check your email for the login link!')
       if (error) alert(error.message)
       else if (type == "LOGIN") {
