@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../utils/supabaseClient'
-
-import Link from 'next/link'
 import { useRouter } from "next/router";
-
+import Link from 'next/link'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
@@ -53,7 +51,6 @@ export function UchiNavbar() {
 export function UchiSideNavbar({session}) {
   const user = supabase.auth.user()
   const [username, setUsername] = useState(null)
-  const user = supabase.auth.user()
   useEffect(() => {
     getProfile()
   }, [session])

@@ -14,7 +14,6 @@ import Layout from '../components/layout.js'
 
 import styles from '../styles/Landing.module.css'
 import navStyles from '../components/uchiNavbar.module.css'
-import Dashboard from './dashboard'
 
 export default function SignIn() {
   const router = useRouter();
@@ -70,7 +69,7 @@ export default function SignIn() {
           </div>
         </div>
         <div className={styles.pageContent}>
-          <h1 className={styles.title}><span className={styles.titleBrand}>Sign In to UCHI</span></h1>
+          <h1 className={styles.title}><span className={styles.titleBrand}>Welcome to UCHI</span></h1>
           {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
           <hr className={styles.hr} />
         </div>
