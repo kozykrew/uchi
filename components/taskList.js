@@ -13,7 +13,7 @@ export function TaskList(props) {
 
   if (children.length == 0) {
     return (
-      <p>You have no Tasks to do!
+      <p className="smallHeader text-center">You have no Tasks to do!
       </p>
     )
   }

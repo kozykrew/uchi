@@ -55,6 +55,7 @@ export default function Dashboard({session}) {
 
     useEffect(() => {
       fetchTasks()
+      console.log(tasks)
     }, [])
     const fetchTasks = async () => {
       let { data: tasks, error } = await supabase.from('userTasks').select(`
@@ -67,7 +68,6 @@ export default function Dashboard({session}) {
         tasks1.push(tasks)
         setTasks(tasks1)
       }
-      console.log(tasks)
     }
 
     useEffect(() => {
@@ -176,7 +176,8 @@ export default function Dashboard({session}) {
       }
     }
 
-    var tasksTEMP = [tasks, tasks, tasks, tasks, tasks, tasks]
+    // var tasksByMonth = [tasks, []]
+    // console.log(tasksByMonth)
 
     return (
       <div>
