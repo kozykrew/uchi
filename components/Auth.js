@@ -2,12 +2,15 @@ import { useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import { useRouter } from 'next/router'
 import Button from 'react-bootstrap/Button'
+import Tabs from 'react-bootstrap/Tabs'
+import Tab from 'react-bootstrap/Tab'
 
 import styles from './button.module.css'
 
 export default function Auth() {
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter();
 
@@ -31,56 +34,99 @@ export default function Auth() {
     }
   }
 
+  const [key, setKey] = useState('signup');
+
   return (
     <div>
-      <p>Enter your email and receive a magic link to sign into <span className="brand">UCHI</span>.</p>
-      <form>
-        <div className="form-group">
-          <label htmlFor="email" className="sr-only">Email</label>
-          <input
-            id="email"
-            className="form-control"
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value)
+      <Tabs activeKey={key} onSelect={(k) => setKey(k)} variant="pills">
+        <Tab eventKey="signup" title="Sign Up">
+          <form>
+            <div className="form-group">
+              <label htmlFor="username">Name</label>
+              <input
+                id="username"
+                type="text"
+                className="form-control"
+                placeholder="Enter your name"
+                value={username || ''}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                className="form-control"
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                }}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <Button
+              variant="light"
+              onClick={(e) => {
+                e.preventDefault()
+                handleLogin('SIGNUP', email, password)
+              }}
+              className={styles.signin}
+              disabled={loading}
+            >
+              {loading ? 'Loading' : 'Sign Up'}
+            </Button>
+            <p className="text-center mt-3">Already have an account? <span className="signLink" onClick={() => setKey('signin')}>Sign In</span></p>
+          </form>
+        </Tab>
+        <Tab eventKey="signin" title="Sign In">
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              className="form-control"
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value)
+              }}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Password</label>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <Button
+            variant="light"
+            onClick={(e) => {
+              e.preventDefault()
+              handleLogin('LOGIN', email, password)
             }}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email" className="sr-only">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <Button
-          variant="light"
-          onClick={(e) => {
-            e.preventDefault()
-            handleLogin('SIGNUP', email, password)
-          }}
-          className={styles.signin}
-          disabled={loading}
-        >
-          {loading ? 'Loading' : 'Sign Up'}
-        </Button>
-        <Button
-          variant="light"
-          onClick={(e) => {
-            e.preventDefault()
-            handleLogin('LOGIN', email, password)
-          }}
-          className={styles.signin}
-          disabled={loading}
-        >
-          {loading ? 'Loading' : 'Sign In'}
-        </Button>
-      </form>
+            className={styles.signin}
+            disabled={loading}
+          >
+            {loading ? 'Loading' : 'Sign In'}
+          </Button>
+          <p className="text-center mt-3">Don't have an account? <span className="signLink" onClick={() => setKey('signup')}>Sign Up</span></p>
+        </Tab>
+      </Tabs>
     </div>
   )
 }

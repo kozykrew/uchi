@@ -139,6 +139,12 @@ tr {
   margin-bottom: 1rem;
 }
 
+.signLink {
+  color: var(--mint100);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 .btn {
   display: flex !important;
   align-items: center !important;
