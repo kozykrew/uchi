@@ -6,7 +6,9 @@ import Button from 'react-bootstrap/Button'
 import {ProfileHeader} from '../components/headers.js'
 import {ProfileCard} from '../components/profileCard.js'
 
-import styles from './button.module.css'
+import styles from '../components/details.module.css'
+import profileCardStyles from '../components/profileCard.module.css'
+import Layout from '../components/layout.js'
 
 export default function Account({ session }) {
   const [loading, setLoading] = useState(true)
@@ -45,6 +47,7 @@ export default function Account({ session }) {
       setLoading(false)
     }
   }
+
 
   async function updateProfile({ username, website, avatar_url }) {
     try {
@@ -124,3 +127,4 @@ export default function Account({ session }) {
     </div>
   )
 }
+
