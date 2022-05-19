@@ -1,0 +1,38 @@
+.start, .vanillaOnboarding {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.start {
+  margin-top: 25vh;
+  min-height: 20vh;
+  align-items: center;
+}
+
+.vanillaToastedbg {
+  width: 100vw;
+  height: 100vh;
+  padding-top: 5rem;
+  background-color: var(--vanillaToasted);
+  text-align: center;
+}
+
+.onboardingImg {
+  max-width: 375px;
+}
+
+.vanillaOnboarding {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 50vh;
+  background-color: var(--vanilla);
+  border-radius: 15px 15px 0 0;
+  margin-top: 1rem;
+  padding-left: 1rem;
+  padding-top: 2rem;
+  padding-right: 1rem;
+  padding-bottom: 3rem;
+  text-align: left;
+}

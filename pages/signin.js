@@ -50,7 +50,7 @@ export default function SignIn() {
   return (
     <div className={styles.bg}>
       <Head>
-        <title>UCHI</title>
+        <title>UCHI | Sign Up</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className={styles.displayTop}>

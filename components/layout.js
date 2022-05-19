@@ -82,3 +82,12 @@ export function AddHFFooter(props) {
     )
   }
 }
+
+export function OnboardingLayout({ children }) {
+  return (
+    <div>
+      <p className={styles.brand}>UCHI</p>
+      {children}
+    </div>
+  )
+}
