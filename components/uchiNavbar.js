@@ -14,7 +14,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 import styles from './uchiNavbar.module.css'
 
-const user = supabase.auth.user()
+
 
 export function UchiNavbar() {
   const router = useRouter();
@@ -53,7 +53,7 @@ export function UchiNavbar() {
 
 export function UchiSideNavbar({session}) {
   const [username, setUsername] = useState(null)
-
+  const user = supabase.auth.user()
   useEffect(() => {
     getProfile()
   }, [session])
@@ -98,7 +98,7 @@ export function UchiSideNavbar({session}) {
           <Dropdown.Menu>
             <Dropdown.Item href="#/action-1">About UCHI</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item href="#/action-2"><img src="/icons/signout_dark.svg" alt="Sign out" />Sign Out</Dropdown.Item>
+            <Dropdown.Item href="/" onClick={() => supabase.auth.signOut()}><img src="/icons/signout_dark.svg" alt="Sign out"  />Sign Out</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>

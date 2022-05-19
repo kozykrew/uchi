@@ -7,6 +7,8 @@ import {PageHeader, SectionHeader} from '../components/headers.js'
 import {Calendar} from '../components/calendar.js'
 import {CalendarTabs} from '../components/tabBar.js'
 import {TaskList} from '../components/taskList.js'
+import router from 'next/router'
+
 
 
 
@@ -48,6 +50,7 @@ export default function Dashboard({session}) {
   const [username, setUsername] = useState(null)
   const [tasks, setTasks] = useState([])
   const tasks1 = []
+
 
   useEffect(() => {
     fetchTasks()
@@ -172,7 +175,6 @@ export default function Dashboard({session}) {
   }
 
   var tasksTEMP = [tasks, tasks, tasks, tasks, tasks, tasks]
-  console.log(tasksTEMP)
 
   return (
     <div>
@@ -184,7 +186,7 @@ export default function Dashboard({session}) {
         <div className="pageContent">
           <PageHeader page={"dashboard"} headertext={"Welcome, " + username + "!"} />
           <SectionHeader iconpath="/icons/calendar_duotone.png" headertext={"2022"} />
-          <CalendarTabs tabs={["May", "Jun", "Jul", "Aug", "Sep", "Oct"]} tabContent={tasksTEMP} />
+          <CalendarTabs tabs={["May", "Jun", "Jul", "Aug", "Sep", "Oct"]} tabContent={tasks} />
           <button className="button block" onClick={() => addRow("Lawn")}>
           Add lawn and user id to UserFeature column
           </button>

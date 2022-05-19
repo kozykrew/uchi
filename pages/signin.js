@@ -14,6 +14,7 @@ import Layout from '../components/layout.js'
 
 import styles from '../styles/Landing.module.css'
 import navStyles from '../components/uchiNavbar.module.css'
+import Dashboard from './dashboard'
 
 export default function SignIn() {
   const router = useRouter();

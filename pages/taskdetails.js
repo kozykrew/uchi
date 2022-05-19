@@ -14,7 +14,7 @@ import styles from '../components/details.module.css'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const task = {
+const task1 = {
   name:"Default task",
   space:"Exterior",
   difficulty:"Easy",
