@@ -55,14 +55,13 @@ export default function Dashboard({session}) {
 
     useEffect(() => {
       fetchTasks()
-      console.log(tasks)
     }, [])
     const fetchTasks = async () => {
-      let { data: tasks, error } = await supabase.from('userTasks').select(`
+      let { data: tasks, error } = await supabase.from('UserTasks').select(`
       *,
       UserHome!inner(*)
       `)
-      .eq('UserHome.UserID', user.id)
+      .eq('UserHome.userID', user.id)
       if (error) console.log('error', error)
       else {
         tasks1.push(tasks)
@@ -88,14 +87,17 @@ export default function Dashboard({session}) {
       try {
         const user = supabase.auth.user()
 
-        let {data: fID} = await supabase.from('HomeFeatures').select('id').eq('FeatureName', name).single()
+        let {data: fID} = await supabase.from('HomeFeatures').select('*').eq('featureName', name).single()
+        console.log(data)
         const updates = {
-          UserID: user.id,
-          FeatureID: fID.id,
-          tag3: fID.tag3
+          userID: user.id,
+          featureID: fID.id,
+          tag3: fID.tag3,
+          featureName: fID.featureName,
+          featureType: fID.featureType
         }
-        let {data} = await supabase.from('UserHome').select('*').eq('FeatureID', fID.id).eq('UserID', user.id)
-        console.log(data.length)
+        let {data} = await supabase.from('UserHome').select('*').eq('featureID', fID.id).eq('userID', user.id)
+
         if (data.length == 0) {
           let { error } = await supabase.from('UserHome').upsert(updates, {
             returning: 'minimal', // Don't return the value after inserting
@@ -117,10 +119,10 @@ export default function Dashboard({session}) {
     async function addTasks(feaID) {
       try {
         const user = supabase.auth.user()
-        let {data: count} = await supabase.from('UserHome').select('FeatureID, id, tag3').eq('UserID', user.id).eq('FeatureID', feaID)
+        let {data: count} = await supabase.from('UserHome').select('featureID, id, tag3').eq('userID', user.id).eq('featureID', feaID)
         count.map(async (ftID) => {
           console.log(ftID)
-          let {data: list} = await supabase.from('tasks').select('*').eq('HomeFeatureID', ftID.FeatureID)
+          let {data: list} = await supabase.from('tasks').select('*').eq('homeFeatureID', ftID.featureID)
           list.map(async (task) => {
             const updates = {
               userHomeID: ftID.id,
@@ -129,11 +131,13 @@ export default function Dashboard({session}) {
               title: task.title,
               difficulty: task.difficulty,
               description: task.description,
-              UserID: user.id,
+              userID: user.id,
               time: task.time,
-              tag3: ftID.tag3
+              tag3: ftID.tag3,
+              f_description: task.f_description,
+              tools: task.tools
             }
-            let { error } = await supabase.from('userTasks').upsert(updates, {
+            let { error } = await supabase.from('UserTasks').upsert(updates, {
               returning: 'minimal', // Don't return the value after inserting
             })
             addSteps(task.id)
@@ -151,7 +155,7 @@ export default function Dashboard({session}) {
       try {
         const user = supabase.auth.user()
 
-        let {data: count} = await supabase.from('userTasks').select('taskID, id, UserID').eq('UserID', user.id).eq('taskID', taskID)
+        let {data: count} = await supabase.from('UserTasks').select('taskID, id, userID').eq('userID', user.id).eq('taskID', taskID)
         count.map(async (tID) => {
           let {data: list} = await supabase.from('steps').select('*').eq('taskID', tID.taskID).order('title')
           list.map(async(steps) => {
@@ -161,9 +165,9 @@ export default function Dashboard({session}) {
               stepsStatus: false,
               title: steps.title,
               description: steps.description,
-              UserID: user.id
+              userID: user.id
             }
-            let { error } = await supabase.from('userSteps').upsert(updates, {
+            let { error } = await supabase.from('UserSteps').upsert(updates, {
               returning: 'minimal', // Don't return the value after inserting
             })
             if (error) {

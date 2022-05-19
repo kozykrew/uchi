@@ -33,7 +33,7 @@ export default function HomeFeatures() {
             <Space name={"Surfaces"} hfs={[]} />
             <Space name={"Systems"} hfs={[]} />
             <Space name={"Utility"} hfs={[]} />
-            <Space name={"Miscellaneous"} hfs={[]} />
+            {/* <Space name={"Miscellaneous"} hfs={[]} /> */}
           </div>
         </Layout>
       </div>

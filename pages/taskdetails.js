@@ -48,6 +48,7 @@ function TaskDetails({ ssrTask }) {
 
     const taskID = router.query.taskid
     const [steps, setSteps] = useState([])
+    const [tools, setTools] = useState([])
     var [stepsCompleted, setStepsCompleted] = useState([]);
     const [ progressValue, setProgressValue ] = useState(0);
 
@@ -57,8 +58,8 @@ function TaskDetails({ ssrTask }) {
 
     const steps1 = []
     const fetchSteps = async () => {
-    let { data: steps} = await supabase.from('userSteps').select(`*`)
-    .eq('UserID', user.id)
+    let { data: steps} = await supabase.from('UserSteps').select(`*`)
+    .eq('userID', user.id)
     .eq('userTasksID', taskID)
     .order('title')
     steps1.push(steps)
@@ -87,16 +88,17 @@ function TaskDetails({ ssrTask }) {
       fetchTasks()
     }, [])
     const fetchTasks = async () => {
-      let { data: taske, error } = await supabase.from('userTasks').select(`
+      let { data: taske, error } = await supabase.from('UserTasks').select(`
       *,
       UserHome!inner(*)
       `)
-      .eq('UserHome.UserID', user.id)
+      .eq('UserHome.userID', user.id)
       .eq('id', taskID)
       .single()
       if (error) console.log('error', error)
       else {
         setTask(taske)
+        setTools(taske.tools)
       }
     }
 
@@ -143,17 +145,18 @@ function TaskDetails({ ssrTask }) {
 
     const toggleTasks = async () => {
         const { data, error } = await supabase
-          .from('userTasks')
+          .from('UserTasks')
           .update({ taskStatus: 'true' })
+          .eq('userID', user.id)
           .eq('id', taskID)
           .single()
     }
     const toggleSteps = async () => {
       for (var i = 0; i < steps[0].length; i++) {
         const { data, error } = await supabase
-        .from('userSteps')
+        .from('UserSteps')
         .update({ stepsStatus: 'true' })
-        .eq('UserID', user.id)
+        .eq('userID', user.id)
         .eq('id', steps[0][i].id)
       }
     }
@@ -185,7 +188,7 @@ function TaskDetails({ ssrTask }) {
               <div className="pageContent">
                 <DetailsHeader type="task" name={taske.title} progressValue={progressValue} handleComplete={handleComplete} />
                 <div className={styles.mainDetailsContainer}>
-                  <MainDetailsTable type="task" space={task1.space} difficulty={taske.difficulty} time={task1.time} frequency={task1.frequency} />
+                  <MainDetailsTable type="task" space={taske.tag3} difficulty={taske.difficulty} time={taske.time} frequency={task1.frequency} />
                   <hr className={styles.hr} />
                   <p className={styles.purpose}>{taske.description}</p>
                 </div>
@@ -208,9 +211,9 @@ function TaskDetails({ ssrTask }) {
                   </div>
                   <CircularProgressbar className={styles.progressbar} value={progressValue} maxValue={100} text={progressValue + '%'} />
                   <div className={styles.mainDetailsContainer}>
-                    <MainDetailsTable type="task" space={task1.space} difficulty={taske.difficulty} time={task1.time} frequency={task1.frequency} />
+                    <MainDetailsTable type="task" space={taske.tag3} difficulty={taske.difficulty} time={taske.time} frequency={task1.frequency} />
                     <hr className={styles.hr} />
-                    <p className={styles.purpose}>{taske.description}</p>
+                    <p className={styles.purpose}>{taske.f_description}</p>
                   </div>
                 </div>
               </div>
@@ -219,7 +222,7 @@ function TaskDetails({ ssrTask }) {
             <div className="pageContent">
               <h2>How To</h2>
               {uchirec}
-              <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={steps} tools={task1.tools} stepsComplete={stepsCompleted} setStepsComplete={setStepsCompleted} handleProgress={handleProgress} />
+              <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={steps} tools={tools} stepsComplete={stepsCompleted} setStepsComplete={setStepsCompleted} handleProgress={handleProgress} />
             </div>
           </div>
           <div className={styles.chocolate80filler}>
