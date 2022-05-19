@@ -42,6 +42,7 @@ export function UchiNavbar() {
               <li className={router.pathname == "/homefeatures" ? "active" : ""}><Link href="/homefeatures"><a>Home Features</a></Link></li>
               <li className={router.pathname == "/tasks" ? "active" : ""}><Link href="/tasks"><a>Tasks</a></Link></li>
               <li className={router.pathname == "/profile" ? "active" : ""}><Link href="/profile"><a>Profile</a></Link></li>
+              <li className={router.pathname == "/about" ? "active" : ""}><Link href="/about"><a>About <span className="brand">UCHI</span></a></Link></li>
             </ul>
           </Nav>
         </Navbar.Collapse>
@@ -96,7 +97,7 @@ export function UchiSideNavbar({session}) {
           <Dropdown.Toggle variant="light" split id="dropdown-split-basic" />
 
           <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">About UCHI</Dropdown.Item>
+            <Dropdown.Item href="/about">About <span className="brand">UCHI</span></Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item href="#/action-2"><img src="/icons/signout_dark.svg" alt="Sign out" />Sign Out</Dropdown.Item>
           </Dropdown.Menu>
