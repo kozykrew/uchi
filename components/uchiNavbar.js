@@ -53,7 +53,7 @@ export function UchiNavbar() {
 export function UchiSideNavbar({session}) {
   const user = supabase.auth.user()
   const [username, setUsername] = useState(null)
-
+  const user = supabase.auth.user()
   useEffect(() => {
     getProfile()
   }, [session])

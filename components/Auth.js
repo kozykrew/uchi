@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import { useRouter } from 'next/router'
 import Button from 'react-bootstrap/Button'
+import { useRouter } from 'next/router'
+
 
 import styles from './button.module.css'
 
@@ -30,6 +32,7 @@ export default function Auth() {
       setLoading(false)
     }
   }
+
 
   return (
     <div>
@@ -80,6 +83,18 @@ export default function Auth() {
         >
           {loading ? 'Loading' : 'Sign In'}
         </Button>
+        <Button
+          variant="light"
+          onClick={(e) => {
+            e.preventDefault()
+            handleLogin('LOGIN', email,password)
+          }}
+          className={styles.signin}
+          disabled={loading}
+        >
+          {loading ? 'Loading' : 'Login'}
+        </Button>
+
       </form>
     </div>
   )
