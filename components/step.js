@@ -21,9 +21,9 @@ export function Step(props) {
   const toggle = async () => {
     try {
       const { data, error } = await supabase
-        .from('userSteps')
+        .from('UserSteps')
         .update({ stepsStatus: !isCompleted })
-        .eq('UserID', user.id)
+        .eq('userID', user.id)
         .eq('id', props.stepid)
         .single()
       if (error) {
