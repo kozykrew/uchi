@@ -49,23 +49,25 @@ function TaskDetails({ ssrTask }) {
   var [stepsCompleted, setStepsCompleted] = useState([]);
   const [ progressValue, setProgressValue ] = useState(0);
 
-  useEffect(() => {
-    if (contextValue.state.loggedIn) {
-      fetchSteps()
-    }
-  }, []);
-
-  const [taske, setTask] = useState([])
-  useEffect(() => {
-    if (contextValue.state.loggedIn) {
-      fetchTasks()
-    }
-  }, []);
+  
 
   if (contextValue.state.loggedIn) {
     const user = supabase.auth.user()
 
     const taskID = router.query.taskid
+
+    useEffect(() => {
+      if (contextValue.state.loggedIn) {
+        fetchSteps()
+      }
+    }, []);
+  
+    const [taske, setTask] = useState([])
+    useEffect(() => {
+      if (contextValue.state.loggedIn) {
+        fetchTasks()
+      }
+    }, []);
 
     const steps1 = []
     const fetchSteps = async () => {
@@ -196,7 +198,7 @@ function TaskDetails({ ssrTask }) {
               <div className="pageContent">
                 <DetailsHeader type="task" name={taske.title} progressValue={progressValue} handleComplete={handleComplete} />
                 <div className={styles.mainDetailsContainer}>
-                  <MainDetailsTable type="task" space={taske.tag3} difficulty={taske.difficulty} time={taske.time} frequency={task1.frequency} hf = {feature}/>
+                  <MainDetailsTable type="task" space={taske.tag3} difficulty={taske.difficulty} time={taske.time} frequency={task1.frequency} hf ={feature}/>
                   <hr className={styles.hr} />
                   <p className={styles.purpose}>{taske.description}</p>
                 </div>

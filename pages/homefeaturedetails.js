@@ -26,16 +26,18 @@ export default function HomeFeatureDetails() {
   const router = useRouter();
   const [tasks, setTasks] = useState([])
 
-  useEffect(() => {
-    if (contextValue.state.loggedIn) {
-      fetchTasks()
-    }
-  }, []);
+  
 
   if (contextValue.state.loggedIn) {
     const user = supabase.auth.user();
     const addHF = router.query.homeFeatureName
     const addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
+
+    useEffect(() => {
+      if (contextValue.state.loggedIn) {
+        fetchTasks()
+      }
+    }, []);
 
     const fetchTasks = async () => {
       let { data: tasks, error } = await supabase.from('UserTasks').select(`

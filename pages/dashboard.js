@@ -49,22 +49,20 @@ export default function Dashboard({session}) {
 
   const [username, setUsername] = useState(null)
   const [tasks, setTasks] = useState([])
+  const user = supabase.auth.user()
 
-  useEffect(() => {
-    if (contextValue.state.loggedIn) {
-      fetchTasks()
-    }
-  }, []);
 
-  useEffect(() => {
-    if (contextValue.state.loggedIn) {
-      getProfile()
-    }
-  }, [session]);
+  
 
   if (contextValue.state.loggedIn) {
     const user = supabase.auth.user();
     const tasks1 = [];
+
+    useEffect(() => {
+      if (contextValue.state.loggedIn) {
+        fetchTasks()
+      }
+    }, []);
 
     const fetchTasks = async () => {
       let { data: tasks, error } = await supabase.from('UserTasks').select(`
@@ -79,15 +77,23 @@ export default function Dashboard({session}) {
       }
     }
 
+    useEffect(() => {
+      if (contextValue.state.loggedIn) {
+        getProfile()
+      }
+    }, [session]);
+  
     async function getProfile() {
-        let {data} = await supabase
-          .from('profiles')
-          .select(`username, website, avatar_url`)
-          .eq('id', user.id)
-          .single()
-        setUsername(data.username);
-        contextValue.setUsername(data.username);
-    }
+      let {data} = await supabase
+        .from('profiles')
+        .select(`username, website, avatar_url`)
+        .eq('id', user.id)
+        .single()
+      setUsername(data.username);
+      contextValue.setUsername(data.username);
+    } 
+
+    
 
     async function addRow(name) {
       try {
