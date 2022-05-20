@@ -13,11 +13,11 @@ import btnStyles from '../../components/button.module.css'
 export default function Age() {
   const router = useRouter();
   const user = supabase.auth.user()
-  let addHF = router.query.homeFeature
-  var addHFiconpath = "/icons/hf_"
-  if (addHF !== undefined) {
-    addHFiconpath + addHF.toLowerCase() + "_lg.svg";
-  }
+  let addHF = router.query.homeFeature.charAt(0).toUpperCase() + router.query.homeFeature.slice(1);;
+  var addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
+  // if (addHF !== undefined) {
+  //   addHFiconpath + addHF.toLowerCase() + "_lg.svg";
+  // }
   const additionalRefrigerator = true;
   const additionalRoof = false;
   async function deleteHome() {

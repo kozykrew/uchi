@@ -12,11 +12,11 @@ import btnStyles from '../../components/button.module.css'
 export default function Type() {
   const router = useRouter();
   const homeFeature = router.query.homeFeature
-  const addHF = homeFeature;
-  var addHFiconpath = "/icons/hf_"
-  if (addHF !== undefined) {
-    addHFiconpath + addHF.toLowerCase() + "_lg.svg";
-  }
+  const addHF = homeFeature.charAt(0).toUpperCase() + homeFeature.slice(1);
+  var addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
+  // if (addHF !== undefined) {
+  //   addHFiconpath + addHF.toLowerCase() + "_lg.svg";
+  // }
   async function deleteHome() {
     const user = supabase.auth.user()
     let { data } = await supabase.from('UserHome').delete().eq('userID', user.id).eq('featureName', addHF)

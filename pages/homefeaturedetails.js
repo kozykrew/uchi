@@ -24,33 +24,34 @@ const additionalRoof = [];
 export default function HomeFeatureDetails() {
   const contextValue = useContext(AppContext);
   const router = useRouter();
-  const [tasks, setTasks] = useState([])
+  var user;
+  const [tasks, setTasks] = useState([]);
 
-  
+  var addHF;
+  var addHFiconpath;
+
+  useEffect(() => {
+    if (contextValue.state.loggedIn) {
+      addHF = router.query.homeFeatureName;
+      addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
+      fetchTasks()
+    }
+  }, []);
+  const fetchTasks = async () => {
+    let { data: tasks, error } = await supabase.from('UserTasks').select(`
+    *,
+    UserHome!inner(*)
+    `)
+    .eq('UserHome.userID', user.id)
+    .eq('UserHome.featureName', addHF)
+    if (error) console.log('error', error)
+    else {
+      setTasks(tasks)
+    }
+  }
 
   if (contextValue.state.loggedIn) {
-    const user = supabase.auth.user();
-    const addHF = router.query.homeFeatureName
-    const addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
-
-    useEffect(() => {
-      if (contextValue.state.loggedIn) {
-        fetchTasks()
-      }
-    }, []);
-
-    const fetchTasks = async () => {
-      let { data: tasks, error } = await supabase.from('UserTasks').select(`
-      *,
-      UserHome!inner(*)
-      `)
-      .eq('UserHome.userID', user.id)
-      .eq('UserHome.featureName', addHF)
-      if (error) console.log('error', error)
-      else {
-        setTasks(tasks)
-      }
-    }
+    user = supabase.auth.user();
 
     return (
       <div className={styles.chocolate60bg}>

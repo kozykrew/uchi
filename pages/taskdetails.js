@@ -49,28 +49,16 @@ function TaskDetails({ ssrTask }) {
   var [stepsCompleted, setStepsCompleted] = useState([]);
   const [ progressValue, setProgressValue ] = useState(0);
 
-  
+  var user;
+  var taskID;
+  const steps1 = [];
 
-  if (contextValue.state.loggedIn) {
-    const user = supabase.auth.user()
-
-    const taskID = router.query.taskid
-
-    useEffect(() => {
-      if (contextValue.state.loggedIn) {
-        fetchSteps()
-      }
-    }, []);
-  
-    const [taske, setTask] = useState([])
-    useEffect(() => {
-      if (contextValue.state.loggedIn) {
-        fetchTasks()
-      }
-    }, []);
-
-    const steps1 = []
-    const fetchSteps = async () => {
+  useEffect(() => {
+    if (contextValue.state.loggedIn) {
+      fetchSteps()
+    }
+  }, []);
+  const fetchSteps = async () => {
     let { data: steps} = await supabase.from('UserSteps').select(`*`)
     .eq('userID', user.id)
     .eq('userTasksID', taskID)
@@ -94,23 +82,33 @@ function TaskDetails({ ssrTask }) {
       }
     var percent = Math.ceil((numerator / stepsCompleted.length)*100);
     setProgressValue(percent);
-    }
+  }
 
-    const fetchTasks = async () => {
-      let { data: taske, error } = await supabase.from('UserTasks').select(`
-      *,
-      UserHome!inner(*)
-      `)
-      .eq('UserHome.userID', user.id)
-      .eq('id', taskID)
-      .single()
-      if (error) console.log('error', error)
-      else {
-        setTask(taske)
-        setTools(taske.tools)
-        setFeature(taske.UserHome.featureName)
-      }
+  const [taske, setTask] = useState([])
+  useEffect(() => {
+    if (contextValue.state.loggedIn) {
+      fetchTasks()
     }
+  }, []);
+  const fetchTasks = async () => {
+    let { data: taske, error } = await supabase.from('UserTasks').select(`
+    *,
+    UserHome!inner(*)
+    `)
+    .eq('UserHome.userID', user.id)
+    .eq('id', taskID)
+    .single()
+    if (error) console.log('error', error)
+    else {
+      setTask(taske)
+      setTools(taske.tools)
+      setFeature(taske.UserHome.featureName)
+    }
+  }
+
+  if (contextValue.state.loggedIn) {
+    user = supabase.auth.user();
+    taskID = router.query.taskid;
 
     // --------- FRONTEND progress bar state
     // const [ progressValue, setProgressValue ] = useState(0);

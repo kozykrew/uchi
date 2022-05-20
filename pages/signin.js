@@ -47,6 +47,8 @@ export default function SignIn() {
     </Navbar>
   )
 
+  //{!session ? <Auth /> : <Account key={session.user.id} session={session} />}
+  
   return (
     <div className={styles.bg}>
       <Head>
@@ -70,7 +72,7 @@ export default function SignIn() {
         </div>
         <div className={styles.pageContent}>
           <h1 className={styles.title}><span className={styles.titleBrand}>Welcome to UCHI</span></h1>
-          {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
+          <Auth />
           <hr className={styles.hr} />
         </div>
         <div className={styles.backtomain}>

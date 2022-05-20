@@ -20,7 +20,25 @@ export function MainDetailsTable(props) {
   const [featureBrand, setFeatureBrand] = useState('')
   const [featureModel, setFeatureModel] = useState('')
 
-  
+  useEffect(() => {
+    if (props.type == "task" || props.type == "confirmation") {
+      fetchFeature()
+    }
+  }, []);
+  const fetchFeature = async () => {
+    let { data: feature, error } = await supabase.from('UserHome').select(`
+    *`)
+    .eq('userID', user.id)
+    .eq('featureName', props.hf)
+    if (error) console.log('error', error)
+    else {
+      setFeature(feature)
+      setFeatureType(feature[0].featureType)
+      setFeatureAge(feature[0].age)
+      setFeatureBrand(feature[0].brand)
+      setFeatureModel(feature[0].modelNo)
+    }
+  }
 
   if (props.type == "task") {
     return (
@@ -63,25 +81,6 @@ export function MainDetailsTable(props) {
     //   ];
     }
 
-    useEffect(() => {
-      fetchFeature()
-    }, []);
-
-  const fetchFeature = async () => {
-    let { data: feature, error } = await supabase.from('UserHome').select(`
-    *`)
-    .eq('userID', user.id)
-    .eq('featureName', props.hf)
-    if (error) console.log('error', error)
-    else {
-      setFeature(feature)
-      setFeatureType(feature[0].featureType)
-      setFeatureAge(feature[0].age)
-      setFeatureBrand(feature[0].brand)
-      setFeatureModel(feature[0].modelNo)
-    }
-  }
-    
     // model number is not available for every home feature
     var modelNumber = (
       <tr>
@@ -140,7 +139,7 @@ export function MainDetailsTable(props) {
       setFeatureModel(feature[0].modelNo)
     }
   }
-  
+
     return (
       <div>
         <Table>

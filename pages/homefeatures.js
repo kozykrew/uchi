@@ -38,8 +38,8 @@ export default function HomeFeatures() {
     if (error) console.log('error', error)
     else {
       setExterior(exterior)
-    }   
-  } 
+    }
+  }
 
   useEffect(() => {
     getKitchen()
@@ -53,7 +53,7 @@ export default function HomeFeatures() {
     if (error) console.log('error', error)
     else {
       setKitchen(kitchen)
-    }   
+    }
   }
 
   useEffect(() => {
@@ -68,7 +68,7 @@ export default function HomeFeatures() {
     if (error) console.log('error', error)
     else {
       setBathroom(bathroom)
-    }   
+    }
   }
 
   useEffect(() => {
@@ -83,7 +83,7 @@ export default function HomeFeatures() {
     if (error) console.log('error', error)
     else {
       setOutdoors(outdoors)
-    }   
+    }
   }
 
   useEffect(() => {
@@ -98,7 +98,7 @@ export default function HomeFeatures() {
     if (error) console.log('error', error)
     else {
       setSurfaces(surfaces)
-    }   
+    }
   }
 
   useEffect(() => {
@@ -113,7 +113,7 @@ export default function HomeFeatures() {
     if (error) console.log('error', error)
     else {
       setSystems(systems)
-    }   
+    }
   }
 
   useEffect(() => {
@@ -128,14 +128,10 @@ export default function HomeFeatures() {
     if (error) console.log('error', error)
     else {
       setUtility(utility)
-    }   
+    }
   }
-  
-   
-
 
   if (contextValue.state.loggedIn) {
-    
     return (
       <div>
         <Head>
@@ -154,7 +150,7 @@ export default function HomeFeatures() {
             <Space name={"Utility"} hfs={utility} />
             {/* <Space name={"Miscellaneous"} hfs={[]} /> */}
           </div>
-        </Layout> 
+        </Layout>
       </div>
     )
   } else {

@@ -39,8 +39,6 @@ export function UchiNavbar() {
               <li className={router.pathname == "/dashboard" ? "active" : ""}><Link href="/dashboard"><a>Dashboard</a></Link></li>
               <li className={router.pathname == "/homefeatures" ? "active" : ""}><Link href="/homefeatures"><a>Home Features</a></Link></li>
               <li className={router.pathname == "/tasks" ? "active" : ""}><Link href="/tasks"><a>Tasks</a></Link></li>
-              <li className={router.pathname == "/profile" ? "active" : ""}><Link href="/profile"><a>Profile</a></Link></li>
-              <li className={router.pathname == "/about" ? "active" : ""}><Link href="/about"><a>About <span className="brand">UCHI</span></a></Link></li>
               <NavDropdown title={contextValue.state.username} id="mobile-nav-dropdown">
                 <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                 <NavDropdown.Item href="/about">About <span className="brand">UCHI</span></NavDropdown.Item>

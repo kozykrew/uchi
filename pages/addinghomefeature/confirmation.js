@@ -19,11 +19,11 @@ const additionalRoof = [];
 export default function Confirmation() {
   const user = supabase.auth.user()
   const router = useRouter();
-  const addHF = router.query.homeFeature;
-  var addHFiconpath = "/icons/hf_"
-  if (addHF !== undefined) {
-    addHFiconpath + addHF.toLowerCase() + "_lg.svg";
-  }
+  const addHF = router.query.homeFeature.charAt(0).toUpperCase() + router.query.homeFeature.slice(1);;
+  var addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
+  // if (addHF !== undefined) {
+  //   addHFiconpath + addHF.toLowerCase() + "_lg.svg";
+  // }
   // brand select state
   const [selectedBrand, setSelectedBrand] = useState(null);
   const [feature, setFeature] = useState([])

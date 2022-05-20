@@ -191,16 +191,6 @@ export default function Onboarding() {
         </OnboardingLayout>
       </div>
     )
-    // return (
-    //   <div>
-    //     <Head>
-    //       <title>UCHI | Onboarding</title>
-    //       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    //     </Head>
-    //     <OnboardingLayout>
-    //     </OnboardingLayout>
-    //   </div>
-    // )
   } else {
     return(<SignIn/>)
   }

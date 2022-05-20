@@ -37,8 +37,9 @@ const tasksByStatus = [[{id: 0, title:"Wash roof", difficulty:"Average", time:"3
 
 export default function Tasks() {
   const contextValue = useContext(AppContext);
+  var user;
 
-  
+
 
   if (contextValue.state.loggedIn) {
     const user = supabase.auth.user()
@@ -48,37 +49,36 @@ export default function Tasks() {
     if (contextValue.state.loggedIn) {
       fetchCompletedTasks()
     }
-    }, []);
+  }, []);
+  const fetchCompletedTasks = async () => {
+    let { data: completedTasks, error } = await supabase.from('UserTasks').select(`
+    *,
+    UserHome!inner(*)`)
+    .eq('UserHome.userID', user.id)
+    .eq('taskStatus', true)
+    if (error) console.log('error', error)
+    else setCompletedTasks(completedTasks)
+  }
 
     const [notTasks, setNotTasks] = useState([])
     useEffect(() => {
     if (contextValue.state.loggedIn) {
       fetchNotTasks()
     }
-    }, []);
+  }, []);
+  const fetchNotTasks = async () => {
+    let { data: notTasks, error } = await supabase.from('UserTasks').select(`
+    *,
+    UserHome!inner(*)`)
+    .eq('UserHome.userID', user.id)
+    .eq('taskStatus', false)
+    if (error) console.log('error', error)
+    else setNotTasks(notTasks)
+  }
 
-    const fetchCompletedTasks = async () => {
+  if (contextValue.state.loggedIn) {
+    user = supabase.auth.user()
 
-    
-
-      let { data: completedTasks, error } = await supabase.from('UserTasks').select(`
-      *,
-      UserHome!inner(*)`)
-      .eq('UserHome.userID', user.id)
-      .eq('taskStatus', true)
-      if (error) console.log('error', error)
-      else setCompletedTasks(completedTasks)
-    }
-
-    const fetchNotTasks = async () => {
-      let { data: notTasks, error } = await supabase.from('UserTasks').select(`
-      *,
-      UserHome!inner(*)`)
-      .eq('UserHome.userID', user.id)
-      .eq('taskStatus', false)
-      if (error) console.log('error', error)
-      else setNotTasks(notTasks)
-    }
     tasksByStatus[0] = notTasks
     tasksByStatus[1] = completedTasks
 
