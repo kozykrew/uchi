@@ -131,7 +131,7 @@ export default function Auth() {
           >
             {loading ? 'Loading' : 'Sign In'}
           </Button>
-          <p className="text-center mt-3">Don't have an account? <span className="signLink" onClick={() => setKey('signup')}>Sign Up</span></p>
+          <p className="text-center mt-3">Don&apos;t have an account? <span className="signLink" onClick={() => setKey('signup')}>Sign Up</span></p>
         </Tab>
       </Tabs>
     </div>

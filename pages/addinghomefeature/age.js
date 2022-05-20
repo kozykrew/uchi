@@ -10,13 +10,14 @@ import styles from '../../components/details.module.css'
 import addingStyles from '../../components/addingHomeFeature.module.css'
 import btnStyles from '../../components/button.module.css'
 
-
-
 export default function Age() {
   const router = useRouter();
   const user = supabase.auth.user()
   let addHF = router.query.homeFeature
-  const addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
+  var addHFiconpath = "/icons/hf_"
+  if (addHF !== undefined) {
+    addHFiconpath + addHF.toLowerCase() + "_lg.svg";
+  }
   const additionalRefrigerator = true;
   const additionalRoof = false;
   async function deleteHome() {
@@ -67,8 +68,8 @@ export default function Age() {
                 Cancel
               </Button>
               <Button className={btnStyles.addDesktop} onClick={() => router.push({
-                  pathname: '/addinghomefeature/confirmation', 
-                  query: {homeFeature: router.query.homeFeature} 
+                  pathname: '/addinghomefeature/confirmation',
+                  query: {homeFeature: router.query.homeFeature}
                 })}>
                 <span className="iconFirst">
                   <img src="../icons/carrotbtn_right_line_dark.svg" alt="Next" />

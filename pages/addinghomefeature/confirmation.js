@@ -13,8 +13,6 @@ import styles from '../../components/details.module.css'
 import addingStyles from '../../components/addingHomeFeature.module.css'
 import btnStyles from '../../components/button.module.css'
 
-
-
 const additionalRefrigerator = [{header:"Has built-in ice maker?", data:"yes"}]
 const additionalRoof = [];
 
@@ -22,7 +20,10 @@ export default function Confirmation() {
   const user = supabase.auth.user()
   const router = useRouter();
   const addHF = router.query.homeFeature;
-  const addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg"; 
+  var addHFiconpath = "/icons/hf_"
+  if (addHF !== undefined) {
+    addHFiconpath + addHF.toLowerCase() + "_lg.svg";
+  }
   // brand select state
   const [selectedBrand, setSelectedBrand] = useState(null);
   const [feature, setFeature] = useState([])
@@ -108,7 +109,7 @@ export default function Confirmation() {
     const user = supabase.auth.user()
     let { data } = await supabase.from('UserHome').delete().eq('userID', user.id).eq('featureName', addHF)
   }
-  
+
   var roof = (
     <Form className={addingStyles.form}>
       <Dropdown
@@ -131,7 +132,7 @@ export default function Confirmation() {
       </Dropdown>
     </Form>
   );
-  
+
   var brandsRList = ["Bosch", "Frigidaire", "GE Appliances", "Insignia", "KitchenAid", "LG", "Maytag", "Samsung", "Whirlpool"];
   const brandsROptions = brandsRList.map((brand) => {
     var obj = {

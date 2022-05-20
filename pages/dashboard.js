@@ -47,15 +47,25 @@ import SignIn from './signin.js'
 export default function Dashboard({session}) {
   const contextValue = useContext(AppContext);
 
+  const [username, setUsername] = useState(null)
+  const [tasks, setTasks] = useState([])
+
+  useEffect(() => {
+    if (contextValue.state.loggedIn) {
+      fetchTasks()
+    }
+  }, []);
+
+  useEffect(() => {
+    if (contextValue.state.loggedIn) {
+      getProfile()
+    }
+  }, [session]);
+
   if (contextValue.state.loggedIn) {
     const user = supabase.auth.user();
-    const [username, setUsername] = useState(null)
-    const [tasks, setTasks] = useState([])
-    const tasks1 = []
+    const tasks1 = [];
 
-    useEffect(() => {
-      fetchTasks()
-    }, [])
     const fetchTasks = async () => {
       let { data: tasks, error } = await supabase.from('UserTasks').select(`
       *,
@@ -68,10 +78,6 @@ export default function Dashboard({session}) {
         setTasks(tasks1)
       }
     }
-
-    useEffect(() => {
-      getProfile()
-    }, [session])
 
     async function getProfile() {
         let {data} = await supabase
@@ -192,7 +198,7 @@ export default function Dashboard({session}) {
         <Layout>
           <div className="pageContent">
             <PageHeader page={"dashboard"} headertext={"Welcome, " + contextValue.state.username + "!"} />
-            <SectionHeader iconpath="/icons/calendar_duotone.png" headertext={"2022"} />
+            <SectionHeader iconpath="/icons/calendar_duotone.svg" headertext={"2022"} />
             <CalendarTabs tabs={["May", "Jun", "Jul", "Aug", "Sep", "Oct"]} tabContent={tasks} />
           </div>
         </Layout>

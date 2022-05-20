@@ -9,17 +9,18 @@ import styles from '../../components/details.module.css'
 import addingStyles from '../../components/addingHomeFeature.module.css'
 import btnStyles from '../../components/button.module.css'
 
-
-
 export default function Type() {
   const router = useRouter();
   const homeFeature = router.query.homeFeature
   const addHF = homeFeature;
-  const addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
+  var addHFiconpath = "/icons/hf_"
+  if (addHF !== undefined) {
+    addHFiconpath + addHF.toLowerCase() + "_lg.svg";
+  }
   async function deleteHome() {
     const user = supabase.auth.user()
     let { data } = await supabase.from('UserHome').delete().eq('userID', user.id).eq('featureName', addHF)
-  } 
+  }
   return (
     <div className={styles.chocolate60bg}>
       <Head>

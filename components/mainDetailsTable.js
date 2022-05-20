@@ -12,15 +12,19 @@ import styles from './details.module.css'
     // frequency: string - task frequency
 // additional: array of objects of any additional information for a home feature
 export function MainDetailsTable(props) {
-
   const user = supabase.auth.user();
   const handleSelect = (e) => setSelectedBrand(e.target.value);
   const [feature, setFeature] = useState([])
-    const [featureType, setFeatureType] = useState('')
-    const [featureAge, setFeatureAge] = useState('')
-    const [featureBrand, setFeatureBrand] = useState('')
-    const [featureModel, setFeatureModel] = useState('')
-    
+  const [featureType, setFeatureType] = useState('')
+  const [featureAge, setFeatureAge] = useState('')
+  const [featureBrand, setFeatureBrand] = useState('')
+  const [featureModel, setFeatureModel] = useState('')
+
+  useEffect(() => {
+    if (props.type == "task" || props.type == "confirmation") {
+      fetchFeature()
+    }
+  }, []);
 
   if (props.type == "task") {
     return (
@@ -48,7 +52,7 @@ export function MainDetailsTable(props) {
     // var additionalTable = [];
     if (props.additional.length > 0) {
       additional = determineAdditional(props.additional);
-    
+
     //   additionalTable = props.additional.map((add => (
     //     <tr>
     //       <th>{add.header}</th>
@@ -62,9 +66,6 @@ export function MainDetailsTable(props) {
     //     </Table>
     //   ];
     }
-    useEffect(() => {
-      fetchFeature()
-    }, [])
     const fetchFeature = async () => {
       let { data: feature, error } = await supabase.from('UserHome').select(`
       *`)
@@ -104,7 +105,7 @@ export function MainDetailsTable(props) {
           <tr>
             <th>Model #</th>
             <td>{featureModel}</td>
-          </tr>  
+          </tr>
           <tr>
             <th>Age</th>
             <td>{featureAge}</td>
@@ -118,9 +119,7 @@ export function MainDetailsTable(props) {
     if (props.additional.length > 0) {
       additional = determineAdditional(props.additional);
     }
-    useEffect(() => {
-      fetchFeature()
-    }, [])
+
     const fetchFeature = async () => {
       let { data: feature, error } = await supabase.from('UserHome').select(`
       *`)
@@ -137,11 +136,11 @@ export function MainDetailsTable(props) {
     }
     return (
       <div>
-        <Table> 
+        <Table>
           <tr>
             <th>Type</th>
             <td>{featureType}</td>
-          </tr> 
+          </tr>
           <tr>
             <th>Age</th>
             <td>{featureAge}</td>
@@ -155,7 +154,7 @@ export function MainDetailsTable(props) {
 
 function determineAdditional(add) {
   var additional = [];
-  var additionalTable = []; 
+  var additionalTable = [];
   if (add != []) {
     additionalTable = add.map((add, i) => (
       <tr key={i}>

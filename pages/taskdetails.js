@@ -41,21 +41,31 @@ export async function getServerSideProps(context) {
 
 function TaskDetails({ ssrTask }) {
   const contextValue = useContext(AppContext);
+  const router = useRouter();
+
+  const [steps, setSteps] = useState([])
+  const [tools, setTools] = useState([])
+  const [feature, setFeature] = useState([])
+  var [stepsCompleted, setStepsCompleted] = useState([]);
+  const [ progressValue, setProgressValue ] = useState(0);
+
+  useEffect(() => {
+    if (contextValue.state.loggedIn) {
+      fetchSteps()
+    }
+  }, []);
+
+  const [taske, setTask] = useState([])
+  useEffect(() => {
+    if (contextValue.state.loggedIn) {
+      fetchTasks()
+    }
+  }, []);
 
   if (contextValue.state.loggedIn) {
-    const router = useRouter();
     const user = supabase.auth.user()
 
     const taskID = router.query.taskid
-    const [steps, setSteps] = useState([])
-    const [tools, setTools] = useState([])
-    const [feature, setFeature] = useState([])
-    var [stepsCompleted, setStepsCompleted] = useState([]);
-    const [ progressValue, setProgressValue ] = useState(0);
-
-    useEffect(() => {
-      fetchSteps()
-    }, [])
 
     const steps1 = []
     const fetchSteps = async () => {
@@ -84,10 +94,6 @@ function TaskDetails({ ssrTask }) {
     setProgressValue(percent);
     }
 
-    const [taske, setTask] = useState([])
-    useEffect(() => {
-      fetchTasks()
-    }, [])
     const fetchTasks = async () => {
       let { data: taske, error } = await supabase.from('UserTasks').select(`
       *,

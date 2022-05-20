@@ -12,8 +12,6 @@ import SignIn from './signin.js'
 
 import styles from '../components/details.module.css'
 
-
-
 const mgTasksRefrigerator = [{title:"Fill Refrigerator", difficulty:"Simple", frequency:"Occasionally"},
                 {title:"Refresh ice maker", difficulty:"Simple", frequency:"Quarterly"},
                 {title:"Clean coils", difficulty:"Simple", frequency:"Annually"}];
@@ -25,18 +23,20 @@ const additionalRoof = [];
 
 export default function HomeFeatureDetails() {
   const contextValue = useContext(AppContext);
+  const router = useRouter();
   const [tasks, setTasks] = useState([])
 
-  if (contextValue.state.loggedIn) {
-
-    const user = supabase.auth.user();
-    const router = useRouter();
-    const addHF = router.query.homeFeatureName
-    const addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg"; 
-    
-    useEffect(() => {
+  useEffect(() => {
+    if (contextValue.state.loggedIn) {
       fetchTasks()
-    }, [])
+    }
+  }, []);
+
+  if (contextValue.state.loggedIn) {
+    const user = supabase.auth.user();
+    const addHF = router.query.homeFeatureName
+    const addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
+
     const fetchTasks = async () => {
       let { data: tasks, error } = await supabase.from('UserTasks').select(`
       *,
@@ -49,8 +49,6 @@ export default function HomeFeatureDetails() {
         setTasks(tasks)
       }
     }
-
-
 
     return (
       <div className={styles.chocolate60bg}>
@@ -81,7 +79,7 @@ export default function HomeFeatureDetails() {
                     <MainDetailsTable type="hf" hf={addHF} additional={additionalRoof} />
                   </div>
                 </div>
-              </div> 
+              </div>
             </div>
             <div className="pageContent">
               <h2>Maintenance Guide</h2>

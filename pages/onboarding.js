@@ -43,18 +43,21 @@ export default function Onboarding() {
 
   updateProfile({ username })
 
+  // state for onboarding stages
+  const [stage, setStage] = useState(0);
+  // state for onboarding carousel index
+  const [carouselIndex, setCarouselIndex] = useState(0);
+
+  // function controlling carousel index (carousel indicators)
+  const handleSelect = (selectedIndex, e) => {
+    setCarouselIndex(selectedIndex);
+  };
+
   if (contextValue.state.loggedIn) {
-    const [stage, setStage] = useState(0);
-    const [carouselIndex, setCarouselIndex] = useState(0);
-
-    const handleSelect = (selectedIndex, e) => {
-      setCarouselIndex(selectedIndex);
-    };
-
     var stage0 = (
       <div className={styles.start}>
         <h1>Hi {username}!</h1>
-        <h2>Let's take a tour of <span className="brand">UCHI</span>!</h2>
+        <h2>Let&apos;s take a tour of <span className="brand">UCHI</span>!</h2>
         <Button
           variant="light"
           className={btnStyles.startTour}
@@ -164,7 +167,7 @@ export default function Onboarding() {
     var stage2 = (
       <div className={styles.start}>
         <h1>Ready, {username}?</h1>
-        <h2>Let's add a Home Feature!</h2>
+        <h2>Let&apos;s add a Home Feature!</h2>
         <Button
           variant="light"
           className={btnStyles.startTour}

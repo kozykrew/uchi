@@ -13,10 +13,9 @@ import profileCardStyles from '../components/profileCard.module.css'
 
 export default function Profile() {
   const contextValue = useContext(AppContext);
+  const router = useRouter();
 
   if (contextValue.state.loggedIn) {
-    const router = useRouter();
-
     return (
       <div className={styles.vanillaToastedbg}>
         <Head>
