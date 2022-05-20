@@ -62,7 +62,7 @@ export function TabBar(props) {
 // tabContent: array of task objects arrays
 export function CalendarTabs(props) {
   var tabContent;
-  console.log(props.tabContent)
+
   tabContent = props.tabContent.map((content, i) => (
     <TaskList key={i} dashboard={true} tasks={content} />
   ));
@@ -70,7 +70,6 @@ export function CalendarTabs(props) {
 
   if (tabContent.length < props.tabs.length) {
     var empties = props.tabs.length - tabContent.length
-    console.log(props.tabs.length - tabContent.length)
     for (let i = 0; i < empties; i++) {
       tabContent.push(
         <TaskList key={"empty" + i} dashboard={true} tasks={[]} />

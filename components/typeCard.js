@@ -1,5 +1,6 @@
 import Image from 'next/image'
-
+import { useState, useContext, useEffect } from 'react'
+import { supabase } from '../utils/supabaseClient'
 import styles from './typeCard.module.css'
 
 // PROPS

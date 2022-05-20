@@ -47,10 +47,10 @@ export default function Tasks() {
     }, [])
 
     const fetchCompletedTasks = async () => {
-      let { data: completedTasks, error } = await supabase.from('userTasks').select(`
+      let { data: completedTasks, error } = await supabase.from('UserTasks').select(`
       *,
       UserHome!inner(*)`)
-      .eq('UserHome.UserID', user.id)
+      .eq('UserHome.userID', user.id)
       .eq('taskStatus', true)
       if (error) console.log('error', error)
       else setCompletedTasks(completedTasks)
@@ -62,10 +62,10 @@ export default function Tasks() {
     }, [])
 
     const fetchNotTasks = async () => {
-      let { data: notTasks, error } = await supabase.from('userTasks').select(`
+      let { data: notTasks, error } = await supabase.from('UserTasks').select(`
       *,
       UserHome!inner(*)`)
-      .eq('UserHome.UserID', user.id)
+      .eq('UserHome.userID', user.id)
       .eq('taskStatus', false)
       if (error) console.log('error', error)
       else setNotTasks(notTasks)

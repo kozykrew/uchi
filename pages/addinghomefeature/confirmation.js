@@ -7,24 +7,42 @@ import Head from 'next/head'
 import Layout, {AddHFFooter} from '../../components/layout.js'
 import {AddHFHeader} from '../../components/headers.js'
 import {MainDetailsTable} from '../../components/mainDetailsTable.js'
-
+import { useContext, useEffect } from 'react'
+import { supabase } from '../../utils/supabaseClient'
 import styles from '../../components/details.module.css'
 import addingStyles from '../../components/addingHomeFeature.module.css'
 import btnStyles from '../../components/button.module.css'
 
-const addHF = "Roof";
-const addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
+
 
 const additionalRefrigerator = [{header:"Has built-in ice maker?", data:"yes"}]
 const additionalRoof = [];
 
 export default function Confirmation() {
+  const user = supabase.auth.user()
   const router = useRouter();
-
+  const addHF = router.query.homeFeature;
+  const addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg"; 
   // brand select state
   const [selectedBrand, setSelectedBrand] = useState(null);
+  const [feature, setFeature] = useState([])
 
   const handleSelect = (e) => setSelectedBrand(e.target.value);
+
+  useEffect(() => {
+    fetchFeature()
+  }, [])
+  const fetchFeature = async () => {
+    let { data: feature, error } = await supabase.from('UserHome').select(`
+    *`)
+    .eq('userID', user.id)
+    .eq('featureName', addHF)
+    if (error) console.log('error', error)
+    else {
+      setFeature(feature)
+      console.log(feature)
+    }
+  }
 
   var brandsRefrigerator = (
     <Form.Select className={addingStyles.form} aria-label="Select brand" onChange={handleSelect}>
@@ -70,14 +88,35 @@ export default function Confirmation() {
   const [toggleContents, setToggleContents] = useState("Select a Brand");
   const [selectedRoofBrand, setSelectedRoofBrand] = useState();
 
-  var brandsRoof2 = (
+  async function updateBrand(brandHf) {
+    const user = supabase.auth.user()
+    const updates = {
+      brand: brandHf,
+    }
+    let { data } = await supabase.from('UserHome').update(updates).eq('userID', user.id).eq('featureName', addHF)
+  }
+
+  async function updateModel(modelHf) {
+    const user = supabase.auth.user()
+    const updates = {
+      modelNo: modelHf,
+    }
+    let { data } = await supabase.from('UserHome').update(updates).eq('userID', user.id).eq('featureName', addHF)
+  }
+
+  async function deleteHome() {
+    const user = supabase.auth.user()
+    let { data } = await supabase.from('UserHome').delete().eq('userID', user.id).eq('featureName', addHF)
+  }
+  
+  var roof = (
     <Form className={addingStyles.form}>
       <Dropdown
         onSelect={eventKey => {
           const { code, brand } = roofBrands.find(({ code }) => eventKey === code);
-
-          setSelectedRoofBrand(eventKey);
+          setSelectedBrand(eventKey);
           setToggleContents(<>{brand}</>);
+          updateBrand(eventKey)
         }}
       >
         <Dropdown.Toggle variant="secondary" id="dropdown-brands">
@@ -92,15 +131,123 @@ export default function Confirmation() {
       </Dropdown>
     </Form>
   );
+  
+  var brandsRList = ["Bosch", "Frigidaire", "GE Appliances", "Insignia", "KitchenAid", "LG", "Maytag", "Samsung", "Whirlpool"];
+  const brandsROptions = brandsRList.map((brand) => {
+    var obj = {
+      code: brand.replace(/\s+/g, '').toLowerCase(),
+      brand: brand
+    };
+    return obj;
+  });
+
+  const [rBrands] = useState(brandsROptions);
+  const [toggleRContents, setToggleRContents] = useState("Select a Brand");
+  const [selectedRBrand, setSelectedRBrand] = useState();
+
+  var refrigerator = (
+    <Form className={addingStyles.form}>
+      <Dropdown
+        onSelect={eventKey => {
+          const { code, brand } = rBrands.find(({ code }) => eventKey === code);
+          setSelectedBrand(eventKey);
+          setToggleRContents(<>{brand}</>);
+          updateBrand(eventKey)
+        }}
+      >
+        <Dropdown.Toggle variant="secondary" id="dropdown-brands">
+          {toggleRContents}
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          {rBrands.map(({ code, brand }) => (
+            <Dropdown.Item key={code} eventKey={code}>{brand}</Dropdown.Item>
+          ))}
+        </Dropdown.Menu>
+      </Dropdown>
+    </Form>
+  );
 
   var modelNumber = (
     <div className={addingStyles.addInfoContainer}>
       <Form.Label className="selectLabel">Model #</Form.Label>
-      <Form.Control className={addingStyles.form} type="text" placeholder="Enter model #" />
+      <Form.Control className={addingStyles.form} type="text" placeholder="Enter model #" onChange={(e) => {
+                  updateModel(e.target.value)
+                }}/>
     </div>
   )
-  if (addHF == "Roof") {
+
+  var finalHf = ''
+
+  if (addHF == "roof") {
+    finalHf = roof
     modelNumber = "";
+  } else {
+    finalHf = refrigerator
+  }
+
+  async function addTasks(featureName) {
+    try {
+      const user = supabase.auth.user()
+      let {data: count} = await supabase.from('UserHome').select('featureID, id, tag3').eq('userID', user.id).eq('featureName', featureName)
+      count.map(async (ftID) => {
+        console.log(ftID)
+        let {data: list} = await supabase.from('tasks').select('*').eq('homeFeatureID', ftID.featureID)
+        list.map(async (task) => {
+          const updates = {
+            userHomeID: ftID.id,
+            taskID: task.id,
+            taskStatus: false,
+            title: task.title,
+            difficulty: task.difficulty,
+            description: task.description,
+            userID: user.id,
+            time: task.time,
+            tag3: ftID.tag3,
+            f_description: task.f_description,
+            tools: task.tools
+          }
+          let { error } = await supabase.from('UserTasks').upsert(updates, {
+            returning: 'minimal', // Don't return the value after inserting
+          })
+          addSteps(task.id)
+          if (error) {
+            throw error
+          }
+        })
+      })
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+  async function addSteps(taskID) {
+    try {
+      const user = supabase.auth.user()
+
+      let {data: count} = await supabase.from('UserTasks').select('taskID, id, userID').eq('userID', user.id).eq('taskID', taskID)
+      count.map(async (tID) => {
+        let {data: list} = await supabase.from('steps').select('*').eq('taskID', tID.taskID).order('title')
+        list.map(async(steps) => {
+          const updates = {
+            userTasksID: tID.id,
+            taskID: taskID,
+            stepsStatus: false,
+            title: steps.title,
+            description: steps.description,
+            userID: user.id
+          }
+          let { error } = await supabase.from('UserSteps').upsert(updates, {
+            returning: 'minimal', // Don't return the value after inserting
+          })
+          if (error) {
+            throw error
+          }
+        })
+      })
+    } catch (error) {
+      alert(error.message)
+    }
   }
 
   return (
@@ -130,25 +277,34 @@ export default function Confirmation() {
             <div className={addingStyles.confirmationContainerDesktop}>
               <p className="smallHeader textDark">Here&apos;s what you&apos;ve shared with <span className="brand">UCHI</span> so far:</p>
               <div className={addingStyles.confirmationContainer}>
-                <MainDetailsTable type="confirmation" additional={additionalRoof} />
+                <MainDetailsTable type="confirmation" additional={additionalRoof} hf = {addHF}/>
               </div>
               <Form>
                 <p className="smallHeader textDark">Tell <span className="brand">UCHI</span> additional information (optional):</p>
                 <div className={addingStyles.addInfoContainer}>
                   <Form.Label className="selectLabel">Brand</Form.Label>
-                  {brandsRoof2}
+                  {finalHf}
                 </div>
                 {modelNumber}
               </Form>
             </div>
             <div className="addhfprocessbtn-container">
-              <Button className={btnStyles.cancelDesktop} onClick={() => router.push("/homefeatures")}>
+              <Button className={btnStyles.cancelDesktop} onClick={() => {
+                deleteHome()
+                router.push("/homefeatures")
+              }}>
                 <span className="iconFirst">
                   <img src="../icons/close_line_dark.svg" alt="Cancel" />
                 </span>
                 Cancel
               </Button>
-              <Button className={btnStyles.addDesktop} onClick={() => router.push("/homefeaturedetails")}>
+              <Button className={btnStyles.addDesktop} onClick={() => {
+                addTasks(addHF)
+                router.push({
+                  pathname: '/homefeatures',
+                  query: {homeFeatureName: addHF}
+                })
+              }}>
                 <span className="iconFirst">
                   <img src="../icons/flag_line_dark.svg" alt="Finish" />
                 </span>

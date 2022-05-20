@@ -1,4 +1,5 @@
-import { useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
+import { supabase } from '../utils/supabaseClient'
 import AppContext from '../AppContext.js'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
@@ -11,8 +12,7 @@ import SignIn from './signin.js'
 
 import styles from '../components/details.module.css'
 
-const addHF = "Roof";
-const addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
+
 
 const mgTasksRefrigerator = [{title:"Fill Refrigerator", difficulty:"Simple", frequency:"Occasionally"},
                 {title:"Refresh ice maker", difficulty:"Simple", frequency:"Quarterly"},
@@ -25,9 +25,32 @@ const additionalRoof = [];
 
 export default function HomeFeatureDetails() {
   const contextValue = useContext(AppContext);
+  const [tasks, setTasks] = useState([])
 
   if (contextValue.state.loggedIn) {
+
+    const user = supabase.auth.user();
     const router = useRouter();
+    const addHF = router.query.homeFeatureName
+    const addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg"; 
+    
+    useEffect(() => {
+      fetchTasks()
+    }, [])
+    const fetchTasks = async () => {
+      let { data: tasks, error } = await supabase.from('UserTasks').select(`
+      *,
+      UserHome!inner(*)
+      `)
+      .eq('UserHome.userID', user.id)
+      .eq('UserHome.featureName', addHF)
+      if (error) console.log('error', error)
+      else {
+        setTasks(tasks)
+      }
+    }
+
+
 
     return (
       <div className={styles.chocolate60bg}>
@@ -58,11 +81,11 @@ export default function HomeFeatureDetails() {
                     <MainDetailsTable type="hf" hf={addHF} additional={additionalRoof} />
                   </div>
                 </div>
-              </div>
+              </div> 
             </div>
             <div className="pageContent">
               <h2>Maintenance Guide</h2>
-              <TaskList dashboard={false} tasks={mgTasksRoof} />
+              <TaskList dashboard={false} tasks={tasks} />
             </div>
           </div>
           <div className={styles.chocolate60filler}>

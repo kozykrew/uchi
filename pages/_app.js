@@ -84,8 +84,6 @@ function UchiApp({ Component, pageProps, session }) {
   const user = supabase.auth.user();
   const [username, setUsername] = useState(null)
   const [loggedIn, setLoggedIn] = useState(user != null)
-  console.log(loggedIn)
-  console.log(username)
 
   useEffect(() => {
     import("bootstrap/dist/js/bootstrap.js");

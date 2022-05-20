@@ -4,17 +4,22 @@ import Head from 'next/head'
 import Layout, {AddHFFooter} from '../../components/layout.js'
 import {AddHFHeader} from '../../components/headers.js'
 import TypeCards from '../../components/typeCards.js'
-
+import { supabase } from '../../utils/supabaseClient'
 import styles from '../../components/details.module.css'
 import addingStyles from '../../components/addingHomeFeature.module.css'
 import btnStyles from '../../components/button.module.css'
 
-const addHF = "Roof";
-const addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
+
 
 export default function Type() {
   const router = useRouter();
-
+  const homeFeature = router.query.homeFeature
+  const addHF = homeFeature;
+  const addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
+  async function deleteHome() {
+    const user = supabase.auth.user()
+    let { data } = await supabase.from('UserHome').delete().eq('userID', user.id).eq('featureName', addHF)
+  } 
   return (
     <div className={styles.chocolate60bg}>
       <Head>
@@ -39,16 +44,22 @@ export default function Type() {
             <div className={addingStyles.prompt}>
               <h2 className="textDark">What type of {addHF} do you have?</h2>
             </div>
-            <TypeCards>
+            <TypeCards name={homeFeature}>
             </TypeCards>
             <div className="addhfprocessbtn-container">
-              <Button className={btnStyles.cancelDesktop} onClick={() => router.push("/homefeatures")}>
+              <Button className={btnStyles.cancelDesktop} onClick={() => {
+                deleteHome()
+                router.push("/homefeatures")
+              }}>
                 <span className="iconFirst">
                   <img src="../icons/close_line_dark.svg" alt="Cancel" />
                 </span>
                 Cancel
               </Button>
-              <Button className={btnStyles.addDesktop} onClick={() => router.push("/addinghomefeature/age")}>
+              <Button className={btnStyles.addDesktop} onClick={() => router.push({
+                  pathname: '/addinghomefeature/age',
+                  query: {homeFeature: homeFeature},
+                })}>
                 <span className="iconFirst">
                   <img src="../icons/carrotbtn_right_line_dark.svg" alt="Next" />
                 </span>
