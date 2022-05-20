@@ -176,9 +176,11 @@ function TeamProfile(props) {
     <div className={styles.profileContainer}>
       <img className={styles.memberProfileImg} src={props.img} alt={props.name} />
       <div className={styles.profileDetailsContainer}>
-        <h3>{props.name}</h3>
+        <a className={styles.linkedInDesktop} href={props.linkedin} target="_blank" rel="noreferrer">
+          <h3>{props.name}</h3>
+        </a>
         <p>{props.roles}</p>
-        <a href={props.linkedin}>
+        <a href={props.linkedin} target="_blank" rel="noreferrer">
           <img className={styles.linkedIn} src="/icons/linkedin_dark.svg" alt={props.name + "&#39;s LinkedIn Profile"} />
         </a>
       </div>
