@@ -78,10 +78,10 @@ export default function Landing() {
         <iframe className={styles.demo} width="894" height="783" src="https://youtu.be/eOnztFnFFAg" title="UCHI Demonstration" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         <h2 id="team" className={styles.heading}><span className={styles.headingText}>Team KozyKrew</span></h2>
         <div className={styles.profilesContainer}>
-          <TeamProfile name="Ariane Apigo" roles="UX Designer, Front-end Developer" img="/images/team/ariane.png" linkedin="" />
-          <TeamProfile name="Rachel Chung" roles="UX Designer, Researcher" img="/images/team/rachel.png" linkedin="" />
-          <TeamProfile name="John-Luke Dokupil" roles="Data Scientist, Researcher" img="/images/team/johnluke.png" linkedin="" />
-          <TeamProfile name="Ratul Jain" roles="Data Scientist, Back-end Developer" img="/images/team/ratul.png" linkedin="" />
+          <TeamProfile name="Ariane Apigo" roles="UX Designer, Front-end Developer" img="/images/team/ariane.png" linkedin="https://www.linkedin.com/in/ariane-apigo/" />
+          <TeamProfile name="Rachel Chung" roles="UX Designer, Researcher" img="/images/team/rachel.png" linkedin="https://www.linkedin.com/in/rclrachelchung/" />
+          <TeamProfile name="John-Luke Dokupil" roles="Data Scientist, Researcher" img="/images/team/johnluke.png" linkedin="https://www.linkedin.com/in/jldokupil/" />
+          <TeamProfile name="Ratul Jain" roles="Data Scientist, Back-end Developer" img="/images/team/ratul.png" linkedin="https://www.linkedin.com/in/ratul-jain-9ab1762b/" />
         </div>
         <h2 id="status" className={styles.heading}><span className={styles.headingText}>Project Status</span></h2>
         <p className={styles.info}>UCHI started as a student-driven Capstone project

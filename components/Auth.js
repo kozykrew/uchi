@@ -72,7 +72,7 @@ export default function Auth() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="email">Password</label>
+              <label htmlFor="email">Password (At least 6 characters)</label>
               <input
                 type="password"
                 className="form-control"
