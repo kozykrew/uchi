@@ -17,7 +17,6 @@ import styles from './tabBar.module.css'
 // setStepsComplete: state function - sets stepsComplete state variable
 // handleProgress: function handling progress bar value based on step completion
 export function TabBar(props) {
-  console.log(props)
   var tabContent;
   var diyTools = [];
   var tools;

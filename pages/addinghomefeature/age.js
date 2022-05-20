@@ -4,19 +4,25 @@ import Head from 'next/head'
 import Layout, {AddHFFooter} from '../../components/layout.js'
 import {AddHFHeader} from '../../components/headers.js'
 import {Slider} from '../../components/slider.js'
+import { supabase } from '../../utils/supabaseClient'
 
 import styles from '../../components/details.module.css'
 import addingStyles from '../../components/addingHomeFeature.module.css'
 import btnStyles from '../../components/button.module.css'
 
-const addHF = "Roof";
-const addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
-const additionalRefrigerator = true;
-const additionalRoof = false;
+
 
 export default function Age() {
   const router = useRouter();
-
+  const user = supabase.auth.user()
+  let addHF = router.query.homeFeature
+  const addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
+  const additionalRefrigerator = true;
+  const additionalRoof = false;
+  async function deleteHome() {
+    const user = supabase.auth.user()
+    let { data } = await supabase.from('UserHome').delete().eq('userID', user.id).eq('featureName', addHF)
+  }
   var next = "/addinghomefeature/";
   if (addHF == "Roof") {
     next = next + "confirmation";
@@ -49,15 +55,21 @@ export default function Age() {
               <h2 className="textDark">How old is your {addHF}?</h2>
               <p className="smallHeader textDark">Average Lifespan: 20-30 years</p>
             </div>
-            <Slider max={60} />
+            <Slider max={60} name={addHF} />
             <div className="addhfprocessbtn-container">
-              <Button className={btnStyles.cancelDesktop} onClick={() => router.push("/homefeatures")}>
+              <Button className={btnStyles.cancelDesktop} onClick={() => {
+                deleteHome()
+                router.push("/homefeatures")
+              }}>
                 <span className="iconFirst">
                   <img src="../icons/close_line_dark.svg" alt="Cancel" />
                 </span>
                 Cancel
               </Button>
-              <Button className={btnStyles.addDesktop} onClick={() => router.push(next)}>
+              <Button className={btnStyles.addDesktop} onClick={() => router.push({
+                  pathname: '/addinghomefeature/confirmation', 
+                  query: {homeFeature: router.query.homeFeature} 
+                })}>
                 <span className="iconFirst">
                   <img src="../icons/carrotbtn_right_line_dark.svg" alt="Next" />
                 </span>

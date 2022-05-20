@@ -194,12 +194,6 @@ export default function Dashboard({session}) {
             <PageHeader page={"dashboard"} headertext={"Welcome, " + contextValue.state.username + "!"} />
             <SectionHeader iconpath="/icons/calendar_duotone.png" headertext={"2022"} />
             <CalendarTabs tabs={["May", "Jun", "Jul", "Aug", "Sep", "Oct"]} tabContent={tasks} />
-            <button className="button block" onClick={() => addRow("Lawn")}>
-            Add lawn and user id to UserFeature column
-            </button>
-            <button className="button block" onClick={() => addRow("Refrigerator")}>
-              Add refrigerator and user id to UserFeature column
-            </button>
           </div>
         </Layout>
       </div>

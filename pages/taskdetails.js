@@ -49,6 +49,7 @@ function TaskDetails({ ssrTask }) {
     const taskID = router.query.taskid
     const [steps, setSteps] = useState([])
     const [tools, setTools] = useState([])
+    const [feature, setFeature] = useState([])
     var [stepsCompleted, setStepsCompleted] = useState([]);
     const [ progressValue, setProgressValue ] = useState(0);
 
@@ -99,6 +100,7 @@ function TaskDetails({ ssrTask }) {
       else {
         setTask(taske)
         setTools(taske.tools)
+        setFeature(taske.UserHome.featureName)
       }
     }
 
@@ -188,7 +190,7 @@ function TaskDetails({ ssrTask }) {
               <div className="pageContent">
                 <DetailsHeader type="task" name={taske.title} progressValue={progressValue} handleComplete={handleComplete} />
                 <div className={styles.mainDetailsContainer}>
-                  <MainDetailsTable type="task" space={taske.tag3} difficulty={taske.difficulty} time={taske.time} frequency={task1.frequency} />
+                  <MainDetailsTable type="task" space={taske.tag3} difficulty={taske.difficulty} time={taske.time} frequency={task1.frequency} hf = {feature}/>
                   <hr className={styles.hr} />
                   <p className={styles.purpose}>{taske.description}</p>
                 </div>
@@ -211,7 +213,7 @@ function TaskDetails({ ssrTask }) {
                   </div>
                   <CircularProgressbar className={styles.progressbar} value={progressValue} maxValue={100} text={progressValue + '%'} />
                   <div className={styles.mainDetailsContainer}>
-                    <MainDetailsTable type="task" space={taske.tag3} difficulty={taske.difficulty} time={taske.time} frequency={task1.frequency} />
+                    <MainDetailsTable type="task" space={taske.tag3} difficulty={taske.difficulty} time={taske.time} frequency={task1.frequency} hf = {feature}/>
                     <hr className={styles.hr} />
                     <p className={styles.purpose}>{taske.f_description}</p>
                   </div>

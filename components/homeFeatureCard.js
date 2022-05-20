@@ -31,7 +31,10 @@ export function HomeFeatureCard(props) {
     var icon = (<img className="hfcard-icon" src={src} alt={props.hfName} />)
 
     return(
-      <div className={styles.container} onClick={() => router.push('/homefeaturedetails')}>
+      <div className={styles.container} onClick={() => router.push({
+        pathname: '/homefeaturedetails',
+        query: {homeFeatureName: props.hfName},
+      })}>
         <div className={styles.card}>
           {icon}
         </div>
