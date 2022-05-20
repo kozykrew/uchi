@@ -17,20 +17,33 @@ import SignIn from './signin.js'
 export default function Onboarding() {
   const contextValue = useContext(AppContext);
   const router = useRouter();
+  const username = contextValue.state.username;
+
+  async function updateProfile({ username }) {
+    try {
+      const user = supabase.auth.user()
+
+      const updates = {
+        id: user.id,
+        username,
+        updated_at: new Date(),
+      }
+
+      let { error } = await supabase.from('profiles').upsert(updates, {
+        returning: 'minimal', // Don't return the value after inserting
+      })
+
+      if (error) {
+        throw error
+      }
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+  updateProfile({ username })
 
   if (contextValue.state.loggedIn) {
-    return (
-      <div>
-        <Head>
-          <title>UCHI | Onboarding</title>
-          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        </Head>
-        <OnboardingLayout>
-        </OnboardingLayout>
-      </div>
-    )
-  } else {
-    // return(<SignIn/>)
     const [stage, setStage] = useState(0);
     const [carouselIndex, setCarouselIndex] = useState(0);
 
@@ -40,7 +53,7 @@ export default function Onboarding() {
 
     var stage0 = (
       <div className={styles.start}>
-        <h1>Hi Ari!</h1>
+        <h1>Hi {username}!</h1>
         <h2>Let's take a tour of <span className="brand">UCHI</span>!</h2>
         <Button
           variant="light"
@@ -150,7 +163,7 @@ export default function Onboarding() {
 
     var stage2 = (
       <div className={styles.start}>
-        <h1>Ready, Ari?</h1>
+        <h1>Ready, {username}?</h1>
         <h2>Let's add a Home Feature!</h2>
         <Button
           variant="light"
@@ -175,5 +188,17 @@ export default function Onboarding() {
         </OnboardingLayout>
       </div>
     )
+    // return (
+    //   <div>
+    //     <Head>
+    //       <title>UCHI | Onboarding</title>
+    //       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    //     </Head>
+    //     <OnboardingLayout>
+    //     </OnboardingLayout>
+    //   </div>
+    // )
+  } else {
+    return(<SignIn/>)
   }
 }

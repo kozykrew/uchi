@@ -13,7 +13,7 @@ import Layout from '../components/layout.js'
 import styles from '../styles/Landing.module.css'
 import navStyles from '../components/uchiNavbar.module.css'
 
-export default function SignIn() {
+export default function About() {
   const router = useRouter();
   const contextValue = useContext(AppContext);
 

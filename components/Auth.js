@@ -29,6 +29,8 @@ export default function Auth() {
       if (error) alert(error.message)
       else if (type == "LOGIN") {
         router.push('/dashboard')
+      } else if (type == "SIGNUP") {
+        router.push('/onboarding')
       }
     } catch (error) {
       console.log('Error thrown:', error.message)
@@ -84,6 +86,7 @@ export default function Auth() {
               onClick={(e) => {
                 e.preventDefault()
                 handleLogin('SIGNUP', email, password)
+                contextValue.setUsername(username)
               }}
               className={styles.signin}
               disabled={loading}
