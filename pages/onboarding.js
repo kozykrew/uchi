@@ -59,7 +59,7 @@ export default function Onboarding() {
       <Carousel variant="dark" interval={null} controls={false} activeIndex={carouselIndex} onSelect={handleSelect}>
         <Carousel.Item>
           <div className={styles.vanillaToastedbg}>
-            <img className={styles.onboardingImg} src="/onboarding/dashboard.png" alt="Onboarding: dashboard" />
+            <img className={styles.onboardingImgMobile} src="/onboarding/dashboard.png" alt="Onboarding: dashboard" />
             <div className={styles.vanillaOnboarding}>
               <div>
                 <h1>The Dashboard</h1>
@@ -73,11 +73,14 @@ export default function Onboarding() {
                 <img src="/icons/carrotbtn_right_line_dark.svg" alt="Onboarding: next" />Next
               </Button>
             </div>
+            <div className={styles.desktopImgContainer}>
+              <img className={styles.onboardingImgDesktop} src="/onboarding/dashboard_desktop.png" alt="Onboarding: dashboard" />
+            </div>
           </div>
         </Carousel.Item>
         <Carousel.Item>
           <div className={styles.vanillaToastedbg}>
-            <img className={styles.onboardingImg} src="/onboarding/tasks.png" alt="Onboarding: dashboard" />
+            <img className={styles.onboardingImgMobile} src="/onboarding/tasks.png" alt="Onboarding: tasks" />
             <div className={styles.vanillaOnboarding}>
               <div>
                 <h1>Tasks</h1>
@@ -92,11 +95,14 @@ export default function Onboarding() {
                 <img src="/icons/carrotbtn_right_line_dark.svg" alt="Onboarding: next" />Next
               </Button>
             </div>
+            <div className={styles.desktopImgContainer}>
+              <img className={styles.onboardingImgDesktop} src="/onboarding/tasks_desktop.png" alt="Onboarding: tasks" />
+            </div>
           </div>
         </Carousel.Item>
         <Carousel.Item>
           <div className={styles.vanillaToastedbg}>
-            <img className={styles.onboardingImg} src="/onboarding/profile.png" alt="Onboarding: dashboard" />
+            <img className={styles.onboardingImgMobile} src="/onboarding/profile.png" alt="Onboarding: profile" />
             <div className={styles.vanillaOnboarding}>
               <div>
                 <h1>Profile</h1>
@@ -111,11 +117,14 @@ export default function Onboarding() {
                 <img src="/icons/carrotbtn_right_line_dark.svg" alt="Onboarding: next" />Next
               </Button>
             </div>
+            <div className={styles.desktopImgContainer}>
+              <img className={styles.onboardingImgDesktop} src="/onboarding/profile_desktop.png" alt="Onboarding: profile" />
+            </div>
           </div>
         </Carousel.Item>
         <Carousel.Item>
           <div className={styles.vanillaToastedbg}>
-            <img className={styles.onboardingImg} src="/onboarding/homefeatures.png" alt="Onboarding: dashboard" />
+            <img className={styles.onboardingImgMobile} src="/onboarding/homefeatures.png" alt="Onboarding: home features" />
             <div className={styles.vanillaOnboarding}>
               <div>
                 <h1>Home Features</h1>
@@ -130,6 +139,9 @@ export default function Onboarding() {
               >
                 <img src="/icons/carrotbtn_right_line_dark.svg" alt="End tour" />End Tour
               </Button>
+            </div>
+            <div className={styles.desktopImgContainer}>
+              <img className={styles.onboardingImgDesktop} src="/onboarding/homefeatures_desktop.png" alt="Onboarding: home features" />
             </div>
           </div>
         </Carousel.Item>
