@@ -11,12 +11,11 @@ export function Slider(props) {
   const [ value, setValue ] = useState(0);
   const user = supabase.auth.user()
   async function updateAge(ageHf) {
-    const user = supabase.auth.user()
     const updates = {
       age: ageHf,
     }
     let { data } = await supabase.from('UserHome').update(updates).eq('userID', user.id).eq('featureName', props.name)
-} 
+}
 
   return (
     <>

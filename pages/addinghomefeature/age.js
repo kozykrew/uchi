@@ -23,12 +23,13 @@ export default function Age() {
   async function deleteHome() {
     const user = supabase.auth.user()
     let { data } = await supabase.from('UserHome').delete().eq('userID', user.id).eq('featureName', addHF)
+    console.log(data)
   }
   var next = "/addinghomefeature/";
   if (addHF == "Roof") {
     next = next + "confirmation";
   } else {
-    next = next + "additional"
+    next = next + "additional";
   }
 
   return (

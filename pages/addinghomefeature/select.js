@@ -25,7 +25,6 @@ export default function SelectHomeFeature() {
     };
     return obj;
   });
-  console.log(iconsHFs)
 
   // dropdown reference: https://stackblitz.com/edit/react-bootstrap-flags-dropdown-menu
   const [homeFeatures] = useState(iconsHFs);
