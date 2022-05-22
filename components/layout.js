@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { supabase } from '../utils/supabaseClient'
 
 import {UchiNavbar} from './uchiNavbar.js'
 import {BtnNext, BtnCancel, BtnFinish, BtnToHF} from './button.js'
@@ -60,17 +61,22 @@ export default function Layout({ children }) {
 }
 
 export function AddHFFooter(props) {
+  async function deleteHome() {
+    const user = supabase.auth.user()
+    let { data } = await supabase.from('UserHome').delete().eq('userID', user.id).eq('featureName', addHF)
+  }
+
   if (props.next) {
     return (
       <footer className={styles.footer}>
-        <BtnCancel cancel={props.cancel} />
+        <BtnCancel cancel={props.cancel} onClick={deleteHome} />
         <BtnNext next={props.next} />
       </footer>
     )
   } else if (props.finish) {
     return (
       <footer className={styles.footer}>
-        <BtnCancel cancel={props.cancel} />
+        <BtnCancel cancel={props.cancel} onClick={deleteHome} />
         <BtnFinish next={props.finish} />
       </footer>
     )

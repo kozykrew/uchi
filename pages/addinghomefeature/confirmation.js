@@ -302,7 +302,7 @@ export default function Confirmation() {
               <Button className={btnStyles.addDesktop} onClick={() => {
                 addTasks(addHF)
                 router.push({
-                  pathname: '/homefeatures',
+                  pathname: '/homefeaturedetails',
                   query: {homeFeatureName: addHF}
                 })
               }}>

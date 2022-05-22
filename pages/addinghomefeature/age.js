@@ -27,9 +27,9 @@ export default function Age() {
   }
   var next = "/addinghomefeature/";
   if (addHF == "Roof") {
-    next = next + "confirmation";
+    next = next + "confirmation?homeFeature=roof";
   } else {
-    next = next + "additional";
+    next = next + "additional?homeFeature=refrigerator";
   }
 
   return (

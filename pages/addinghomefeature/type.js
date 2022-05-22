@@ -71,7 +71,7 @@ export default function Type() {
         </div>
         <div className={styles.chocolate60filler}>
         </div>
-        <AddHFFooter cancel="/homefeatures" next="/addinghomefeature/age" />
+        <AddHFFooter cancel="/homefeatures" next={"/addinghomefeature/age?homeFeature=" + homeFeature}  />
       </Layout>
     </div>
   )

@@ -1,4 +1,5 @@
 import {useState, useContext} from 'react'
+import { supabase } from '../../utils/supabaseClient'
 import AppContext from '../../AppContext.js'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
@@ -6,7 +7,6 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Layout from '../../components/layout.js'
-import { supabase } from '../../utils/supabaseClient'
 
 import styles from '../../components/button.module.css'
 
@@ -40,7 +40,7 @@ export default function SelectHomeFeature() {
         alert('Feature does not exist')
         router.push('/homefeatures')
       }
-      console.log(data)
+      console.log(fID)
       const updates = {
         userID: user.id,
         featureID: fID.id,
@@ -85,6 +85,7 @@ export default function SelectHomeFeature() {
                 onSelect={eventKey => {
                   const { code, src, hf } = homeFeatures.find(({ code }) => eventKey === code);
                   setSelectedHF(eventKey);
+                  console.log(selectedHF);
                   setToggleContents(<><img src={src} alt={hf} />{hf}</>);
                 }}
               >
