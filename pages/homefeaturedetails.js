@@ -30,12 +30,42 @@ export default function HomeFeatureDetails() {
   const [tasks, setTasks] = useState([]);
 
   var addHF = router.query.hf;
+  var displayHF = addHF.charAt(0).toUpperCase() + addHF.slice(1);
   var addHFiconpath = "";
+
+  const [feature, setFeature] = useState([])
+  const [featureType, setFeatureType] = useState('')
+  const [featureAge, setFeatureAge] = useState('')
+  const [featureBrand, setFeatureBrand] = useState('')
+  const [featureModel, setFeatureModel] = useState('')
 
   useEffect(() => {
     if (contextValue.state.loggedIn) {
+      user = supabase.auth.user();
+      fetchFeature()
+    }
+  }, []);
+  const fetchFeature = async () => {
+    let { data: feature, error } = await supabase.from('UserHome').select(`
+    *`)
+    .eq('userID', user.id)
+    .eq('featureName', addHF)
+    if (error) console.log('error', error)
+    else {
+      setFeature(feature)
+      setFeatureType(feature[0].featureType)
+      setFeatureAge(feature[0].age)
+      setFeatureBrand(feature[0].brand)
+      setFeatureModel(feature[0].modelNo)
+    }
+  }
+
+  useEffect(() => {
+    if (contextValue.state.loggedIn) {
+      user = supabase.auth.user();
       addHF = router.query.hf;
-      addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
+      addHFiconpath = "/icons/hf_" + addHF + "_lg.svg";
+      console.log(addHFiconpath)
       fetchTasks()
     }
   }, []);
@@ -53,7 +83,7 @@ export default function HomeFeatureDetails() {
   }
 
   if (contextValue.state.loggedIn) {
-    user = supabase.auth.user();
+
 
     return (
       <div className={styles.chocolate60bg}>
@@ -65,9 +95,10 @@ export default function HomeFeatureDetails() {
           <div className={styles.chocolate60bg}>
             <div className={styles.detailsContainer}>
               <div className="pageContent">
-                <DetailsHeader type="hf" name={addHF} iconpath={addHFiconpath} />
+                <DetailsHeader type="hf" name={displayHF} iconpath={addHFiconpath} />
                 <div className={styles.mainDetailsContainer}>
-                  <MainDetailsTable type="hf" hf={addHF} additional={additionalRoof} />
+                  <MainDetailsTable type="hf" hf={displayHF} additional={additionalRoof}
+                    featureType={featureType} featureBrand={featureBrand} featureModel={featureModel} featureAge={featureAge} />
                 </div>
               </div>
             </div>
@@ -77,11 +108,12 @@ export default function HomeFeatureDetails() {
                 <div className={styles.addHFHeaderDesktop}>
                   <img className={styles.addHFHeaderDesktopIcon} src={addHFiconpath} alt={addHF} />
                   <div>
-                    <h1>{addHF}</h1>
+                    <h1>{displayHF}</h1>
                     <p className="smallHeader">Average Lifespan: 20-30 years</p>
                   </div>
                   <div className={styles.mainDetailsContainer}>
-                    <MainDetailsTable type="hf" hf={addHF} additional={additionalRoof} />
+                    <MainDetailsTable type="hf" hf={displayHF} additional={additionalRoof}
+                      featureType={featureType} featureBrand={featureBrand} featureModel={featureModel} featureAge={featureAge} />
                   </div>
                 </div>
               </div>

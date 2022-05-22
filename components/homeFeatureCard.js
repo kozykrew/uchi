@@ -15,6 +15,8 @@ export function HomeFeatureCard(props) {
 
   const router = useRouter();
 
+  var hfName = props.hfName.charAt(0).toUpperCase() + props.hfName.slice(1);
+
   var src = "./icons/hf_" + props.hfName.replace(/\s+/g, '').toLowerCase() + "_lg.svg";
   if (props.hfName == "Add a Feature") {
     return(
@@ -39,7 +41,7 @@ export function HomeFeatureCard(props) {
         <div className={styles.card}>
           {icon}
         </div>
-        <p className="smallHeader">{props.hfName}</p>
+        <p className="smallHeader">{hfName}</p>
       </div>
     )
   }

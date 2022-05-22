@@ -21,7 +21,7 @@ export function MainDetailsTable(props) {
   const [featureModel, setFeatureModel] = useState('')
 
   useEffect(() => {
-    if ( props.type == "confirmation" || props.type == "hf") {
+    if ( props.type == "confirmation") {
       fetchFeature()
     }
   }, []);
@@ -97,19 +97,19 @@ export function MainDetailsTable(props) {
         <Table>
           <tr>
             <th>Type</th>
-            <td>{featureType}</td>
+            <td>{props.featureType}</td>
           </tr>
           <tr>
             <th>Brand</th>
-            <td>{featureBrand}</td>
+            <td>{props.featureBrand.charAt(0).toUpperCase() + props.featureBrand.slice(1)}</td>
           </tr>
           <tr>
             <th>Model #</th>
-            <td>{featureModel}</td>
+            <td>{props.featureModel}</td>
           </tr>
           <tr>
             <th>Age</th>
-            <td>{featureAge}</td>
+            <td>{props.featureAge}</td>
           </tr>
         </Table>
         {additional}

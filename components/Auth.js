@@ -27,9 +27,9 @@ export default function Auth() {
       contextValue.setLoggedIn(true)
       if (!error && !user) alert('Check your email for the login link!')
       if (error) alert(error.message)
-      else if (type == "LOGIN") {
+      else if (type == "LOGIN" && user) {
         router.push('/dashboard')
-      } else if (type == "SIGNUP") {
+      } else if (type == "SIGNUP" && user) {
         router.push('/onboarding')
       }
     } catch (error) {
