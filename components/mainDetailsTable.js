@@ -21,7 +21,7 @@ export function MainDetailsTable(props) {
   const [featureModel, setFeatureModel] = useState('')
 
   useEffect(() => {
-    if (props.type == "task" || props.type == "confirmation") {
+    if (props.type == "task" || props.type == "confirmation" || props.type == "hf") {
       fetchFeature()
     }
   }, []);
@@ -120,25 +120,6 @@ export function MainDetailsTable(props) {
     if (props.additional.length > 0) {
       additional = determineAdditional(props.additional);
     }
-
-    useEffect(() => {
-      fetchFeature()
-  }, []);
-
-  const fetchFeature = async () => {
-    let { data: feature, error } = await supabase.from('UserHome').select(`
-    *`)
-    .eq('userID', user.id)
-    .eq('featureName', props.hf)
-    if (error) console.log('error', error)
-    else {
-      setFeature(feature)
-      setFeatureType(feature[0].featureType)
-      setFeatureAge(feature[0].age)
-      setFeatureBrand(feature[0].brand)
-      setFeatureModel(feature[0].modelNo)
-    }
-  }
 
     return (
       <div>

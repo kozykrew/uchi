@@ -12,11 +12,13 @@ import btnStyles from '../../components/button.module.css'
 export default function Type() {
   const router = useRouter();
   const homeFeature = router.query.homeFeature
-  const addHF = homeFeature.charAt(0).toUpperCase() + homeFeature.slice(1);
-  var addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
-  // if (addHF !== undefined) {
-  //   addHFiconpath + addHF.toLowerCase() + "_lg.svg";
-  // }
+  const addHF = homeFeature;
+  var displayHF;
+  var addHFiconpath = "/icons/hf_"// + addHF.toLowerCase() + "_lg.svg";
+  if (homeFeature !== undefined) {
+    displayHF = homeFeature.charAt(0).toUpperCase() + homeFeature.slice(1);
+    addHFiconpath = addHFiconpath + addHF.toLowerCase() + "_lg.svg";
+  }
   async function deleteHome() {
     const user = supabase.auth.user()
     let { data } = await supabase.from('UserHome').delete().eq('userID', user.id).eq('featureName', addHF)
@@ -31,19 +33,19 @@ export default function Type() {
         <div className={styles.chocolate60bg}>
           <div className={styles.detailsContainer}>
             <div className="pageContent">
-              <AddHFHeader name={addHF} iconpath={addHFiconpath} />
+              <AddHFHeader name={displayHF} iconpath={addHFiconpath} />
             </div>
           </div>
           <div className="pageContent">
             <div className={styles.detailsContainerDesktop}>
               <img className="btn-back" src="../icons/carrotbtn_left_line.svg" alt="Back" onClick={() => router.back()} />
               <div className={styles.addHFHeaderDesktop}>
-                <img className={styles.addHFHeaderDesktopIcon} src={addHFiconpath} alt={addHF} />
-                <h1>Add a {addHF}</h1>
+                <img className={styles.addHFHeaderDesktopIcon} src={addHFiconpath} alt={displayHF} />
+                <h1>Add a {displayHF}</h1>
               </div>
             </div>
             <div className={addingStyles.prompt}>
-              <h2 className="textDark">What type of {addHF} do you have?</h2>
+              <h2 className="textDark">What type of {displayHF} do you have?</h2>
             </div>
             <TypeCards name={homeFeature}>
             </TypeCards>

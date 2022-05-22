@@ -13,11 +13,13 @@ import btnStyles from '../../components/button.module.css'
 export default function Age() {
   const router = useRouter();
   const user = supabase.auth.user()
-  let addHF = router.query.homeFeature.charAt(0).toUpperCase() + router.query.homeFeature.slice(1);;
-  var addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
-  // if (addHF !== undefined) {
-  //   addHFiconpath + addHF.toLowerCase() + "_lg.svg";
-  // }
+  let addHF = router.query.homeFeature;
+  var displayHF;
+  var addHFiconpath = "/icons/hf_"// + addHF.toLowerCase() + "_lg.svg";
+  if (addHF !== undefined) {
+    displayHF = addHF.charAt(0).toUpperCase() + addHF.slice(1);
+    addHFiconpath = addHFiconpath + addHF.toLowerCase() + "_lg.svg";
+  }
   const additionalRefrigerator = true;
   const additionalRoof = false;
   async function deleteHome() {
@@ -42,22 +44,22 @@ export default function Age() {
         <div className={styles.chocolate60bg}>
           <div className={styles.detailsContainer}>
             <div className="pageContent">
-              <AddHFHeader name={addHF} iconpath={addHFiconpath} />
+              <AddHFHeader name={displayHF} iconpath={addHFiconpath} />
             </div>
           </div>
           <div className="pageContent">
             <div className={styles.detailsContainerDesktop}>
               <img className="btn-back" src="../icons/carrotbtn_left_line.svg" alt="Back" onClick={() => router.back()} />
               <div className={styles.addHFHeaderDesktop}>
-                <img className={styles.addHFHeaderDesktopIcon} src={addHFiconpath} alt={addHF} />
-                <h1>Add a {addHF}</h1>
+                <img className={styles.addHFHeaderDesktopIcon} src={addHFiconpath} alt={displayHF} />
+                <h1>Add a {displayHF}</h1>
               </div>
             </div>
             <div className={addingStyles.prompt}>
-              <h2 className="textDark">How old is your {addHF}?</h2>
+              <h2 className="textDark">How old is your {displayHF}?</h2>
               <p className="smallHeader textDark">Average Lifespan: 20-30 years</p>
             </div>
-            <Slider max={60} name={addHF} />
+            <Slider max={60} name={displayHF} />
             <div className="addhfprocessbtn-container">
               <Button className={btnStyles.cancelDesktop} onClick={() => {
                 deleteHome()

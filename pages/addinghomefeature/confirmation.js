@@ -19,11 +19,13 @@ const additionalRoof = [];
 export default function Confirmation() {
   const user = supabase.auth.user()
   const router = useRouter();
-  const addHF = router.query.homeFeature.charAt(0).toUpperCase() + router.query.homeFeature.slice(1);;
-  var addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
-  // if (addHF !== undefined) {
-  //   addHFiconpath + addHF.toLowerCase() + "_lg.svg";
-  // }
+  const addHF = router.query.homeFeature;
+  var displayHF;
+  var addHFiconpath = "/icons/hf_"// + addHF.toLowerCase() + "_lg.svg";
+  if (addHF !== undefined) {
+    displayHF = addHF.charAt(0).toUpperCase() + addHF.slice(1);
+    addHFiconpath = addHFiconpath + addHF.toLowerCase() + "_lg.svg";
+  }
   // brand select state
   const [selectedBrand, setSelectedBrand] = useState(null);
   const [feature, setFeature] = useState([])
@@ -261,15 +263,15 @@ export default function Confirmation() {
         <div className={styles.chocolate60bg}>
           <div className={styles.detailsContainer}>
             <div className="pageContent">
-              <AddHFHeader name={addHF} iconpath={addHFiconpath} />
+              <AddHFHeader name={displayHF} iconpath={addHFiconpath} />
             </div>
           </div>
           <div className="pageContent">
             <div className={styles.detailsContainerDesktop}>
               <img className="btn-back" src="../icons/carrotbtn_left_line.svg" alt="Back" onClick={() => router.back()} />
               <div className={styles.addHFHeaderDesktop}>
-                <img className={styles.addHFHeaderDesktopIcon} src={addHFiconpath} alt={addHF} />
-                <h1>Add a {addHF}</h1>
+                <img className={styles.addHFHeaderDesktopIcon} src={addHFiconpath} alt={displayHF} />
+                <h1>Add a {displayHF}</h1>
               </div>
             </div>
             <div className={addingStyles.prompt}>
