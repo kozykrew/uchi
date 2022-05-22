@@ -21,6 +21,9 @@ export default function Layout({ children }) {
     case "/profile":
       desktopContainerClass = "desktopContainer-vanillaToasted";
       break;
+    case "/completedtasks":
+      desktopContainerClass = "desktopContainer-vanillaToasted";
+      break;
     case "/taskdetails":
       desktopContainerClass = "desktopContainer-chocolate80";
       break;

@@ -1,4 +1,5 @@
 import {Task} from './task.js'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 import styles from './taskList.module.css'
@@ -7,15 +8,24 @@ import styles from './taskList.module.css'
 // dashboard: boolean - location of the TaskList
 // tasks: array of task objects
 export function TaskList(props) {
+  const router = useRouter();
+
   var children = props.tasks.map((task, i) => (
     <Task key={i} taskID={i} taskid={task.id} taskTitle={task.title} taskDifficulty={task.difficulty} taskTime={task.time} taskTag3={task.tag3} taskDesc={task.description} taskStatus={task.taskStatus} steps={task.steps} />
   ));
 
   if (children.length == 0) {
-    return (
-      <p className="smallHeader text-center">You have no Tasks to do!
-      </p>
-    )
+    if (router.pathname == "/completedtasks") {
+      return (
+        <p className="smallHeader text-center">You have no completed Tasks!
+        </p>
+      )
+    } else {
+      return (
+        <p className="smallHeader text-center">You have no Tasks to do!
+        </p>
+      )
+    }
   }
 
   if (props.dashboard == true) {

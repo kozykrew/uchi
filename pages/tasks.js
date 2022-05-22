@@ -42,23 +42,24 @@ export default function Tasks() {
   const [notTasks, setNotTasks] = useState([])
   var user;
 
-  useEffect(() => {
-    if (contextValue.state.loggedIn) {
-      fetchCompletedTasks()
-    }
-  }, []);
-  const fetchCompletedTasks = async () => {
-    let { data: completedTasks, error } = await supabase.from('UserTasks').select(`
-    *,
-    UserHome!inner(*)`)
-    .eq('UserHome.userID', user.id)
-    .eq('taskStatus', true)
-    if (error) console.log('error', error)
-    else setCompletedTasks(completedTasks)
-  }
+  // useEffect(() => {
+  //   if (contextValue.state.loggedIn) {
+  //     fetchCompletedTasks()
+  //   }
+  // }, []);
+  // const fetchCompletedTasks = async () => {
+  //   let { data: completedTasks, error } = await supabase.from('UserTasks').select(`
+  //   *,
+  //   UserHome!inner(*)`)
+  //   .eq('UserHome.userID', user.id)
+  //   .eq('taskStatus', true)
+  //   if (error) console.log('error', error)
+  //   else setCompletedTasks(completedTasks)
+  // }
 
   useEffect(() => {
     if (contextValue.state.loggedIn) {
+      user = supabase.auth.user()
       fetchNotTasks()
     }
   }, []);
@@ -73,10 +74,9 @@ export default function Tasks() {
   }
 
   if (contextValue.state.loggedIn) {
-    user = supabase.auth.user()
-
     tasksByStatus[0] = notTasks
-    tasksByStatus[1] = completedTasks
+    // tasksByStatus[1] = completedTasks
+    // <TabBar type="tasks" tabs={["In Progress", "Completed"]} tabContent={tasksByStatus} />
 
     return (
       <div>
@@ -87,8 +87,7 @@ export default function Tasks() {
         <Layout>
           <div className="pageContent">
             <PageHeader page={"tasks"} headertext={"Tasks"} />
-            {/* <TaskList dashboard={false} tasks={tasksByStatus[0]} /> */}
-            <TabBar type="tasks" tabs={["In Progress", "Completed"]} tabContent={tasksByStatus} />
+            <TaskList dashboard={false} tasks={notTasks} />
           </div>
         </Layout>
       </div>
