@@ -11,6 +11,7 @@ import {TaskList} from '../components/taskList.js'
 import SignIn from './signin.js'
 
 import styles from '../components/details.module.css'
+import { propTypes } from 'react-bootstrap/esm/Image'
 
 const mgTasksRefrigerator = [{title:"Fill Refrigerator", difficulty:"Simple", frequency:"Occasionally"},
                 {title:"Refresh ice maker", difficulty:"Simple", frequency:"Quarterly"},
@@ -22,17 +23,19 @@ const additionalRefrigerator = [{header:"Has built-in ice maker?", data:"yes"}]
 const additionalRoof = [];
 
 export default function HomeFeatureDetails() {
+  
   const contextValue = useContext(AppContext);
   const router = useRouter();
+  console.log(router.query.hf)
   var user;
   const [tasks, setTasks] = useState([]);
 
-  var addHF = "";
+  var addHF = router.query.hf;
   var addHFiconpath = "";
 
   useEffect(() => {
     if (contextValue.state.loggedIn) {
-      addHF = router.query.homeFeatureName;
+      addHF = router.query.hf;
       addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
       fetchTasks()
     }

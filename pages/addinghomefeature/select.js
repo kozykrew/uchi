@@ -36,7 +36,7 @@ export default function SelectHomeFeature() {
       const user = supabase.auth.user()
 
       let {data: fID} = await supabase.from('HomeFeatures').select('*').eq('featureName', name).single()
-      if(fID.length == 0) {
+      if(!fID) {
         alert('Feature does not exist')
         router.push('/homefeatures')
       }

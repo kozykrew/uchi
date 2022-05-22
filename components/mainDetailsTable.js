@@ -21,7 +21,7 @@ export function MainDetailsTable(props) {
   const [featureModel, setFeatureModel] = useState('')
 
   useEffect(() => {
-    if (props.type == "task" || props.type == "confirmation" || props.type == "hf") {
+    if ( props.type == "confirmation" || props.type == "hf") {
       fetchFeature()
     }
   }, []);

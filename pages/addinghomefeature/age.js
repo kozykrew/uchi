@@ -59,7 +59,7 @@ export default function Age() {
               <h2 className="textDark">How old is your {displayHF}?</h2>
               <p className="smallHeader textDark">Average Lifespan: 20-30 years</p>
             </div>
-            <Slider max={60} name={displayHF} />
+            <Slider max={60} name={addHF} />
             <div className="addhfprocessbtn-container">
               <Button className={btnStyles.cancelDesktop} onClick={() => {
                 deleteHome()

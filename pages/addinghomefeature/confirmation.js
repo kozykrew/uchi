@@ -229,8 +229,10 @@ export default function Confirmation() {
       const user = supabase.auth.user()
 
       let {data: count} = await supabase.from('UserTasks').select('taskID, id, userID').eq('userID', user.id).eq('taskID', taskID)
+      console.log(count)
       count.map(async (tID) => {
         let {data: list} = await supabase.from('steps').select('*').eq('taskID', tID.taskID).order('title')
+        console.log(list)
         list.map(async(steps) => {
           const updates = {
             userTasksID: tID.id,
@@ -304,7 +306,7 @@ export default function Confirmation() {
               <Button className={btnStyles.addDesktop} onClick={() => {
                 addTasks(addHF)
                 router.push({
-                  pathname: '/homefeaturedetails',
+                  pathname: '/homefeatures',
                   query: {homeFeatureName: addHF}
                 })
               }}>

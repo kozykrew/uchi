@@ -23,6 +23,7 @@ export default function Type() {
     const user = supabase.auth.user()
     let { data } = await supabase.from('UserHome').delete().eq('userID', user.id).eq('featureName', addHF)
   }
+  console.log(addHF)
   return (
     <div className={styles.chocolate60bg}>
       <Head>

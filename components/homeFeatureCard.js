@@ -10,6 +10,7 @@ import styles from './homeFeatureCard.module.css'
 // space: string - name of space
 // hfName: string - name of home feature
 export function HomeFeatureCard(props) {
+  console.log(props)
   const contextValue = useContext(AppContext);
 
   const router = useRouter();
@@ -33,7 +34,7 @@ export function HomeFeatureCard(props) {
     return(
       <div className={styles.container} onClick={() => router.push({
         pathname: '/homefeaturedetails',
-        query: {homeFeatureName: props.hfName},
+        query: {hf: props.hfName}
       })}>
         <div className={styles.card}>
           {icon}

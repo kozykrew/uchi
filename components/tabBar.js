@@ -28,17 +28,20 @@ export function TabBar(props) {
     tabContent = props.tabContent.map((content, i) => (
       <StepList key={i} steps={content} stepsComplete={props.stepsComplete} setStepsComplete={props.setStepsComplete} handleProgress={props.handleProgress} />
     ));
-    diyTools = props.tools.map((tool, i) => (
-      <BtnTool key={i} name={tool} />
-    ));
-    tools = (
-      <div>
-        <h3>Major Tools</h3>
-        <div className={styles.toolContainer}>
-          {diyTools}
+    if (props.tools != null) {
+      diyTools = props.tools.map((tool, i) => (
+        <BtnTool key={i} name={tool} />
+      ));
+      tools = (
+        <div>
+          <h3>Major Tools</h3>
+          <div className={styles.toolContainer}>
+            {diyTools}
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
+    
   }
 
   var tabs = props.tabs.map((tab, i) => (
