@@ -7,6 +7,7 @@ import Layout from '../components/layout.js'
 import {SectionHeader, DetailsHeader} from '../components/headers.js'
 import {BtnComplete, BtnPostpone, BtnDelete} from '../components/button.js'
 import {MainDetailsTable} from '../components/mainDetailsTable.js'
+import {StepList} from '../components/stepList.js'
 import {TabBar} from '../components/tabBar.js'
 
 import SignIn from './signin.js'
@@ -43,7 +44,7 @@ function TaskDetails({ ssrTask }) {
   const contextValue = useContext(AppContext);
   const router = useRouter();
 
-  const [steps, setSteps] = useState([])
+  const [steps, setSteps] = useState()
   const [tools, setTools] = useState([])
   const [feature, setFeature] = useState([])
   var [stepsCompleted, setStepsCompleted] = useState([]);
@@ -56,6 +57,7 @@ function TaskDetails({ ssrTask }) {
   useEffect(() => {
     if (contextValue.state.loggedIn) {
       fetchSteps()
+      console.log(steps)
     }
   }, []);
   const fetchSteps = async () => {
@@ -64,7 +66,7 @@ function TaskDetails({ ssrTask }) {
     .eq('userTasksID', taskID)
     .order('title')
     steps1.push(steps)
-    steps1.push([{title:"Interview contractors", description:"Ask key questions to determine their reliability.", stepsStatus: false}])
+    //steps1.push([{title:"Interview contractors", description:"Ask key questions to determine their reliability.", stepsStatus: false}])
     setSteps(steps1)
 
     for (var i = 0; i < steps.length; i++) {
@@ -230,7 +232,7 @@ function TaskDetails({ ssrTask }) {
             <div className="pageContent">
               <h2>How To</h2>
               {uchirec}
-              <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={steps} tools={tools} stepsComplete={stepsCompleted} setStepsComplete={setStepsCompleted} handleProgress={handleProgress} />
+              {steps ? <StepList steps={steps[0]} stepsComplete={stepsCompleted} setStepsComplete={setStepsCompleted} handleProgress={handleProgress} /> : ""}
             </div>
           </div>
           <div className={styles.chocolate80filler}>
