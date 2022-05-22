@@ -37,7 +37,7 @@ export default function Onboarding() {
         throw error
       }
     } catch (error) {
-      alert(error.message)
+      console.error(error.message)
     }
   }
 
