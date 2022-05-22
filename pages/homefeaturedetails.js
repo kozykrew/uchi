@@ -27,8 +27,8 @@ export default function HomeFeatureDetails() {
   var user;
   const [tasks, setTasks] = useState([]);
 
-  var addHF;
-  var addHFiconpath;
+  var addHF = "";
+  var addHFiconpath = "";
 
   useEffect(() => {
     if (contextValue.state.loggedIn) {
