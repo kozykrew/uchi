@@ -1,12 +1,16 @@
 import {useState, useContext, useEffect} from 'react'
 import { supabase } from '../utils/supabaseClient'
+import AppContext from '../AppContext.js'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Layout from '../components/layout.js'
 import {SectionHeader, DetailsHeader} from '../components/headers.js'
 import {BtnComplete, BtnPostpone, BtnDelete} from '../components/button.js'
 import {MainDetailsTable} from '../components/mainDetailsTable.js'
+import {StepList} from '../components/stepList.js'
 import {TabBar} from '../components/tabBar.js'
+
+import SignIn from './signin.js'
 
 import styles from '../components/details.module.css'
 
@@ -14,7 +18,7 @@ import styles from '../components/details.module.css'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const task = {
+const task1 = {
   name:"Default task",
   space:"Exterior",
   difficulty:"Easy",
@@ -30,8 +34,6 @@ const task = {
                 [{title:"Interview contractors", description:"Ask key questions to determine their reliability."}]]
 }
 
-const user = supabase.auth.user()
-
 export async function getServerSideProps(context) {
   return {
     props: {}, // will be passed to the page component as props
@@ -39,189 +41,208 @@ export async function getServerSideProps(context) {
 }
 
 function TaskDetails({ ssrTask }) {
+  const contextValue = useContext(AppContext);
   const router = useRouter();
 
-  const taskID = router.query.taskid
-  const [steps, setSteps] = useState([])
+  const [steps, setSteps] = useState()
+  const [tools, setTools] = useState([])
+  const [feature, setFeature] = useState([])
   var [stepsCompleted, setStepsCompleted] = useState([]);
   const [ progressValue, setProgressValue ] = useState(0);
 
+  var user;
+  var taskID;
+  const steps1 = [];
+
   useEffect(() => {
-    fetchSteps()
-  }, [])
-
-  const steps1 = []
-  const fetchSteps = async () => {
-  let { data: steps} = await supabase.from('userSteps').select(`*`)
-  .eq('UserID', user.id)
-  .eq('userTasksID', taskID)
-  .order('title')
-  steps1.push(steps)
-  steps1.push([{title:"Interview contractors", description:"Ask key questions to determine their reliability.", stepsStatus: false}])
-  setSteps(steps1)
-
-  for (var i = 0; i < steps.length; i++) {
-    if (steps[i].stepsStatus) {
-      stepsCompleted.push(1);
-    } else {
-      stepsCompleted.push(0);
+    if (contextValue.state.loggedIn) {
+      fetchSteps()
+      console.log(steps)
     }
-  }
-  var numerator = 0;
-    for (var i = 0; i < stepsCompleted.length; i++) {
-      if (stepsCompleted[i] == 1) {
-        numerator++;
+  }, []);
+  const fetchSteps = async () => {
+    let { data: steps} = await supabase.from('UserSteps').select(`*`)
+    .eq('userID', user.id)
+    .eq('userTasksID', taskID)
+    .order('title')
+    steps1.push(steps)
+    //steps1.push([{title:"Interview contractors", description:"Ask key questions to determine their reliability.", stepsStatus: false}])
+    setSteps(steps1)
+
+    for (var i = 0; i < steps.length; i++) {
+      if (steps[i].stepsStatus) {
+        stepsCompleted.push(1);
+      } else {
+        stepsCompleted.push(0);
       }
     }
-  var percent = Math.ceil((numerator / stepsCompleted.length)*100);
-  setProgressValue(percent);
+    var numerator = 0;
+      for (var i = 0; i < stepsCompleted.length; i++) {
+        if (stepsCompleted[i] == 1) {
+          numerator++;
+        }
+      }
+    var percent = Math.ceil((numerator / stepsCompleted.length)*100);
+    setProgressValue(percent);
   }
 
   const [taske, setTask] = useState([])
   useEffect(() => {
-    fetchTasks()
-  }, [])
+    if (contextValue.state.loggedIn) {
+      fetchTasks()
+    }
+  }, []);
   const fetchTasks = async () => {
-    let { data: taske, error } = await supabase.from('userTasks').select(`
+    let { data: taske, error } = await supabase.from('UserTasks').select(`
     *,
     UserHome!inner(*)
     `)
-    .eq('UserHome.UserID', user.id)
+    .eq('UserHome.userID', user.id)
     .eq('id', taskID)
     .single()
     if (error) console.log('error', error)
     else {
       setTask(taske)
+      setTools(taske.tools)
+      setFeature(taske.UserHome.featureName)
     }
   }
 
-  // --------- FRONTEND progress bar state
-  // const [ progressValue, setProgressValue ] = useState(0);
-  //
-  // const handleComplete = (e) => {
-  //   setProgressValue(100);
-  //   var stepsCompleted = [];
-  //   for (var i = 0; i < steps.length; i++) {
-  //     stepsCompleted.push(1);
-  //   }
-  //   setStepsComplete(stepsCompleted)
-  // }
-  // var stepsIncomplete = [];
-  // for (var i = 0; i < steps.length; i++) {
-  //   stepsIncomplete.push(0);
-  // }
-  // checkbox state (individually controlled by one state)
-  // const [ stepsComplete, setStepsComplete ] = useState(stepsIncomplete);
-  // console.log(stepsComplete)
+  if (contextValue.state.loggedIn) {
+    user = supabase.auth.user();
+    taskID = router.query.taskid;
 
-  // const handleProgress = () => {
-  //   var numerator = 0;
-  //   for (var i = 0; i < stepsComplete.length; i++) {
-  //     if (stepsComplete[i] == 1) {
-  //       numerator++;
-  //     }
-  //   }
-  //   var percent = Math.round((numerator / stepsComplete.length)*100);
-  //   setProgressValue(percent);
-  // }
+    // --------- FRONTEND progress bar state
+    // const [ progressValue, setProgressValue ] = useState(0);
+    //
+    // const handleComplete = (e) => {
+    //   setProgressValue(100);
+    //   var stepsCompleted = [];
+    //   for (var i = 0; i < steps.length; i++) {
+    //     stepsCompleted.push(1);
+    //   }
+    //   setStepsComplete(stepsCompleted)
+    // }
+    // var stepsIncomplete = [];
+    // for (var i = 0; i < steps.length; i++) {
+    //   stepsIncomplete.push(0);
+    // }
+    // checkbox state (individually controlled by one state)
+    // const [ stepsComplete, setStepsComplete ] = useState(stepsIncomplete);
+    // console.log(stepsComplete)
 
-  // --------- BACKEND progress bar state
-  const handleComplete = (e) => {
-    setProgressValue(100);
-    for (var i = 0; i < steps.length; i++) {
-      stepsCompleted[i] = 1;
+    // const handleProgress = () => {
+    //   var numerator = 0;
+    //   for (var i = 0; i < stepsComplete.length; i++) {
+    //     if (stepsComplete[i] == 1) {
+    //       numerator++;
+    //     }
+    //   }
+    //   var percent = Math.round((numerator / stepsComplete.length)*100);
+    //   setProgressValue(percent);
+    // }
+
+    // --------- BACKEND progress bar state
+    const handleComplete = (e) => {
+      setProgressValue(100);
+      for (var i = 0; i < steps.length; i++) {
+        stepsCompleted[i] = 1;
+      }
+      setStepsCompleted(stepsCompleted)
+      toggleTasks()
+      toggleSteps()
     }
-    setStepsCompleted(stepsCompleted)
-    toggleTasks()
-    toggleSteps()
-  }
 
-  const toggleTasks = async () => {
-      const { data, error } = await supabase
-        .from('userTasks')
-        .update({ taskStatus: 'true' })
-        .eq('id', taskID)
-        .single()
-  }
-  const toggleSteps = async () => {
-    for (var i = 0; i < steps[0].length; i++) {
-      const { data, error } = await supabase
-      .from('userSteps')
-      .update({ stepsStatus: 'true' })
-      .eq('UserID', user.id)
-      .eq('id', steps[0][i].id)
+    const toggleTasks = async () => {
+        const { data, error } = await supabase
+          .from('UserTasks')
+          .update({ taskStatus: 'true' })
+          .eq('userID', user.id)
+          .eq('id', taskID)
+          .single()
     }
-  }
-
-  const handleProgress = () => {
-    var numerator = 0;
-    for (var i = 0; i < stepsCompleted.length; i++) {
-      if (stepsCompleted[i] == 1) {
-        numerator++;
+    const toggleSteps = async () => {
+      for (var i = 0; i < steps[0].length; i++) {
+        const { data, error } = await supabase
+        .from('UserSteps')
+        .update({ stepsStatus: 'true' })
+        .eq('userID', user.id)
+        .eq('id', steps[0][i].id)
       }
     }
-    var percent = Math.ceil((numerator / stepsCompleted.length)*100);
-    setProgressValue(percent);
-    if (numerator == stepsCompleted.length) handleComplete()
-  }
 
-  // TO-DO: not yet implemented in database?
-  var uchirec = (<p><span className="brand">UCHI</span> recommends to {task1.uchirec}</p>)
+    const handleProgress = () => {
+      var numerator = 0;
+      for (var i = 0; i < stepsCompleted.length; i++) {
+        if (stepsCompleted[i] == 1) {
+          numerator++;
+        }
+      }
+      var percent = Math.ceil((numerator / stepsCompleted.length)*100);
+      setProgressValue(percent);
+      if (numerator == stepsCompleted.length) handleComplete()
+    }
 
-  return (
-    <div className={styles.chocolate80bg}>
-      <Head>
-        <title>UCHI | Task Details</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
-      <Layout>
-        <div className={styles.chocolate80filler}>
-          <div className={styles.detailsContainer}>
-            <div className="pageContent">
-              <DetailsHeader type="task" name={taske.title} progressValue={progressValue} handleComplete={handleComplete} />
-              <div className={styles.mainDetailsContainer}>
-                <MainDetailsTable type="task" space={task1.space} difficulty={taske.difficulty} time={task1.time} frequency={task1.frequency} />
-                <hr className={styles.hr} />
-                <p className={styles.purpose}>{taske.description}</p>
-              </div>
-            </div>
-          </div>
+    // TO-DO: not yet implemented in database?
+    var uchirec = (<p><span className="brand">UCHI</span> recommends to {task1.uchirec}</p>)
 
-          <div className={styles.detailsContainerDetailsPagesDesktop}>
-            <div className="pageContent">
-              <img className="btn-back" src="../icons/carrotbtn_left_line.svg" alt="Back" onClick={() => router.back()} />
-              <div className={styles.addHFHeaderDesktop}>
-                <div>
-                  <h1>{taske.title}</h1>
-                  <div>
-                    <BtnComplete handleComplete={handleComplete} />
-                    <div className={styles.actionBtnContainerDesktop}>
-                      <BtnPostpone />
-                      <BtnDelete />
-                    </div>
-                  </div>
-                </div>
-                <CircularProgressbar className={styles.progressbar} value={progressValue} maxValue={100} text={progressValue + '%'} />
+    return (
+      <div className={styles.chocolate80bg}>
+        <Head>
+          <title>UCHI | Task Details</title>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        </Head>
+        <Layout>
+          <div className={styles.chocolate80filler}>
+            <div className={styles.detailsContainer}>
+              <div className="pageContent">
+                <DetailsHeader type="task" name={taske.title} progressValue={progressValue} handleComplete={handleComplete} />
                 <div className={styles.mainDetailsContainer}>
-                  <MainDetailsTable type="task" space={task1.space} difficulty={taske.difficulty} time={task1.time} frequency={task1.frequency} />
+                  <MainDetailsTable type="task" space={taske.tag3} difficulty={taske.difficulty} time={taske.time} frequency={task1.frequency} hf ={feature}/>
                   <hr className={styles.hr} />
                   <p className={styles.purpose}>{taske.description}</p>
                 </div>
               </div>
             </div>
+
+            <div className={styles.detailsContainerDetailsPagesDesktop}>
+              <div className="pageContent">
+                <img className="btn-back" src="../icons/carrotbtn_left_line.svg" alt="Back" onClick={() => router.back()} />
+                <div className={styles.addHFHeaderDesktop}>
+                  <div>
+                    <h1>{taske.title}</h1>
+                    <div>
+                      <BtnComplete handleComplete={handleComplete} />
+                      <div className={styles.actionBtnContainerDesktop}>
+                        <BtnPostpone />
+                        <BtnDelete />
+                      </div>
+                    </div>
+                  </div>
+                  <CircularProgressbar className={styles.progressbar} value={progressValue} maxValue={100} text={progressValue + '%'} />
+                  <div className={styles.mainDetailsContainer}>
+                    <MainDetailsTable type="task" space={taske.tag3} difficulty={taske.difficulty} time={taske.time} frequency={task1.frequency} hf = {feature}/>
+                    <hr className={styles.hr} />
+                    <p className={styles.purpose}>{taske.f_description}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="pageContent">
+              <h2>How To</h2>
+              {uchirec}
+              {steps ? <StepList steps={steps[0]} stepsComplete={stepsCompleted} setStepsComplete={setStepsCompleted} handleProgress={handleProgress} /> : ""}
+            </div>
           </div>
- 
-          <div className="pageContent">
-            <h2>How To</h2>
-            {uchirec}
-            <TabBar type="steps" tabs={["DIY", "Service"]} tabContent={steps} tools={task1.tools} stepsComplete={stepsCompleted} setStepsComplete={setStepsCompleted} handleProgress={handleProgress} />
+          <div className={styles.chocolate80filler}>
           </div>
-        </div>
-        <div className={styles.chocolate80filler}>
-        </div>
-      </Layout>
-    </div>
-  )
+        </Layout>
+      </div>
+    )
+  } else {
+    return (<SignIn/>)
+  }
 }
 
 export default TaskDetails

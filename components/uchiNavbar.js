@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { supabase } from '../utils/supabaseClient'
-
-import Link from 'next/link'
+import AppContext from '../AppContext.js'
 import { useRouter } from "next/router";
-
+import Link from 'next/link'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
@@ -14,9 +13,8 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 import styles from './uchiNavbar.module.css'
 
-const user = supabase.auth.user()
-
 export function UchiNavbar() {
+  const contextValue = useContext(AppContext);
   const router = useRouter();
   // <Nav className="me-auto">
   //   <Nav.Link href="#features">Dashboard</Nav.Link>
@@ -41,7 +39,15 @@ export function UchiNavbar() {
               <li className={router.pathname == "/dashboard" ? "active" : ""}><Link href="/dashboard"><a>Dashboard</a></Link></li>
               <li className={router.pathname == "/homefeatures" ? "active" : ""}><Link href="/homefeatures"><a>Home Features</a></Link></li>
               <li className={router.pathname == "/tasks" ? "active" : ""}><Link href="/tasks"><a>Tasks</a></Link></li>
-              <li className={router.pathname == "/profile" ? "active" : ""}><Link href="/profile"><a>Profile</a></Link></li>
+              <NavDropdown title={contextValue.state.username} id="mobile-nav-dropdown">
+                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                <NavDropdown.Item href="/about">About <span className="brand">UCHI</span></NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="/" onClick={() => {
+                  supabase.auth.signOut()
+                  contextValue.setLoggedIn(false)
+                }}><img src="/icons/signout_dark.svg" alt="Sign out" />Sign Out</NavDropdown.Item>
+              </NavDropdown>
             </ul>
           </Nav>
         </Navbar.Collapse>
@@ -51,22 +57,8 @@ export function UchiNavbar() {
   )
 }
 
-export function UchiSideNavbar({session}) {
-  const [username, setUsername] = useState(null)
-
-  useEffect(() => {
-    getProfile()
-  }, [session])
-
-  async function getProfile() {
-
-      let { data} = await supabase
-        .from('profiles')
-        .select(`username, website, avatar_url`)
-        .eq('id', user.id)
-        .single()
-      setUsername(data.username);
-  }
+export function UchiSideNavbar() {
+  const contextValue = useContext(AppContext);
 
   const router = useRouter();
 
@@ -90,15 +82,18 @@ export function UchiSideNavbar({session}) {
         <Dropdown as={ButtonGroup}>
           <Button variant="light" onClick={() => router.push('/profile')}>
             <img className={styles.profileBtnImg} src="/profile.png" alt="Profile Image" />
-            {username}
+            {contextValue.state.username}
           </Button>
 
           <Dropdown.Toggle variant="light" split id="dropdown-split-basic" />
 
           <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">About UCHI</Dropdown.Item>
+            <Dropdown.Item href="/about">About <span className="brand">UCHI</span></Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item href="#/action-2"><img src="/icons/signout_dark.svg" alt="Sign out" />Sign Out</Dropdown.Item>
+            <Dropdown.Item href="/" onClick={() => {
+              supabase.auth.signOut()
+              contextValue.setLoggedIn(false)
+            }}><img src="/icons/signout_dark.svg" alt="Sign out" />Sign Out</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>

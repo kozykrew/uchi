@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { supabase } from '../utils/supabaseClient'
 
 import {UchiNavbar} from './uchiNavbar.js'
 import {BtnNext, BtnCancel, BtnFinish, BtnToHF} from './button.js'
@@ -18,6 +19,9 @@ export default function Layout({ children }) {
       desktopContainerClass = "desktopContainer-vanillaToasted";
       break;
     case "/profile":
+      desktopContainerClass = "desktopContainer-vanillaToasted";
+      break;
+    case "/completedtasks":
       desktopContainerClass = "desktopContainer-vanillaToasted";
       break;
     case "/taskdetails":
@@ -60,17 +64,22 @@ export default function Layout({ children }) {
 }
 
 export function AddHFFooter(props) {
+  async function deleteHome() {
+    const user = supabase.auth.user()
+    let { data } = await supabase.from('UserHome').delete().eq('userID', user.id).eq('featureName', addHF)
+  }
+
   if (props.next) {
     return (
       <footer className={styles.footer}>
-        <BtnCancel cancel={props.cancel} />
+        <BtnCancel cancel={props.cancel} onClick={deleteHome} />
         <BtnNext next={props.next} />
       </footer>
     )
   } else if (props.finish) {
     return (
       <footer className={styles.footer}>
-        <BtnCancel cancel={props.cancel} />
+        <BtnCancel cancel={props.cancel} onClick={deleteHome} />
         <BtnFinish next={props.finish} />
       </footer>
     )
@@ -81,4 +90,15 @@ export function AddHFFooter(props) {
       </footer>
     )
   }
+}
+
+export function OnboardingLayout({ children }) {
+  return (
+    <div className={styles.desktopContainer}>
+      <div className={styles.onboardingContainer}>
+        <p className={styles.brand}>UCHI</p>
+        {children}
+      </div>
+    </div>
+  )
 }
