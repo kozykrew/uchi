@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import Auth from '../components/Auth'
 import Account from '../components/Account'
-import { useRouter } from 'next/router'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Container from 'react-bootstrap/Container'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -17,7 +17,7 @@ import navStyles from '../components/uchiNavbar.module.css'
 
 export default function SignIn() {
   const router = useRouter();
-  
+
   const [session, setSession] = useState(null)
 
   useEffect(() => {
@@ -47,10 +47,12 @@ export default function SignIn() {
     </Navbar>
   )
 
+  //{!session ? <Auth /> : <Account key={session.user.id} session={session} />}
+  
   return (
     <div className={styles.bg}>
       <Head>
-        <title>UCHI</title>
+        <title>UCHI | Sign Up</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className={styles.displayTop}>
@@ -69,8 +71,8 @@ export default function SignIn() {
           </div>
         </div>
         <div className={styles.pageContent}>
-          <h1 className={styles.title}><span className={styles.titleBrand}>Sign In to UCHI</span></h1>
-          {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
+          <h1 className={styles.title}><span className={styles.titleBrand}>Welcome to UCHI</span></h1>
+          <Auth />
           <hr className={styles.hr} />
         </div>
         <div className={styles.backtomain}>

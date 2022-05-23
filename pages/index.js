@@ -42,73 +42,73 @@ export default function Landing() {
       <div className={styles.displayTop}>
         {navbar}
       </div>
-        <div className={styles.visualContainer}>
-          <div className={styles.visualChocolate80}>
-            <img src="/landing-visual.png" alt="A person cheers next to their home." />
-          </div>
-          <div className={styles.visualVanillaToasted}>
-            <div className={styles.dictionaryContainer}>
-              <p className="brand noMB">U&#8226;CHI</p>
-              <p className={styles.phonetic}>/ <span className={styles.overline}>oo</span>CH<span className={styles.overline}>e</span> /</p>
-              <p className={styles.definition}>make a house your home</p>
-            </div>
+      <div className={styles.visualContainer}>
+        <div className={styles.visualChocolate80}>
+          <img src="/landing-visual.png" alt="A person cheers next to their home." />
+        </div>
+        <div className={styles.visualVanillaToasted}>
+          <div className={styles.dictionaryContainer}>
+            <p className="brand noMB">U&#8226;CHI</p>
+            <p className={styles.phonetic}>/ <span className={styles.overline}>oo</span>CH<span className={styles.overline}>e</span> /</p>
+            <p className={styles.definition}>make a house your home</p>
           </div>
         </div>
-        <div className={styles.pageContent}>
-          <h1 id="about" className={styles.title}><span className={styles.titleBrand}>UCHI</span></h1>
-          <p className={styles.info}>First-time homeownership is abundant in resources on purchasing a
-          home, but resources about caring for one’s home lack in comparison.
-          Additionally, these resources lack organization and information applicable to
-          individual needs. As a result, two-thirds of first-time American homeowners
-          ignore home maintenance until parts of their home begin to malfunction,
-          leading to unexpected expenses. To mitigate homebuyer’s regret caused by
-          being unprepared for home maintenance, UCHI organizes maintenance tasks
-          relevant to each home. With UCHI’s recommendations and reminders to stay
-          up-to-date with home maintenance tasks, first-time homeowners are able to
-          protect their investments and better care for their homes.
-          </p>
-          <hr className={styles.hr} />
-          <h2 id="features" className={styles.heading}><span className={styles.headingText}>Key Features</span></h2>
-          <div className={styles.keyFeaturesContainer}>
-            <KeyFeature name="Education" desc="Provide guidance for home maintenance tasks." img="/images/key-features/education.png" />
-            <KeyFeature name="Task Tracker" desc="Track and organize maintenance tasks." img="/images/key-features/task-tracker.png" />
-            <KeyFeature name="Customizability" desc="Personalize a one-stop home maintenance experience." img="/images/key-features/customizability.png" />
-          </div>
-          <h2 id="demo" className={styles.heading}><span className={styles.headingText}>Demonstration Video</span></h2>
-          <iframe className={styles.demo} width="560" height="315" src="https://www.youtube.com/embed/eOnztFnFFAg" title="UCHI Demonstration" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-          <h2 id="team" className={styles.heading}><span className={styles.headingText}>Team KozyKrew</span></h2>
-          <div className={styles.profilesContainer}>
-            <TeamProfile name="Ariane Apigo" roles="UX Designer, Front-end Developer" img="/images/team/ariane.png" linkedin="" />
-            <TeamProfile name="Rachel Chung" roles="UX Designer, Researcher" img="/images/team/rachel.png" linkedin="" />
-            <TeamProfile name="John-Luke Dokupil" roles="Data Scientist, Researcher" img="/images/team/johnluke.png" linkedin="" />
-            <TeamProfile name="Ratul Jain" roles="Data Scientist, Back-end Developer" img="/images/team/ratul.png" linkedin="" />
-          </div>
-          <h2 id="status" className={styles.heading}><span className={styles.headingText}>Project Status</span></h2>
-          <p className={styles.info}>UCHI started as a student-driven Capstone project
-           for the Information School at the University of Washington, Winter/Spring 2022.
-           As of May 25, 2022, UCHI will transition to be an <span className={styles.bodybold}>open source project</span> for future
-           iSchool Capstone teams to further develop.
-          </p>
-          <div className="text-center"><a className={styles.githubLink} href="https://github.com/ari-apigo/uchi" target="_blank" rel="noreferrer">UCHI on GitHub<img className={styles.github} src="/icons/github_dark.svg" alt={"UCHI on GitHub"} /></a></div>
+      </div>
+      <div className={styles.pageContent}>
+        <h1 id="about" className={styles.title}><span className={styles.titleBrand}>UCHI</span></h1>
+        <p className={styles.info}>First-time homeownership is abundant in resources on purchasing a
+        home, but resources about caring for one’s home lack in comparison.
+        Additionally, these resources lack organization and information applicable to
+        individual needs. As a result, two-thirds of first-time American homeowners
+        ignore home maintenance until parts of their home begin to malfunction,
+        leading to unexpected expenses. To mitigate homebuyer’s regret caused by
+        being unprepared for home maintenance, UCHI organizes maintenance tasks
+        relevant to each home. With UCHI’s recommendations and reminders to stay
+        up-to-date with home maintenance tasks, first-time homeowners are able to
+        protect their investments and better care for their homes.
+        </p>
+        <hr className={styles.hr} />
+        <h2 id="features" className={styles.heading}><span className={styles.headingText}>Key Features</span></h2>
+        <div className={styles.keyFeaturesContainer}>
+          <KeyFeature name="Education" desc="Provide guidance for home maintenance tasks." img="/images/key-features/education.png" />
+          <KeyFeature name="Task Tracker" desc="Track and organize maintenance tasks." img="/images/key-features/task-tracker.png" />
+          <KeyFeature name="Customizability" desc="Personalize a one-stop home maintenance experience." img="/images/key-features/customizability.png" />
         </div>
-        <div className={styles.visualContainer}>
-          <div className={styles.visualMint80}>
-            <h1 className="noMB">Try <span className="brand">UCHI</span> today!</h1>
-          </div>
-          <Link href="/signin"><a>
-            <div className={styles.visualOrange60}>
-              <h2 className={styles.signup}>Sign Up</h2>
-              <img src="/icons/arrowcircle_right_line_dark.svg" alt="Sign Up Today" />
-            </div>
-          </a></Link>
+        <h2 id="demo" className={styles.heading}><span className={styles.headingText}>Demonstration Video</span></h2>
+        <iframe className={styles.demo} width="894" height="783" src="https://youtu.be/eOnztFnFFAg" title="UCHI Demonstration" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+        <h2 id="team" className={styles.heading}><span className={styles.headingText}>Team KozyKrew</span></h2>
+        <div className={styles.profilesContainer}>
+          <TeamProfile name="Ariane Apigo" roles="UX Designer, Front-end Developer" img="/images/team/ariane.png" linkedin="https://www.linkedin.com/in/ariane-apigo/" />
+          <TeamProfile name="Rachel Chung" roles="UX Designer, Researcher" img="/images/team/rachel.png" linkedin="https://www.linkedin.com/in/rclrachelchung/" />
+          <TeamProfile name="John-Luke Dokupil" roles="Data Scientist, Researcher" img="/images/team/johnluke.png" linkedin="https://www.linkedin.com/in/jldokupil/" />
+          <TeamProfile name="Ratul Jain" roles="Data Scientist, Back-end Developer" img="/images/team/ratul.png" linkedin="https://www.linkedin.com/in/ratul-jain-9ab1762b/" />
         </div>
-        <div className={styles.footer}>
-          <div>
-            <p className={styles.brand}>UCHI</p>
-            <p>&copy; 2022 UCHI. All rights reserved.</p>
-          </div>
-          <img className={styles.ischool} src="/iSchoolLogo_UCHI_TextLight.png" alt="University of Washington Information School" />
+        <h2 id="status" className={styles.heading}><span className={styles.headingText}>Project Status</span></h2>
+        <p className={styles.info}>UCHI started as a student-driven Capstone project
+         for the Information School at the University of Washington, Winter/Spring 2022.
+         As of May 25, 2022, UCHI will transition to be an <span className={styles.bodybold}>open source project</span> for future
+         iSchool Capstone teams to further develop.
+        </p>
+        <div className="text-center"><a className={styles.githubLink} href="https://github.com/ari-apigo/uchi" target="_blank" rel="noreferrer">UCHI on GitHub<img className={styles.github} src="/icons/github_dark.svg" alt={"UCHI on GitHub"} /></a></div>
+      </div>
+      <div className={styles.visualContainer}>
+        <div className={styles.visualMint80}>
+          <h1 className="noMB">Try <span className="brand">UCHI</span> today!</h1>
         </div>
+        <Link href="/signin"><a>
+          <div className={styles.visualOrange60}>
+            <h2 className={styles.signup}>Sign Up</h2>
+            <img src="/icons/arrowcircle_right_line_dark.svg" alt="Sign Up Today" />
+          </div>
+        </a></Link>
+      </div>
+      <div className={styles.footer}>
+        <div>
+          <p className={styles.brand}>UCHI</p>
+          <p>&copy; 2022 UCHI. All rights reserved.</p>
+        </div>
+        <img className={styles.ischool} src="/iSchoolLogo_UCHI_TextLight.png" alt="University of Washington Information School" />
+      </div>
     </div>
   )
   // MVP below
@@ -176,9 +176,11 @@ function TeamProfile(props) {
     <div className={styles.profileContainer}>
       <img className={styles.memberProfileImg} src={props.img} alt={props.name} />
       <div className={styles.profileDetailsContainer}>
-        <h3>{props.name}</h3>
+        <a className={styles.linkedInDesktop} href={props.linkedin} target="_blank" rel="noreferrer">
+          <h3>{props.name}</h3>
+        </a>
         <p>{props.roles}</p>
-        <a href={props.linkedin}>
+        <a href={props.linkedin} target="_blank" rel="noreferrer">
           <img className={styles.linkedIn} src="/icons/linkedin_dark.svg" alt={props.name + "&#39;s LinkedIn Profile"} />
         </a>
       </div>

@@ -1,5 +1,6 @@
 import Table from 'react-bootstrap/Table'
-
+import { useState, useContext, useEffect } from 'react'
+import { supabase } from '../utils/supabaseClient'
 import styles from './details.module.css'
 
 // PROPS
@@ -11,6 +12,34 @@ import styles from './details.module.css'
     // frequency: string - task frequency
 // additional: array of objects of any additional information for a home feature
 export function MainDetailsTable(props) {
+  const user = supabase.auth.user();
+  const handleSelect = (e) => setSelectedBrand(e.target.value);
+  const [feature, setFeature] = useState([])
+  const [featureType, setFeatureType] = useState('')
+  const [featureAge, setFeatureAge] = useState('')
+  const [featureBrand, setFeatureBrand] = useState('')
+  const [featureModel, setFeatureModel] = useState('')
+
+  useEffect(() => {
+    if ( props.type == "confirmation") {
+      fetchFeature()
+    }
+  }, []);
+  const fetchFeature = async () => {
+    let { data: feature, error } = await supabase.from('UserHome').select(`
+    *`)
+    .eq('userID', user.id)
+    .eq('featureName', props.hf)
+    if (error) console.log('error', error)
+    else {
+      setFeature(feature)
+      setFeatureType(feature[0].featureType)
+      setFeatureAge(feature[0].age)
+      setFeatureBrand(feature[0].brand)
+      setFeatureModel(feature[0].modelNo)
+    }
+  }
+
   if (props.type == "task") {
     return (
       <Table>
@@ -37,6 +66,7 @@ export function MainDetailsTable(props) {
     // var additionalTable = [];
     if (props.additional.length > 0) {
       additional = determineAdditional(props.additional);
+
     //   additionalTable = props.additional.map((add => (
     //     <tr>
     //       <th>{add.header}</th>
@@ -58,7 +88,7 @@ export function MainDetailsTable(props) {
         <td>ABCDEFG123456</td>
       </tr>
     );
-    if (props.hf == "Roof") {
+    if (props.hf == "roof") {
       modelNumber = "";
     }
 
@@ -67,16 +97,19 @@ export function MainDetailsTable(props) {
         <Table>
           <tr>
             <th>Type</th>
-            <td>Asphalt</td>
+            <td>{props.featureType}</td>
           </tr>
           <tr>
             <th>Brand</th>
-            <td>Malarkey</td>
+            <td>{props.featureBrand.charAt(0).toUpperCase() + props.featureBrand.slice(1)}</td>
           </tr>
-          {modelNumber}
+          <tr>
+            <th>Model #</th>
+            <td>{props.featureModel}</td>
+          </tr>
           <tr>
             <th>Age</th>
-            <td>4 years</td>
+            <td>{props.featureAge}</td>
           </tr>
         </Table>
         {additional}
@@ -93,11 +126,11 @@ export function MainDetailsTable(props) {
         <Table>
           <tr>
             <th>Type</th>
-            <td>Asphalt</td>
+            <td>{featureType}</td>
           </tr>
           <tr>
             <th>Age</th>
-            <td>4 years</td>
+            <td>{featureAge}</td>
           </tr>
         </Table>
         {additional}

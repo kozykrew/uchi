@@ -3,6 +3,10 @@
   padding-bottom: 2rem;
 }
 
+.noBG {
+  background-color: transparent;
+}
+
 .visualContainer {
   position: relative;
 }
@@ -149,6 +153,10 @@
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.linkedInDesktop {
+  pointer-events: none;
 }
 
 .bodybold {
@@ -300,6 +308,10 @@
 
   .linkedIn {
     display: none;
+  }
+
+  .linkedInDesktop {
+    pointer-events: auto;
   }
 
   .brand {

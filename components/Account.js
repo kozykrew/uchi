@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 import Button from 'react-bootstrap/Button'
+import {ProfileHeader} from '../components/headers.js'
+import {ProfileCard} from '../components/profileCard.js'
 
-import styles from './button.module.css'
+import styles from '../components/details.module.css'
+import profileCardStyles from '../components/profileCard.module.css'
+import Layout from '../components/layout.js'
 
 export default function Account({ session }) {
   const [loading, setLoading] = useState(true)
@@ -11,7 +16,7 @@ export default function Account({ session }) {
   const [website, setWebsite] = useState(null)
   const [avatar_url, setAvatarUrl] = useState(null)
   const router = useRouter();
-  
+
   useEffect(() => {
     getProfile()
   }, [session])
@@ -42,6 +47,7 @@ export default function Account({ session }) {
       setLoading(false)
     }
   }
+
 
   async function updateProfile({ username, website, avatar_url }) {
     try {
@@ -94,16 +100,6 @@ export default function Account({ session }) {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="website">Website</label>
-          <input
-            id="website"
-            className="form-control"
-            type="website"
-            value={website || ''}
-            onChange={(e) => setWebsite(e.target.value)}
-          />
-        </div>
         <Button
           variant="light"
           className={styles.signin}
@@ -115,6 +111,14 @@ export default function Account({ session }) {
       </form>
       <Button
         variant="light"
+        className={styles.signin}
+        onClick={() => router.push('/dashboard')}
+        disabled={loading}
+      >
+        {loading ? 'Loading ...' : 'Dashboard'}
+      </Button>
+      <Button
+        variant="light"
         className={styles.signout}
         onClick={() => supabase.auth.signOut()}>
         <img src="/icons/signout_dark.svg" alt="Sign out" />
@@ -123,3 +127,4 @@ export default function Account({ session }) {
     </div>
   )
 }
+

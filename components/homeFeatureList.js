@@ -11,7 +11,7 @@ import styles from './homeFeatureList.module.css'
 export function HomeFeatureList(props) {
   if (props.hfs.length > 0) {
     var hfcards = props.hfs.map((hf) => (
-      <HomeFeatureCard key={hf.name.replace(/\s+/g, '')} space={props.space} hfName={hf.name} />
+      <HomeFeatureCard key={hf.featureName.replace(/\s+/g, '')} space={props.space} hfName={hf.featureName} />
     ));
     return (
       <div className={styles.container}>
