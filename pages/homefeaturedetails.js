@@ -30,6 +30,7 @@ export default function HomeFeatureDetails() {
   const [tasks, setTasks] = useState([]);
 
   var addHF = router.query.hf;
+  var displayHF = ''
   if (addHF !== undefined) {
     displayHF = addHF.charAt(0).toUpperCase() + addHF.slice(1);
   }
