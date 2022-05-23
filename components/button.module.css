@@ -10,7 +10,7 @@
   background-color: var(--mint60);
 }
 
-.postpone, .signin {
+.postpone, .signin, .startTour, .onboarding {
   background-color: var(--orange60);
 }
 
@@ -20,6 +20,10 @@
 
 .cancel, .next, .toHF {
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.startTour {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cancel {
@@ -56,6 +60,10 @@
 .signin {
   margin-left: auto;
   margin-top: 1rem;
+}
+
+.onboarding {
+  align-self: flex-end;
 }
 
 /* ----------------------------------- @media rules ----------------------------------- */

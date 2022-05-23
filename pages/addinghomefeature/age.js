@@ -4,24 +4,34 @@ import Head from 'next/head'
 import Layout, {AddHFFooter} from '../../components/layout.js'
 import {AddHFHeader} from '../../components/headers.js'
 import {Slider} from '../../components/slider.js'
+import { supabase } from '../../utils/supabaseClient'
 
 import styles from '../../components/details.module.css'
 import addingStyles from '../../components/addingHomeFeature.module.css'
 import btnStyles from '../../components/button.module.css'
 
-const addHF = "Roof";
-const addHFiconpath = "/icons/hf_" + addHF.toLowerCase() + "_lg.svg";
-const additionalRefrigerator = true;
-const additionalRoof = false;
-
 export default function Age() {
   const router = useRouter();
-
+  const user = supabase.auth.user()
+  let addHF = router.query.homeFeature;
+  var displayHF;
+  var addHFiconpath = "/icons/hf_"// + addHF.toLowerCase() + "_lg.svg";
+  if (addHF !== undefined) {
+    displayHF = addHF.charAt(0).toUpperCase() + addHF.slice(1);
+    addHFiconpath = addHFiconpath + addHF.toLowerCase() + "_lg.svg";
+  }
+  const additionalRefrigerator = true;
+  const additionalRoof = false;
+  async function deleteHome() {
+    const user = supabase.auth.user()
+    let { data } = await supabase.from('UserHome').delete().eq('userID', user.id).eq('featureName', addHF)
+    console.log(data)
+  }
   var next = "/addinghomefeature/";
   if (addHF == "Roof") {
-    next = next + "confirmation";
+    next = next + "confirmation?homeFeature=roof";
   } else {
-    next = next + "additional"
+    next = next + "additional?homeFeature=refrigerator";
   }
 
   return (
@@ -34,30 +44,36 @@ export default function Age() {
         <div className={styles.chocolate60bg}>
           <div className={styles.detailsContainer}>
             <div className="pageContent">
-              <AddHFHeader name={addHF} iconpath={addHFiconpath} />
+              <AddHFHeader name={displayHF} iconpath={addHFiconpath} />
             </div>
           </div>
           <div className="pageContent">
             <div className={styles.detailsContainerDesktop}>
               <img className="btn-back" src="../icons/carrotbtn_left_line.svg" alt="Back" onClick={() => router.back()} />
               <div className={styles.addHFHeaderDesktop}>
-                <img className={styles.addHFHeaderDesktopIcon} src={addHFiconpath} alt={addHF} />
-                <h1>Add a {addHF}</h1>
+                <img className={styles.addHFHeaderDesktopIcon} src={addHFiconpath} alt={displayHF} />
+                <h1>Add a {displayHF}</h1>
               </div>
             </div>
             <div className={addingStyles.prompt}>
-              <h2 className="textDark">How old is your {addHF}?</h2>
+              <h2 className="textDark">How old is your {displayHF}?</h2>
               <p className="smallHeader textDark">Average Lifespan: 20-30 years</p>
             </div>
-            <Slider max={60} />
+            <Slider max={60} name={addHF} />
             <div className="addhfprocessbtn-container">
-              <Button className={btnStyles.cancelDesktop} onClick={() => router.push("/homefeatures")}>
+              <Button className={btnStyles.cancelDesktop} onClick={() => {
+                deleteHome()
+                router.push("/homefeatures")
+              }}>
                 <span className="iconFirst">
                   <img src="../icons/close_line_dark.svg" alt="Cancel" />
                 </span>
                 Cancel
               </Button>
-              <Button className={btnStyles.addDesktop} onClick={() => router.push(next)}>
+              <Button className={btnStyles.addDesktop} onClick={() => router.push({
+                  pathname: '/addinghomefeature/confirmation',
+                  query: {homeFeature: router.query.homeFeature}
+                })}>
                 <span className="iconFirst">
                   <img src="../icons/carrotbtn_right_line_dark.svg" alt="Next" />
                 </span>

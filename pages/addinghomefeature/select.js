@@ -1,4 +1,5 @@
 import {useState, useContext} from 'react'
+import { supabase } from '../../utils/supabaseClient'
 import AppContext from '../../AppContext.js'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
@@ -24,12 +25,46 @@ export default function SelectHomeFeature() {
     };
     return obj;
   });
-  console.log(iconsHFs)
 
   // dropdown reference: https://stackblitz.com/edit/react-bootstrap-flags-dropdown-menu
   const [homeFeatures] = useState(iconsHFs);
   const [toggleContents, setToggleContents] = useState("Select a Home Feature");
   const [selectedHF, setSelectedHF] = useState();
+
+  async function addRow(name) {
+    try {
+      const user = supabase.auth.user()
+
+      let {data: fID} = await supabase.from('HomeFeatures').select('*').eq('featureName', name).single()
+      if(!fID) {
+        alert('Feature does not exist')
+        router.push('/homefeatures')
+      }
+      console.log(fID)
+      const updates = {
+        userID: user.id,
+        featureID: fID.id,
+        tag3: fID.tag3,
+        featureName: fID.featureName,
+        featureType: fID.featureType
+      }
+      let {data} = await supabase.from('UserHome').select('*').eq('featureID', fID.id).eq('userID', user.id)
+
+      if (data.length == 0) {
+        let { error } = await supabase.from('UserHome').upsert(updates, {
+          returning: 'minimal', // Don't return the value after inserting
+        })
+        if (error) {
+          throw error
+        }
+      } else {
+        alert('Cannot have more than 1 Home Feature of the same type')
+        router.push('/homefeatures')
+      }
+    } catch (error) {
+      alert(error.message)
+    }
+  }
 
   return (
     <div>
@@ -39,7 +74,9 @@ export default function SelectHomeFeature() {
       </Head>
       <Layout>
         <div className="pageContent">
-          <img className="btn-back" src="../icons/carrotbtn_left_line.svg" alt="Back" onClick={() => router.back()} />
+          <img className="btn-back" src="../icons/carrotbtn_left_line.svg" alt="Back" onClick={() => {
+            router.back()
+          }} />
           <h1>Add a Home Feature</h1>
           <div className="selecthf-container">
             <p className="callout">What Home Feature would you like to add to your {contextValue.state.space} Space?</p>
@@ -47,8 +84,8 @@ export default function SelectHomeFeature() {
               <Dropdown
                 onSelect={eventKey => {
                   const { code, src, hf } = homeFeatures.find(({ code }) => eventKey === code);
-
                   setSelectedHF(eventKey);
+                  console.log(selectedHF);
                   setToggleContents(<><img src={src} alt={hf} />{hf}</>);
                 }}
               >
@@ -72,7 +109,14 @@ export default function SelectHomeFeature() {
                 </span>
                 Cancel
               </Button>
-              <Button className={styles.addDesktop} onClick={() => router.push("/addinghomefeature/type")}>
+              <Button className={styles.addDesktop} onClick={() => {
+                addRow(selectedHF)
+                router.push({
+                  pathname: '/addinghomefeature/type',
+                  query: {homeFeature: selectedHF},
+                })
+              }
+                }>
                 <span className="iconFirst">
                   <img src="../icons/plus_line_dark.svg" alt="Add Home Feature" />
                 </span>

@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import { supabase } from '../utils/supabaseClient'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Modal from 'react-bootstrap/Modal'
@@ -22,11 +23,6 @@ const surfaceHFs = ["Carpet flooring", "Hardwood flooring"];
 // headertext: string - corresponding Space name
 export function ModalAddHF(props) {
   const router = useRouter();
-
-  // HF select state for old dropdown
-  // const [selectedHF, setSelectedHF] = useState(null);
-  //
-  // const handleSelect = (e) => setSelectedHF(e.target.value);
 
   var options = getOptions(props.headertext);
 
@@ -66,6 +62,41 @@ export function ModalAddHF(props) {
     </Form>
   );
 
+  async function addRow(name) {
+    try {
+      const user = supabase.auth.user()
+
+      let {data: fID} = await supabase.from('HomeFeatures').select('*').eq('featureName', name).single()
+      if(fID.length == 0) {
+        alert('Feature does not exist')
+        router.push('/homefeatures')
+      }
+      console.log(data)
+      const updates = {
+        userID: user.id,
+        featureID: fID.id,
+        tag3: fID.tag3,
+        featureName: fID.featureName,
+        featureType: fID.featureType
+      }
+      let {data} = await supabase.from('UserHome').select('*').eq('featureID', fID.id).eq('userID', user.id)
+
+      if (data.length == 0) {
+        let { error } = await supabase.from('UserHome').upsert(updates, {
+          returning: 'minimal', // Don't return the value after inserting
+        })
+        if (error) {
+          throw error
+        }
+      } else {
+        alert('Cannot have more than 1 Home Feature of the same type')
+        router.push('/homefeatures')
+      }
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
   return (
     <Modal
       show={props.show}
@@ -87,49 +118,21 @@ export function ModalAddHF(props) {
           </div>
           Cancel
         </Button>
-        <Button className={styles.btnAdd} onClick={() => router.push('/addinghomefeature/type')}>
-        <div className="iconRegular iconFirst">
-          <IconCircleAdd_Bold_Dark />
-        </div>
+        <Button className={styles.btnAdd} onClick={() => {
+          addRow(selectedHF)
+          router.push({
+            pathname: '/addinghomefeature/type',
+            query: { homeFeature: selectedHF},
+          })
+        }} >
+          <span className="iconFirst">
+            <img src="../icons/plus_line_dark.svg" alt="Add Home Feature" />
+          </span>
           Add
         </Button>
       </Modal.Footer>
     </Modal>
   )
-
-  // return (
-  //   <Modal
-  //     show={props.show}
-  //     onHide={props.handleClose}
-  //     backdrop="static"
-  //     keyboard={false}
-  //     centered>
-  //     <Modal.Header closeButton>
-  //       <Modal.Title>Add a Home Feature</Modal.Title>
-  //     </Modal.Header>
-  //     <Modal.Body>
-  //       <p>What Home Feature would you like to add to your {props.headertext} Space?</p>
-  //       <Form.Select aria-label="Select home feature" onChange={handleSelect}>
-  //         <option value={null}>Select a Home Feature</option>
-  //         {options}
-  //       </Form.Select>
-  //     </Modal.Body>
-  //     <Modal.Footer>
-  //       <Button className={styles.btnCancel} onClick={props.handleClose}>
-  //         <div className="iconRegular iconFirst">
-  //           <IconCircleClose_Line_Dark />
-  //         </div>
-  //         Cancel
-  //       </Button>
-  //       <Button className={styles.btnAdd} onClick={() => router.push('/addinghomefeature/type')}>
-  //       <div className="iconRegular iconFirst">
-  //         <IconCircleAdd_Bold_Dark />
-  //       </div>
-  //         Add
-  //       </Button>
-  //     </Modal.Footer>
-  //   </Modal>
-  // )
 }
 
 function getOptions(space) {
@@ -151,12 +154,6 @@ function getOptions(space) {
       hfList = systemHFs;
       break;
   }
-
-  // var options = [];
-  // for (let i = 0; i < hfList.length; i++) {
-  //   options.push(<option value={hfList[i].replace(/\s+/g, '-').toLowerCase()}>{hfList[i]}</option>)
-  // }
-  // return options;
 
   return hfList;
 }

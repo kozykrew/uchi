@@ -65,7 +65,7 @@ export function SectionHeader(props) {
   return (
     <div className={styles.header}>
     <div className="iconFirst iconRegular">
-      <Image src={props.iconpath} width={32} height={32} alt="Section header icon" />
+      <img src={props.iconpath} alt="Section header icon" />
     </div>
       <h2 className={styles.pageHeader}>{props.headertext}</h2>
     </div>

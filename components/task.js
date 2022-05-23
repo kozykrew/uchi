@@ -23,8 +23,8 @@ export function Task(props) {
 
   const steps1 = []
   const fetchSteps = async () => {
-  let { data: steps} = await supabase.from('userSteps').select(`*`)
-  .eq('UserID', user.id)
+  let { data: steps} = await supabase.from('UserSteps').select(`*`)
+  .eq('userID', user.id)
   .eq('userTasksID', props.taskid)
   .order('title')
   steps1.push(steps)
@@ -37,9 +37,9 @@ export function Task(props) {
       const stepsIsCompleted = steps[0][i].stepsStatus
       console.log(steps)
       const { data, error } = await supabase
-      .from('userSteps')
+      .from('UserSteps')
       .update({ stepsStatus: !stepsIsCompleted})
-      .eq('UserID', user.id)
+      .eq('userID', user.id)
       .eq('id', steps[0][i].id)
     }
   }
@@ -47,8 +47,9 @@ export function Task(props) {
   const toggle = async () => {
     try {
       const { data, error } = await supabase
-        .from('userTasks')
+        .from('UserTasks')
         .update({ taskStatus: !isCompleted })
+        .eq('userID', user.id)
         .eq('id', props.taskid)
         .single()
       if (error) {
