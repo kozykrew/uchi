@@ -75,7 +75,7 @@ export default function Landing() {
           <KeyFeature name="Customizability" desc="Personalize a one-stop home maintenance experience." img="/images/key-features/customizability.png" />
         </div>
         <h2 id="demo" className={styles.heading}><span className={styles.headingText}>Demonstration Video</span></h2>
-        <iframe className={styles.demo} width="560" height="315" src="https://www.youtube.com/embed/eOnztFnFFAg" title="UCHI Demonstration" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe className={styles.demo} width="560" height="315" src="https://www.youtube.com/embed/eOnztFnFFAg" title="UCHI Demonstration" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         <h2 id="team" className={styles.heading}><span className={styles.headingText}>Team KozyKrew</span></h2>
         <div className={styles.profilesContainer}>
           <TeamProfile name="Ariane Apigo" roles="UX Designer, Front-end Developer" img="/images/team/ariane.png" linkedin="https://www.linkedin.com/in/ariane-apigo/" />
