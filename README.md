@@ -30,3 +30,10 @@ The local version of UCHI should include the following functionalities:
 - View Tasks
 - Complete Tasks
 - View Profile
+
+-----------------------------------
+## UCHI Official Handoff Documentation
+
+Access the [shortened version](https://drive.google.com/file/d/1aun01DOUtoVPzXqysIoXV4K2cGvWfZ-f/view?usp=sharing).
+
+To access the full version, please contact the iSchool or KozyKrew’s point of contact, Ariane Apigo ([arianea@uw.edu](arianea@uw.edu)).
