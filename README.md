@@ -1,3 +1,5 @@
+**UCHI: Make a house your home - [semifinalist](https://ischool.uw.edu/event/capstone/2022/semifinalists) for Innovation & Design Award!**
+
 ## View UCHI Live
 
 View UCHI live at [https://uchi.vercel.app/](https://uchi.vercel.app/).
@@ -34,6 +36,14 @@ The local version of UCHI should include the following functionalities:
 -----------------------------------
 ## UCHI Official Handoff Documentation
 
-Access the [shortened version](https://drive.google.com/file/d/1aun01DOUtoVPzXqysIoXV4K2cGvWfZ-f/view?usp=sharing).
+Access the [shortened version](https://drive.google.com/file/d/1xSypSJZMEC9Y0_E_BGdBRwkmjPMF15yo/view?usp=sharing).
 
 To access the full version, please contact the iSchool or KozyKrew’s point of contact, Ariane Apigo ([arianea@uw.edu](arianea@uw.edu)).
+
+-----------------------------------
+## To a future Capstone Team,
+Thank you for reading through our handoff documentation! UCHI was a student-driven project at the start of 2022 – we know how it feels to not have a single idea about what your Capstone project should be! Through our experience, we realized past teams’ projects are a great place to start. Inspired by the example and work of others, we put lots of effort into creating a detailed handoff documentation for a team interested in picking up on our work. Please don’t hesitate to reach out to any of us! We are here to support you in building on UCHI’s foundation! 😊
+
+Best wishes,
+
+Ariane, Rachel, John-Luke, & Ratul
