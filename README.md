@@ -1,5 +1,7 @@
 **UCHI: Make a house your home - [semifinalist](https://ischool.uw.edu/event/capstone/2022/semifinalists) for Innovation & Design Award!**
 
+Read more about [Capstone Night](https://ischool.uw.edu/news/2022/05/two-day-hybrid-capstone-gala-event-increases-access-annual-student-showcase).
+
 ## View UCHI Live
 
 View UCHI live at [https://uchi.vercel.app/](https://uchi.vercel.app/).
